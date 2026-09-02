@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Tokens
+
+   Ground is a cool drafting neutral rather than cream: the subject is imported
+   industrial equipment, and the client's own Engineering deck already uses
+   faint technical linework. Cool grey also sits with the brand navy, which
+   warm cream fights.
+
+   Gold is a mark, never a fill. The decks use gold gradients and glow badges;
+   that reads rich in print and cheap on screen.
+--------------------------------------------------------------------------- */
+
+:root {
+  --paper: #edf0f4;
+  --paper-raised: #f7f9fb;
+  --paper-sunk: #e3e8ef;
+
+  --ink: #0a1228;
+  --ink-soft: #46536e;
+  --ink-faint: #6b7893;
+
+  --navy: #16294f;
+  --gold: #a97b2c;
+
+  --rule: #c9d2de;
+  --rule-strong: #9fb0c4;
+
+  /* Remapped per division. Components never branch on division; they read
+     --accent and stay identical everywhere. */
+  --accent: var(--navy);
+  --on-accent: #f7f9fb;
+}
+
+[data-division="renewables"] {
+  --accent: #0f5137;
+}
+
+[data-division="engineering"] {
+  --accent: #a97b2c;
+}
+
+/* Sahara Link International: royal blue with an amber counterpart, taken
+   from its logo. Blue carries; amber appears only as a mark. */
+[data-division="manpower"] {
+  --accent: #1d47b8;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-paper-sunk: var(--paper-sunk);
+
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+
+  --color-navy: var(--navy);
+  --color-gold: var(--gold);
+
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+
+  /* Square by default. Nameplates and technical drawings have no radius. */
+  --radius-none: 0px;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+    /* Archivo is variable across weight and width; never let the browser
+       fake either. */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Focus that stays visible against both paper and accent grounds. */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Type roles
+
+   One family, three widths. Archivo's `wdth` axis runs 62–125, so expanded
+   display, normal body and condensed data all come from a single download.
+--------------------------------------------------------------------------- */
+
+@utility type-display {
+  font-stretch: 125%;
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  text-wrap: balance;
+}
+
+@utility type-heading {
+  font-stretch: 112%;
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  text-wrap: balance;
+}
+
+@utility type-body {
+  font-stretch: 100%;
+  font-weight: 400;
+  line-height: 1.62;
+  color: var(--ink-soft);
+  /* Under 80 characters, per the type brief. */
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+@utility type-data {
+  font-stretch: 75%;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.012em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------------
+   Blueprint ground
+
+   A faint drafting grid, drawn in CSS so it costs nothing and scales cleanly.
+   Applied to a few large sections, not the whole page — the point is a hint
+   of drawing paper, not graph paper.
+--------------------------------------------------------------------------- */
+
+@utility blueprint {
+  position: relative;
+  isolation: isolate;
+
+  /* The grid lives on a pseudo-element. Masking the section itself would
+     fade its content along with the drawing. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, var(--rule-strong) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--rule-strong) 1px, transparent 1px);
+    background-size: 96px 96px;
+    background-position: center top;
+    opacity: 0.32;
+    mask-image: radial-gradient(
+      ellipse 90% 70% at 22% 0%,
+      #000 0%,
+      transparent 72%
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

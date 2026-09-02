@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sahara Link Group — website
 
-## Getting Started
+Static marketing site for **Sahara Link Group**, a Dhaka-based group of companies with three divisions:
 
-First, run the development server:
+| Division | Business | Flow |
+|---|---|---|
+| Sahara Link Engineering | Elevators (Sigma, Sino Hyundai, Fuji) and diesel generators (Perkins, Cummins, Ricardo, EVOL) | Equipment into Bangladesh |
+| SLG Renewables | Complete solar systems — panels, inverters, storage, protection | Equipment into Bangladesh |
+| Sahara Link International | Workforce placement with overseas employers | Workforce out of Bangladesh |
+
+The group imports and distributes; it does not manufacture. Site copy reflects that throughout.
+
+## Stack
+
+- **Next.js 16** (App Router) with `output: "export"` — the whole site builds to plain HTML in `out/`
+- **TypeScript** strict
+- **Tailwind CSS v4**, tokens defined in `src/app/globals.css`
+- **Archivo** (variable, `wdth` axis) self-hosted via `next/font` — one family covering display, body and spec-plate data
+- No component library. Primitives are local.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # static export into out/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`out/` can be served by any static host — Netlify, Vercel, or plain shared hosting.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Layout
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/           routes (13 planned, placeholders where content is pending)
+  components/
+    primitives/  Container and other structural pieces
+    patterns/    DataPlate, PagePlaceholder
+    layout/      Header, Footer
+  content/       typed content data — site facts, divisions, brands
+public/
+  brand/         processed logos (circular alpha, WebP)
+```
 
-## Learn More
+Content lives in `src/content` as typed data rather than inside JSX. Seven brands share one shape, so pages map over data and render templates. Adding a brand is a data entry, not a new page.
 
-To learn more about Next.js, take a look at the following resources:
+## Design notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The visual language comes from the subject: imported industrial equipment. A cool drafting-paper ground, and a **data plate** component modelled on the engraved nameplate riveted to every generator and lift controller — square, dense, carrying origin, capacity and applications where a buyer looks first.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Division accent colours are swapped by a `data-division` attribute remapping a CSS custom property. Components never branch on division.
 
-## Deploy on Vercel
+## Status
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Home page built. Remaining routes are honest placeholders pending content — most notably Sahara Link International, for which no material has been supplied yet.
