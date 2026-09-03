@@ -104,24 +104,25 @@ export type SocialId = "facebook" | "instagram" | "linkedin" | "youtube" | "what
 export type SocialLink = {
   id: SocialId;
   label: string;
-  href: string;
+  /** Omitted until the account URL is known. The icon still renders; it just
+   *  is not a link yet, so no visitor lands on a broken page. */
+  href?: string;
 };
 
 /**
  * Social profiles for the footer icon row.
  *
- * Empty on purpose. Nothing in the company profiles, the logos, or the parked
- * saharalinkgroup.com page names a Facebook, Instagram, LinkedIn or YouTube
- * account, and a search turned up no profile that can be verified as this
- * company rather than a similarly named one. An icon that leads somewhere
- * wrong costs more trust than a missing icon does.
+ * The URLs are not known yet — nothing in the company profiles, the logos or
+ * the parked saharalinkgroup.com page names an account. The icons are placed
+ * now and the addresses fill in later: add `href` to an entry and that icon
+ * becomes a working link, with no component change.
  *
- * WhatsApp is deliberately excluded even though the number is known: it
- * already has its own button in the footer, and listing it twice is noise.
- *
- * To switch the row on, add entries here — the component renders whatever is
- * in this array and nothing at all when it is empty:
- *
- *   { id: "facebook", label: "Facebook", href: "https://facebook.com/…" },
+ * WhatsApp is not listed. The number is known, but it already has its own
+ * button in the footer and listing it twice is noise.
  */
-export const socials: SocialLink[] = [];
+export const socials: SocialLink[] = [
+  { id: "facebook", label: "Facebook" },
+  { id: "instagram", label: "Instagram" },
+  { id: "linkedin", label: "LinkedIn" },
+  { id: "youtube", label: "YouTube" },
+];
