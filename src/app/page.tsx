@@ -18,15 +18,12 @@ export default function Home() {
   return (
     <main id="main" className="flex-1">
       <section className="border-b border-rule">
+        {/* Still only. The supplied clip rendered a flat green block during
+            hardware-accelerated playback, so it was pulled; pass `src` again
+            when a replacement arrives. */}
         <HeroVideo
-          src="/media/hero-elevator.mp4"
-          poster="/media/hero-poster.webp"
-          caption="Elevator doors opening in a building lobby"
-          // The clip pushes in tight early on — just a wall and a call button —
-          // and widens out later. Only the wide stretch plays, and the tail is
-          // dropped at the client's request.
-          startAt={9}
-          endAt={14.5}
+          poster="/media/hero-still.webp"
+          caption="Rooftop solar array on a house at sunset"
           className="relative min-h-[560px] w-full overflow-hidden bg-ink md:min-h-[620px] lg:min-h-[680px]"
         >
           <Container className="py-16 md:py-20">
@@ -190,8 +187,8 @@ export default function Home() {
               What we do
             </h2>
             <p className="type-body mt-4 text-[1.0625rem]">
-              Six things, across three divisions. Each one ends with somebody in
-              Dhaka answering the phone.
+              Everything the group offers, across three divisions. Each one ends
+              with somebody in Dhaka answering the phone.
             </p>
           </Reveal>
 

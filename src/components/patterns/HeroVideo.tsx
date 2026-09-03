@@ -4,14 +4,18 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Poster first, video second.
+ * Still first, motion second — and motion only if a clip is supplied.
  *
- * The poster is a plain image, so it is what the browser measures for LCP and
- * what a visitor sees immediately. The video file is only attached after mount,
- * and only when it is worth the bytes: a viewer on a metered or slow connection,
- * or one who has asked for reduced motion, keeps the still and downloads
- * nothing. On a Dhaka mobile connection that is the difference between a page
- * that loads and one that does not.
+ * The still is a plain image, so it is what the browser measures for LCP and
+ * what a visitor sees immediately. A video file, when there is one, attaches
+ * after mount and only when it is worth the bytes: a viewer on a metered or
+ * slow connection, or one who asked for reduced motion, keeps the still and
+ * downloads nothing.
+ *
+ * Omit `src` and this is simply a hero image with an overlay. That is the
+ * current state: the supplied clip rendered a flat green block during
+ * hardware-accelerated playback on the client's machine, so it was pulled.
+ * Restoring motion is a matter of passing `src` again.
  */
 export function HeroVideo({
   src,
@@ -22,7 +26,8 @@ export function HeroVideo({
   endAt,
   className = "relative h-[300px] w-full overflow-hidden bg-ink md:h-[420px] lg:h-[500px]",
 }: {
-  src: string;
+  /** Omit for a still-only hero. */
+  src?: string;
   poster: string;
   caption: string;
   /** Rendered above the footage, over a scrim. */
@@ -37,6 +42,7 @@ export function HeroVideo({
   const [active, setActive] = useState(false);
 
   useEffect(() => {
+    if (!src) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const connection = (
@@ -49,7 +55,7 @@ export function HeroVideo({
     if (connection?.effectiveType && /2g/.test(connection.effectiveType)) return;
 
     setActive(true);
-  }, []);
+  }, [src]);
 
   useEffect(() => {
     if (!active) return;
@@ -93,7 +99,7 @@ export function HeroVideo({
           priority
           className="absolute inset-0 h-full w-full object-cover"
         />
-        {active ? (
+        {active && src ? (
           <video
             ref={videoRef}
             // Media fragment, so the browser plays the window from the first

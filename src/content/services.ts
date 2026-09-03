@@ -56,4 +56,32 @@ export const services: Service[] = [
     division: "manpower",
     href: "/manpower",
   },
+  {
+    title: "Product consultation",
+    description:
+      "Which brand, which capacity, which configuration — matched to the building and the budget before anything is ordered.",
+    division: "group",
+    href: "/engineering/services",
+  },
+  {
+    title: "Project planning",
+    description:
+      "Shaft, machine room, electrical load and roof structure worked out ahead of installation, alongside your contractor.",
+    division: "group",
+    href: "/engineering/services",
+  },
+  {
+    title: "Installation and commissioning",
+    description:
+      "Wiring, protection, testing and handover, with the system left running and explained to whoever operates it.",
+    division: "group",
+    href: "/renewables/process",
+  },
+  {
+    title: "Spare parts and after-sales",
+    description:
+      "The question every buyer asks before signing. Parts and support stay available after the warranty ends.",
+    division: "group",
+    href: "/contact",
+  },
 ];
