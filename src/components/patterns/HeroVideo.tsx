@@ -53,7 +53,7 @@ export function HeroVideo({
       {/* A band, not a full 16:9 block. The clip pushes in slowly, and at full
           height the frame lands so close that it reads as a grey wall rather
           than an elevator. */}
-      <div className="relative h-[280px] w-full overflow-hidden bg-ink md:h-[380px] lg:h-[440px]">
+      <div className="relative h-[280px] w-full overflow-hidden border border-rule bg-ink md:h-[380px] lg:h-[420px]">
         <Image
           src={poster}
           alt={caption}

@@ -47,21 +47,21 @@ export default function Home() {
             />
           </Reveal>
 
+          {/* Statement, then the thing itself, then the structure behind it.
+              One clip rather than a rotating gallery: three downloads and a
+              layout shift to say what one says. */}
           <Reveal immediate delay={420} className="lg:col-span-2">
+            <HeroVideo
+              src="/media/hero-elevator.mp4"
+              poster="/media/hero-poster.webp"
+              caption="Elevator doors opening in a building lobby"
+            />
+          </Reveal>
+
+          <Reveal delay={80} className="lg:col-span-2">
             <FlowSchematic />
           </Reveal>
         </Container>
-      </section>
-
-      {/* Motion where the eye lands after the proposition. One clip, full
-          width — not a rotating gallery, which would cost layout shift and
-          three downloads to say what one says. */}
-      <section className="border-b border-rule">
-        <HeroVideo
-          src="/media/hero-elevator.mp4"
-          poster="/media/hero-poster.webp"
-          caption="Elevator doors opening in a building lobby"
-        />
       </section>
 
       <section className="py-20 md:py-24">
