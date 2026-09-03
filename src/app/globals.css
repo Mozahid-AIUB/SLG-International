@@ -204,6 +204,89 @@
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Flow schematic
+
+   A pulse travelling the connector line, showing which way goods and people
+   move through Dhaka. Slow and low-contrast on purpose: it should register as
+   direction, not as an animation demanding attention.
+--------------------------------------------------------------------------- */
+
+@utility flow-line {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+    background: var(--accent);
+    opacity: 0.85;
+  }
+}
+
+/* Vertical connector on small screens, horizontal from md up. */
+@media (max-width: 767px) {
+  .flow-line::after {
+    left: 50%;
+    margin-left: -2px;
+    width: 4px;
+    height: 14px;
+    animation: flow-down 5.5s var(--flow-delay, 0s) linear infinite;
+  }
+}
+
+@media (min-width: 768px) {
+  .flow-line::after {
+    top: 50%;
+    margin-top: -2px;
+    height: 4px;
+    width: 14px;
+    animation: flow-right 5.5s var(--flow-delay, 0s) linear infinite;
+  }
+}
+
+@keyframes flow-right {
+  0% {
+    left: -14px;
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.85;
+  }
+  88% {
+    opacity: 0.85;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes flow-down {
+  0% {
+    top: -14px;
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.85;
+  }
+  88% {
+    opacity: 0.85;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-line::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 /* Nothing may stay hidden on paper. */
 @media print {
   [data-reveal] {

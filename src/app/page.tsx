@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/primitives/Container";
 import { Reveal } from "@/components/primitives/Reveal";
 import { DataPlate } from "@/components/patterns/DataPlate";
+import { FlowSchematic } from "@/components/patterns/FlowSchematic";
 import { divisions, site } from "@/content/site";
 import { brands } from "@/content/brands";
 
@@ -43,6 +44,10 @@ export default function Home() {
                 { label: "Role", value: "Importer and distributor" },
               ]}
             />
+          </Reveal>
+
+          <Reveal immediate delay={420} className="lg:col-span-2">
+            <FlowSchematic />
           </Reveal>
         </Container>
       </section>
