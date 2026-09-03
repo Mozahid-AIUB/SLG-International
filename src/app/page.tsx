@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/primitives/Container";
 import { DataPlate } from "@/components/patterns/DataPlate";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
 import { divisions, site } from "@/content/site";
 
 const flowLabel: Record<string, string> = {
@@ -13,9 +11,6 @@ const flowLabel: Record<string, string> = {
 
 export default function Home() {
   return (
-    <>
-      <Header />
-
       <main id="main" className="flex-1">
         {/* Hero. No photography exists yet, so the page opens on the
             proposition itself, set in expanded Archivo over drafting grid. */}
@@ -129,7 +124,5 @@ export default function Home() {
         </section>
       </main>
 
-      <Footer />
-    </>
   );
 }

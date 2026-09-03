@@ -4,7 +4,7 @@ Static marketing site for **Sahara Link Group**, a Dhaka-based group of companie
 
 | Division | Business | Flow |
 |---|---|---|
-| Sahara Link Engineering | Elevators (Sigma, Sino Hyundai, Fuji) and diesel generators (Perkins, Cummins, Ricardo, EVOL) | Equipment into Bangladesh |
+| SLG Engineering | Elevators (Sigma, Sino Hyundai, Fuji) and diesel generators (Perkins, Cummins, Ricardo, EVOL) | Equipment into Bangladesh |
 | SLG Renewables | Complete solar systems — panels, inverters, storage, protection | Equipment into Bangladesh |
 | Sahara Link International | Workforce placement with overseas employers | Workforce out of Bangladesh |
 

@@ -62,7 +62,7 @@ export type Division = {
 export const divisions: Division[] = [
   {
     id: "engineering",
-    name: "Sahara Link Engineering",
+    name: "SLG Engineering",
     strapline: "Lifts, generators, maintenance",
     href: "/engineering",
     summary:
