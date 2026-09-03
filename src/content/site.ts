@@ -52,6 +52,9 @@ export type Division = {
   /** Which way goods or people move. The group's organising idea. */
   direction: "inbound" | "outbound";
   logo: string;
+  /** Product photography, where any exists. Manpower has none yet. */
+  photo?: string;
+  photoAlt?: string;
 };
 
 /**
@@ -69,6 +72,8 @@ export const divisions: Division[] = [
       "Elevators and diesel generators from seven global brands, supplied, installed and serviced across Bangladesh.",
     direction: "inbound",
     logo: "/brand/engineering-192.webp",
+    photo: "/media/sigma.webp",
+    photoAlt: "Elevator car with a brushed metal interior",
   },
   {
     id: "renewables",
@@ -79,6 +84,8 @@ export const divisions: Division[] = [
       "Complete solar systems — panels, inverters, storage and protection — sized and installed for homes, businesses and industry.",
     direction: "inbound",
     logo: "/brand/renewables-192.webp",
+    photo: "/media/solar-roof.webp",
+    photoAlt: "Rooftop solar array on an industrial building",
   },
   {
     id: "manpower",
