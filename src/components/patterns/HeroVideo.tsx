@@ -17,10 +17,15 @@ export function HeroVideo({
   src,
   poster,
   caption,
+  children,
+  className = "relative h-[300px] w-full overflow-hidden bg-ink md:h-[420px] lg:h-[500px]",
 }: {
   src: string;
   poster: string;
   caption: string;
+  /** Rendered above the footage, over a scrim. */
+  children?: React.ReactNode;
+  className?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [active, setActive] = useState(false);
@@ -50,13 +55,10 @@ export function HeroVideo({
 
   return (
     <figure className="relative">
-      {/* A band, not a full 16:9 block. The clip pushes in slowly, and at full
-          height the frame lands so close that it reads as a grey wall rather
-          than an elevator. */}
-      <div className="relative h-[300px] w-full overflow-hidden bg-ink md:h-[420px] lg:h-[500px]">
+      <div className={className}>
         <Image
           src={poster}
-          alt={caption}
+          alt={children ? "" : caption}
           width={1280}
           height={720}
           priority
@@ -74,6 +76,19 @@ export function HeroVideo({
             aria-hidden="true"
             className="absolute inset-0 h-full w-full object-cover"
           />
+        ) : null}
+
+        {children ? (
+          <>
+            {/* The clip is pale grey. Overlaid type needs a real scrim, not a
+                token one — heaviest where the text sits, lifting to the right
+                so the footage still reads. */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-r from-ink/94 via-ink/82 to-ink/45"
+            />
+            <div className="relative flex h-full items-center">{children}</div>
+          </>
         ) : null}
       </div>
       <figcaption className="sr-only">{caption}</figcaption>

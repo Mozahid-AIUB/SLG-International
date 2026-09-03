@@ -7,6 +7,7 @@ import { FlowSchematic } from "@/components/patterns/FlowSchematic";
 import { HeroVideo } from "@/components/patterns/HeroVideo";
 import { divisions, site } from "@/content/site";
 import { brands } from "@/content/brands";
+import { services } from "@/content/services";
 
 const flowLabel: Record<string, string> = {
   inbound: "Equipment into Bangladesh",
@@ -16,38 +17,82 @@ const flowLabel: Record<string, string> = {
 export default function Home() {
   return (
     <main id="main" className="flex-1">
-      {/* Opens on the equipment, then says what the company does. The poster
-          still is what the browser measures for LCP, so leading with the clip
-          costs nothing above the fold. */}
       <section className="border-b border-rule">
         <HeroVideo
           src="/media/hero-elevator.mp4"
           poster="/media/hero-poster.webp"
           caption="Elevator doors opening in a building lobby"
-        />
+          className="relative min-h-[560px] w-full overflow-hidden bg-ink md:min-h-[620px] lg:min-h-[680px]"
+        >
+          <Container className="py-16 md:py-20">
+            <Reveal immediate className="flex items-center gap-4">
+              <Image
+                src="/brand/group-192.webp"
+                alt=""
+                width={192}
+                height={192}
+                className="h-14 w-14"
+              />
+              <span className="type-heading text-[1.0625rem] leading-tight text-paper-raised">
+                {site.name}
+              </span>
+            </Reveal>
+
+            <Reveal
+              as="h1"
+              immediate
+              delay={140}
+              className="mt-8 max-w-[18ch] type-display text-[2.25rem] text-paper-raised sm:text-[3rem] lg:text-[3.75rem]"
+            >
+              Equipment into Bangladesh. Workforce out to the world.
+            </Reveal>
+
+            <Reveal
+              as="p"
+              immediate
+              delay={280}
+              className="type-body mt-6 max-w-[54ch] text-[1.0625rem] text-paper-sunk/80"
+            >
+              Elevators, diesel generators and complete solar systems from seven
+              global brands — supplied, installed and serviced. And Bangladeshi
+              workers placed with employers overseas.
+            </Reveal>
+
+            <Reveal immediate delay={400} className="mt-9 flex flex-wrap gap-3">
+              <Link
+                href="/engineering"
+                className="border border-paper-raised bg-paper-raised px-6 py-3 type-data text-[0.9375rem] text-navy transition-colors hover:bg-white"
+              >
+                See what we supply
+              </Link>
+              <Link
+                href="/enquiry"
+                className="border border-white/35 px-6 py-3 type-data text-[0.9375rem] text-paper-raised transition-colors hover:border-white/70"
+              >
+                Start an enquiry
+              </Link>
+            </Reveal>
+          </Container>
+        </HeroVideo>
       </section>
 
-      {/* One orchestrated entrance on load, rather than motion scattered
-          through the page. Everything below reveals once, on scroll. */}
       <section className="blueprint border-b border-rule">
-        <Container className="grid gap-14 py-20 md:py-28 lg:grid-cols-[1.45fr_1fr] lg:items-end">
-          <div>
-            <Reveal as="h1" immediate className="type-display text-[2.5rem] sm:text-[3.5rem] lg:text-[4.25rem]">
-              Equipment into Bangladesh.
-              <br />
-              Workforce out to the world.
-            </Reveal>
-            <Reveal as="p" immediate delay={140} className="type-body mt-7 text-[1.0625rem]">
-              Sahara Link Group supplies elevators, diesel generators and
-              complete solar systems from seven global brands, and places
-              Bangladeshi workers with employers overseas. Fifteen years, one
-              head office in Dhaka.
-            </Reveal>
-          </div>
+        <Container className="grid gap-12 py-16 md:py-20 lg:grid-cols-[1.45fr_1fr] lg:items-start">
+          <Reveal>
+            <h2 className="type-heading text-[1.75rem] sm:text-[2rem]">
+              One group, both directions
+            </h2>
+            <p className="type-body mt-4 text-[1.0625rem]">
+              Sahara Link Group has spent fifteen years bringing equipment into
+              Bangladesh and sending skilled workers out of it. Two divisions
+              import, one places workforce, and all three run from one office in
+              Dhaka.
+            </p>
+          </Reveal>
 
-          <Reveal immediate delay={280}>
+          <Reveal delay={120}>
             <DataPlate
-              title="Sahara Link Group"
+              title={site.name}
               rows={[
                 { label: "In operation", value: `${site.yearsActive} years` },
                 { label: "Divisions", value: "Three" },
@@ -58,7 +103,7 @@ export default function Home() {
             />
           </Reveal>
 
-          <Reveal immediate delay={420} className="lg:col-span-2">
+          <Reveal delay={80} className="lg:col-span-2">
             <FlowSchematic />
           </Reveal>
         </Container>
@@ -71,14 +116,10 @@ export default function Home() {
               Three divisions
             </h2>
             <p className="type-body mt-4 text-[1.0625rem]">
-              Two bring equipment in. One sends workforce out. All three run
-              from the same office, under the same fifteen-year track record.
+              Two bring equipment in. One sends workforce out.
             </p>
           </Reveal>
 
-          {/* The goods are already shown in the band above; repeating them
-              here would say nothing new. These rows carry the structure of the
-              group instead. */}
           <div className="mt-12 border-t border-rule">
             {divisions.map((division, index) => (
               <Reveal
@@ -137,10 +178,50 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="border-y border-rule bg-ink py-20 text-paper-raised md:py-24">
+      <section className="border-y border-rule bg-paper-sunk py-20 md:py-24">
         <Container>
           <Reveal>
-            <h2 className="type-heading text-[1.75rem] sm:text-[2rem] text-paper-raised">
+            <h2 className="type-heading text-[1.75rem] sm:text-[2rem]">
+              What we do
+            </h2>
+            <p className="type-body mt-4 text-[1.0625rem]">
+              Six things, across three divisions. Each one ends with somebody in
+              Dhaka answering the phone.
+            </p>
+          </Reveal>
+
+          <ul className="mt-12 grid gap-x-12 md:grid-cols-2 lg:grid-cols-3">
+            {services.map((service, index) => (
+              <Reveal
+                key={service.title}
+                as="li"
+                delay={index * 70}
+                className="block"
+              >
+                <Link
+                  href={service.href}
+                  data-division={
+                    service.division === "group" ? undefined : service.division
+                  }
+                  className="group flex h-full flex-col border-t-2 border-accent py-6"
+                >
+                  <h3 className="type-heading text-[1.1875rem] text-navy transition-colors group-hover:text-accent">
+                    {service.title}
+                  </h3>
+                  <p className="type-body mt-3 text-[0.9375rem]">
+                    {service.description}
+                  </p>
+                </Link>
+              </Reveal>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <section className="bg-ink py-20 text-paper-raised md:py-24">
+        <Container>
+          <Reveal>
+            <h2 className="type-heading text-[1.75rem] text-paper-raised sm:text-[2rem]">
               Seven brands, represented in Bangladesh
             </h2>
             <p className="type-body mt-4 max-w-[62ch] text-[1.0625rem] text-paper-sunk/70">
@@ -195,7 +276,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="bg-paper-sunk py-16">
+      <section className="border-t border-rule bg-paper-sunk py-16">
         <Container className="flex flex-wrap items-center justify-between gap-6">
           <Reveal>
             <h2 className="type-heading text-[1.375rem]">
