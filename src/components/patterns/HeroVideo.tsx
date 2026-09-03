@@ -96,7 +96,16 @@ export function HeroVideo({
         {active ? (
           <video
             ref={videoRef}
-            src={src}
+            // Media fragment, so the browser plays the window from the first
+            // frame it decodes. Waiting for JS to seek lets the head of the
+            // file flash on screen first.
+            src={
+              endAt !== undefined
+                ? `${src}#t=${startAt},${endAt}`
+                : startAt > 0
+                  ? `${src}#t=${startAt}`
+                  : src
+            }
             poster={poster}
             muted
             loop
