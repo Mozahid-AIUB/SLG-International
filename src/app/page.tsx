@@ -16,6 +16,17 @@ const flowLabel: Record<string, string> = {
 export default function Home() {
   return (
     <main id="main" className="flex-1">
+      {/* Opens on the equipment, then says what the company does. The poster
+          still is what the browser measures for LCP, so leading with the clip
+          costs nothing above the fold. */}
+      <section className="border-b border-rule">
+        <HeroVideo
+          src="/media/hero-elevator.mp4"
+          poster="/media/hero-poster.webp"
+          caption="Elevator doors opening in a building lobby"
+        />
+      </section>
+
       {/* One orchestrated entrance on load, rather than motion scattered
           through the page. Everything below reveals once, on scroll. */}
       <section className="blueprint border-b border-rule">
@@ -47,18 +58,7 @@ export default function Home() {
             />
           </Reveal>
 
-          {/* Statement, then the thing itself, then the structure behind it.
-              One clip rather than a rotating gallery: three downloads and a
-              layout shift to say what one says. */}
           <Reveal immediate delay={420} className="lg:col-span-2">
-            <HeroVideo
-              src="/media/hero-elevator.mp4"
-              poster="/media/hero-poster.webp"
-              caption="Elevator doors opening in a building lobby"
-            />
-          </Reveal>
-
-          <Reveal delay={80} className="lg:col-span-2">
             <FlowSchematic />
           </Reveal>
         </Container>
