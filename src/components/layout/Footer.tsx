@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/primitives/Container";
+import { SocialLinks } from "@/components/layout/SocialLinks";
 import { divisions, site } from "@/content/site";
 
 const pages = [
@@ -104,6 +105,8 @@ export function Footer() {
           <p className="type-body mt-5 max-w-[42ch] text-[0.9375rem]">
             {site.tagline}
           </p>
+
+          <SocialLinks className="mt-7" />
 
           <nav className="mt-10 border-t border-rule-strong pt-6">
             <ul className="flex flex-wrap gap-x-8 gap-y-3">

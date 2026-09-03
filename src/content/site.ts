@@ -16,9 +16,9 @@ export const site = {
   yearsActive: 15,
 
   /**
-   * TODO: the group has no confirmed domain. The Engineering profile lists
-   * slgrenewables.com, which belongs to the Renewables division. Canonical
-   * URLs and metadataBase are wrong until this is settled.
+   * Confirmed 2026-09-03 by decoding the "Scan to connect" QR on the back
+   * cover of the Renewables profile, which resolves to www.saharalinkgroup.com.
+   * The division sites (slgrenewables.com) sit beneath it.
    */
   url: "https://saharalinkgroup.com",
 
@@ -96,5 +96,29 @@ export const divisions: Division[] = [
       "Bangladeshi workforce placed with employers overseas.",
     direction: "outbound",
     logo: "/brand/international-192.webp",
+  },
+];
+
+export type SocialId = "facebook" | "instagram" | "linkedin" | "youtube" | "whatsapp";
+
+export type SocialLink = {
+  id: SocialId;
+  label: string;
+  href: string;
+};
+
+/**
+ * Only profiles we can actually verify appear here. An icon linking to a page
+ * that does not exist costs more trust than a missing icon does.
+ *
+ * WhatsApp is confirmed from both company profiles. Facebook, LinkedIn,
+ * YouTube and Instagram are pending real URLs from the client — add them here
+ * and the row renders them, no component change needed.
+ */
+export const socials: SocialLink[] = [
+  {
+    id: "whatsapp",
+    label: "WhatsApp",
+    href: `https://wa.me/${site.whatsapp.replace(/\D/g, "")}`,
   },
 ];
