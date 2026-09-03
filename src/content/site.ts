@@ -108,17 +108,20 @@ export type SocialLink = {
 };
 
 /**
- * Only profiles we can actually verify appear here. An icon linking to a page
- * that does not exist costs more trust than a missing icon does.
+ * Social profiles for the footer icon row.
  *
- * WhatsApp is confirmed from both company profiles. Facebook, LinkedIn,
- * YouTube and Instagram are pending real URLs from the client — add them here
- * and the row renders them, no component change needed.
+ * Empty on purpose. Nothing in the company profiles, the logos, or the parked
+ * saharalinkgroup.com page names a Facebook, Instagram, LinkedIn or YouTube
+ * account, and a search turned up no profile that can be verified as this
+ * company rather than a similarly named one. An icon that leads somewhere
+ * wrong costs more trust than a missing icon does.
+ *
+ * WhatsApp is deliberately excluded even though the number is known: it
+ * already has its own button in the footer, and listing it twice is noise.
+ *
+ * To switch the row on, add entries here — the component renders whatever is
+ * in this array and nothing at all when it is empty:
+ *
+ *   { id: "facebook", label: "Facebook", href: "https://facebook.com/…" },
  */
-export const socials: SocialLink[] = [
-  {
-    id: "whatsapp",
-    label: "WhatsApp",
-    href: `https://wa.me/${site.whatsapp.replace(/\D/g, "")}`,
-  },
-];
+export const socials: SocialLink[] = [];
