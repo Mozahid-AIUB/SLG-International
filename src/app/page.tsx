@@ -22,6 +22,11 @@ export default function Home() {
           src="/media/hero-elevator.mp4"
           poster="/media/hero-poster.webp"
           caption="Elevator doors opening in a building lobby"
+          // The clip pushes in tight early on — just a wall and a call button —
+          // and widens out later. Only the wide stretch plays, and the tail is
+          // dropped at the client's request.
+          startAt={9}
+          endAt={14.5}
           className="relative min-h-[560px] w-full overflow-hidden bg-ink md:min-h-[620px] lg:min-h-[680px]"
         >
           <Container className="py-16 md:py-20">

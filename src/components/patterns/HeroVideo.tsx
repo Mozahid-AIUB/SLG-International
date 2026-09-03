@@ -18,6 +18,8 @@ export function HeroVideo({
   poster,
   caption,
   children,
+  startAt = 0,
+  endAt,
   className = "relative h-[300px] w-full overflow-hidden bg-ink md:h-[420px] lg:h-[500px]",
 }: {
   src: string;
@@ -25,6 +27,10 @@ export function HeroVideo({
   caption: string;
   /** Rendered above the footage, over a scrim. */
   children?: React.ReactNode;
+  /** Loop only part of the file — seconds from the start. */
+  startAt?: number;
+  /** Loop only part of the file — seconds; the tail after this never plays. */
+  endAt?: number;
   className?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -49,9 +55,32 @@ export function HeroVideo({
     if (!active) return;
     const video = videoRef.current;
     if (!video) return;
+
+    // Play a window of the file rather than all of it, so an unwanted head or
+    // tail never reaches the screen. Cheaper and lossless compared with
+    // re-encoding, and the trim points stay editable.
+    const seekToStart = () => {
+      if (startAt > 0) video.currentTime = startAt;
+    };
+
+    const onTimeUpdate = () => {
+      if (endAt !== undefined && video.currentTime >= endAt) {
+        video.currentTime = startAt;
+      }
+    };
+
+    video.addEventListener("loadedmetadata", seekToStart);
+    video.addEventListener("timeupdate", onTimeUpdate);
+    if (video.readyState >= 1) seekToStart();
+
     // Autoplay can still be refused; the poster stays visible underneath.
     void video.play().catch(() => {});
-  }, [active]);
+
+    return () => {
+      video.removeEventListener("loadedmetadata", seekToStart);
+      video.removeEventListener("timeupdate", onTimeUpdate);
+    };
+  }, [active, startAt, endAt]);
 
   return (
     <figure className="relative">
