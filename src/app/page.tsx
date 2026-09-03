@@ -47,6 +47,38 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* The goods, edge to edge, straight after the proposition. This company
+          sells things you can look at; the page should show them before it
+          explains anything. */}
+      <section className="border-b border-rule">
+        <ul className="grid sm:grid-cols-3">
+          {[
+            { src: "/media/sigma.webp", label: "Elevators", alt: "Elevator car with a brushed metal interior" },
+            { src: "/media/cummins.webp", label: "Generators", alt: "Diesel generator set in an equipment hall" },
+            { src: "/media/solar-roof.webp", label: "Solar systems", alt: "Rooftop solar array on an industrial building" },
+          ].map((item, index) => (
+            <Reveal
+              key={item.label}
+              as="li"
+              delay={index * 110}
+              className="relative border-rule sm:border-r sm:last:border-r-0"
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                width={1200}
+                height={900}
+                className="h-56 w-full object-cover md:h-72 lg:h-80"
+                sizes="(min-width: 640px) 33vw, 100vw"
+              />
+              <p className="absolute bottom-0 left-0 bg-ink/85 px-4 py-2 type-data text-[0.9375rem] text-paper-raised">
+                {item.label}
+              </p>
+            </Reveal>
+          ))}
+        </ul>
+      </section>
+
       <section className="py-20 md:py-24">
         <Container>
           <Reveal>
@@ -59,50 +91,31 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <div className="mt-14 space-y-16 md:space-y-20">
+          {/* The goods are already shown in the band above; repeating them
+              here would say nothing new. These rows carry the structure of the
+              group instead. */}
+          <div className="mt-12 border-t border-rule">
             {divisions.map((division, index) => (
               <Reveal
                 key={division.id}
                 as="article"
                 delay={index * 90}
-                className="block"
+                className="block border-b border-rule"
               >
                 <div
                   data-division={division.id}
-                  className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14"
+                  className="grid items-start gap-6 border-l-2 border-accent py-10 pl-6 md:grid-cols-[auto_1fr_auto] md:gap-10 md:pl-8"
                 >
-                  <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                    {division.photo ? (
-                      <Image
-                        src={division.photo}
-                        alt={division.photoAlt ?? ""}
-                        width={1200}
-                        height={900}
-                        className="h-64 w-full border border-rule object-cover sm:h-80"
-                        sizes="(min-width: 1024px) 50vw, 100vw"
-                      />
-                    ) : (
-                      // No photography exists for this division yet. Its mark
-                      // on a deep ground reads as a decision rather than a
-                      // gap, and swaps out the day photographs arrive.
-                      <div className="relative flex h-64 w-full items-center justify-center border border-rule bg-ink sm:h-80">
-                        <span
-                          aria-hidden="true"
-                          className="absolute inset-x-0 top-0 h-1 bg-accent"
-                        />
-                        <Image
-                          src={division.logo}
-                          alt=""
-                          width={192}
-                          height={192}
-                          className="h-28 w-28"
-                        />
-                      </div>
-                    )}
-                  </div>
+                  <Image
+                    src={division.logo}
+                    alt=""
+                    width={192}
+                    height={192}
+                    className="h-16 w-16 md:h-20 md:w-20"
+                  />
 
-                  <div className="border-l-2 border-accent pl-6 md:pl-8">
-                    <h3 className="type-display text-[1.75rem] sm:text-[2rem]">
+                  <div>
+                    <h3 className="type-display text-[1.625rem] sm:text-[1.875rem]">
                       <Link
                         href={division.href}
                         className="text-navy transition-colors hover:text-accent"
@@ -110,14 +123,13 @@ export default function Home() {
                         {division.name}
                       </Link>
                     </h3>
-                    <p className="type-data mt-1.5 text-[0.9375rem] text-ink-faint">
+                    <p className="type-data mt-1 text-[0.9375rem] text-ink-faint">
                       {division.strapline}
                     </p>
-                    <p className="type-body mt-5 text-[1.0625rem]">
+                    <p className="type-body mt-4 text-[1.0625rem]">
                       {division.summary}
                     </p>
-
-                    <dl className="mt-6 flex gap-3">
+                    <dl className="mt-5 flex gap-3">
                       <dt className="type-data text-[0.875rem] text-ink-faint">
                         Flow
                       </dt>
@@ -125,14 +137,14 @@ export default function Home() {
                         {flowLabel[division.direction]}
                       </dd>
                     </dl>
-
-                    <Link
-                      href={division.href}
-                      className="mt-7 inline-block border border-navy px-5 py-2.5 type-data text-[0.9375rem] text-navy transition-colors hover:bg-navy hover:text-paper-raised"
-                    >
-                      Go to {division.name}
-                    </Link>
                   </div>
+
+                  <Link
+                    href={division.href}
+                    className="self-center whitespace-nowrap border border-navy px-5 py-2.5 type-data text-[0.9375rem] text-navy transition-colors hover:bg-navy hover:text-paper-raised"
+                  >
+                    Go to {division.name}
+                  </Link>
                 </div>
               </Reveal>
             ))}

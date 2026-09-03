@@ -17,8 +17,20 @@ const paths: Record<SocialId, string> = {
  * Renders nothing when no profiles are confirmed, so the footer never shows an
  * empty icon row while the client is still gathering links.
  */
-export function SocialLinks({ className = "" }: { className?: string }) {
+export function SocialLinks({
+  className = "",
+  tone = "light",
+}: {
+  className?: string;
+  /** "dark" for placement on the ink ground. */
+  tone?: "light" | "dark";
+}) {
   if (socials.length === 0) return null;
+
+  const styles =
+    tone === "dark"
+      ? "border-white/20 text-paper-sunk hover:border-white/60 hover:text-white"
+      : "border-rule-strong text-navy hover:border-accent hover:text-accent";
 
   return (
     <ul className={`flex flex-wrap items-center gap-3 ${className}`}>
@@ -30,7 +42,7 @@ export function SocialLinks({ className = "" }: { className?: string }) {
             target="_blank"
             aria-label={social.label}
             title={social.label}
-            className="flex h-10 w-10 items-center justify-center border border-rule-strong text-navy transition-colors hover:border-accent hover:text-accent"
+            className={`flex h-10 w-10 items-center justify-center border transition-colors ${styles}`}
           >
             <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[18px] w-[18px] fill-current">
               <path d={paths[social.id]} />
