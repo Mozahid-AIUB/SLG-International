@@ -4,6 +4,7 @@ import { Container } from "@/components/primitives/Container";
 import { Reveal } from "@/components/primitives/Reveal";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { FlowSchematic } from "@/components/patterns/FlowSchematic";
+import { HeroVideo } from "@/components/patterns/HeroVideo";
 import { divisions, site } from "@/content/site";
 import { brands } from "@/content/brands";
 
@@ -52,36 +53,15 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* The goods, edge to edge, straight after the proposition. This company
-          sells things you can look at; the page should show them before it
-          explains anything. */}
+      {/* Motion where the eye lands after the proposition. One clip, full
+          width — not a rotating gallery, which would cost layout shift and
+          three downloads to say what one says. */}
       <section className="border-b border-rule">
-        <ul className="grid sm:grid-cols-3">
-          {[
-            { src: "/media/sigma.webp", label: "Elevators", alt: "Elevator car with a brushed metal interior" },
-            { src: "/media/cummins.webp", label: "Generators", alt: "Diesel generator set in an equipment hall" },
-            { src: "/media/solar-roof.webp", label: "Solar systems", alt: "Rooftop solar array on an industrial building" },
-          ].map((item, index) => (
-            <Reveal
-              key={item.label}
-              as="li"
-              delay={index * 110}
-              className="relative border-rule sm:border-r sm:last:border-r-0"
-            >
-              <Image
-                src={item.src}
-                alt={item.alt}
-                width={1200}
-                height={900}
-                className="h-56 w-full object-cover md:h-72 lg:h-80"
-                sizes="(min-width: 640px) 33vw, 100vw"
-              />
-              <p className="absolute bottom-0 left-0 bg-ink/85 px-4 py-2 type-data text-[0.9375rem] text-paper-raised">
-                {item.label}
-              </p>
-            </Reveal>
-          ))}
-        </ul>
+        <HeroVideo
+          src="/media/hero-elevator.mp4"
+          poster="/media/hero-poster.webp"
+          caption="Elevator doors opening in a building lobby"
+        />
       </section>
 
       <section className="py-20 md:py-24">
