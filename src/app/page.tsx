@@ -4,7 +4,7 @@ import { Container } from "@/components/primitives/Container";
 import { Reveal } from "@/components/primitives/Reveal";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { FlowSchematic } from "@/components/patterns/FlowSchematic";
-import { HeroVideo } from "@/components/patterns/HeroVideo";
+import { HeroSlides } from "@/components/patterns/HeroSlides";
 import { divisions, site } from "@/content/site";
 import { brands } from "@/content/brands";
 import { services } from "@/content/services";
@@ -18,15 +18,27 @@ export default function Home() {
   return (
     <main id="main" className="flex-1">
       <section className="border-b border-rule">
-        {/* Still only. The supplied clip rendered a flat green block during
-            hardware-accelerated playback, so it was pulled; pass `src` again
-            when a replacement arrives. */}
-        <HeroVideo
-          poster="/media/hero-still.webp"
-          caption="Rooftop solar array on a house at sunset"
-          className="relative min-h-[560px] w-full overflow-hidden bg-ink md:min-h-[620px] lg:min-h-[680px]"
+        <HeroSlides
+          slides={[
+            {
+              src: "/media/hero-solar.webp",
+              alt: "Rooftop solar array on a house at sunset",
+              label: "Solar systems",
+            },
+            {
+              src: "/media/hero-elevator-still.webp",
+              alt: "Elevator doors in a building lobby",
+              label: "Elevators",
+            },
+            {
+              src: "/media/hero-generator.webp",
+              alt: "Diesel generator in a soundproof canopy",
+              label: "Generators",
+            },
+          ]}
+          className="relative min-h-[600px] w-full overflow-hidden bg-ink md:min-h-[660px] lg:min-h-[720px]"
         >
-          <Container className="py-16 md:py-20">
+          <Container className="py-16 pb-28 md:py-20 md:pb-32">
             <Reveal immediate className="flex items-center gap-4">
               <Image
                 src="/brand/group-192.webp"
@@ -75,7 +87,7 @@ export default function Home() {
               </Link>
             </Reveal>
           </Container>
-        </HeroVideo>
+        </HeroSlides>
       </section>
 
       <section className="blueprint border-b border-rule">
