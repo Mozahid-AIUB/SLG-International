@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Throwaway scripts and screenshots used while checking a page in the browser.
+/.scratch/
+
 # Client-supplied company profiles and internal working notes.
 # Held back because this repository is public. Delete these two lines to
 # include them, or make the repository private first.
