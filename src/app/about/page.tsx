@@ -6,6 +6,7 @@ import { Reveal } from "@/components/primitives/Reveal";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { PageHero } from "@/components/patterns/PageHero";
 import { divisions, site } from "@/content/site";
+import { leadership, technology } from "@/content/team";
 
 export const metadata: Metadata = {
   title: "About Sahara Link Group",
@@ -128,6 +129,162 @@ export default function AboutPage() {
           </ul>
         </Container>
       </section>
+
+      {/*
+        Colleagues, once their names and photographs arrive. Renders nothing
+        until then rather than showing seats with placeholder faces in them —
+        an empty team section says less about a company than no section does.
+      */}
+      {leadership.length > 0 ? (
+        <section className="border-b border-rule">
+          <Container className="py-16 md:py-20">
+            <h2 className="type-heading text-[1.75rem]">The people here</h2>
+
+            <ul className="mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {leadership.map((member) => (
+                <li key={member.id}>
+                  {member.photo ? (
+                    <Image
+                      src={member.photo}
+                      alt={member.photoAlt ?? `${member.name}, ${member.role}`}
+                      width={900}
+                      height={1200}
+                      className="w-full border border-rule-strong"
+                      sizes="(min-width: 1024px) 20rem, (min-width: 640px) 45vw, 100vw"
+                    />
+                  ) : (
+                    // Holds the column's shape so a member without a portrait
+                    // does not pull the row out of alignment.
+                    <div className="aspect-[3/4] w-full border border-rule bg-paper-sunk" />
+                  )}
+
+                  <h3 className="type-heading mt-5 text-[1.125rem]">
+                    {member.name}
+                  </h3>
+                  <p className="type-data mt-1 text-[0.875rem] text-ink-faint">
+                    {member.role}
+                  </p>
+                  {member.remit ? (
+                    <p className="type-body mt-3 text-[0.9375rem]">
+                      {member.remit}
+                    </p>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </section>
+      ) : null}
+
+      {/*
+        The technology contact is a nameplate, not an introduction. A visitor
+        reaching this section has a broken site or an expiring domain, and
+        wants the address that fixes it — the same job the plates do for a
+        generator's service details.
+      */}
+      {technology.length > 0 ? (
+        <section className="border-b border-rule bg-paper-raised">
+          <Container className="py-16 md:py-20">
+            <h2 className="type-heading text-[1.75rem]">
+              Website and systems
+            </h2>
+            <p className="type-body mt-4 text-[1.0625rem]">
+              The group&rsquo;s website, domain and server are administered
+              in-house. Reach the person below about anything technical.
+            </p>
+
+            <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
+              {technology.map((person) => (
+                <div
+                  key={person.id}
+                  // Only split into a portrait column when there is a portrait
+                  // to put in it; otherwise the plate would be squeezed into
+                  // half the width beside an empty gap.
+                  className={
+                    person.photo
+                      ? "grid gap-8 sm:grid-cols-[minmax(0,11rem)_1fr]"
+                      : ""
+                  }
+                >
+                  {person.photo ? (
+                    <Image
+                      src={person.photo}
+                      alt={person.photoAlt ?? `${person.name}, ${person.role}`}
+                      width={900}
+                      height={1200}
+                      className="w-full border border-rule-strong"
+                      sizes="(min-width: 640px) 11rem, 100vw"
+                    />
+                  ) : null}
+
+                  <div>
+                    <DataPlate
+                      title={person.role}
+                      rows={[
+                        { label: "Name", value: person.name },
+                        ...(person.email
+                          ? [
+                              {
+                                label: "Email",
+                                value: (
+                                  <a
+                                    href={`mailto:${person.email}`}
+                                    className="transition-colors hover:text-accent"
+                                  >
+                                    {person.email}
+                                  </a>
+                                ),
+                              },
+                            ]
+                          : []),
+                        ...(person.phone
+                          ? [
+                              {
+                                label: "WhatsApp",
+                                value: (
+                                  <a
+                                    href={`https://wa.me/${person.phone.replace(/\D/g, "")}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="transition-colors hover:text-accent"
+                                  >
+                                    {person.phone}
+                                  </a>
+                                ),
+                              },
+                            ]
+                          : []),
+                        {
+                          label: "Administers",
+                          value: person.responsibilities.join(", "),
+                        },
+                      ]}
+                      footnote={person.remit}
+                    />
+
+                    {person.links?.length ? (
+                      <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+                        {person.links.map((link) => (
+                          <li key={link.href}>
+                            <a
+                              href={link.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="type-data border-b border-rule-strong pb-0.5 text-[0.875rem] text-navy transition-colors hover:border-accent hover:text-accent"
+                            >
+                              {link.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       <section className="bg-paper-sunk py-16 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
