@@ -285,111 +285,110 @@ export default function AboutPage() {
       </section>
 
       {/*
-        The technology contact is a nameplate, not an introduction. A visitor
-        reaching this section has a broken site or an expiring domain, and
-        wants the address that fixes it — the same job the plates do for a
-        generator's service details.
+        A colophon, not a specification. The plates elsewhere on the site
+        describe equipment — model, capacity, service contact — and a person
+        put into that form reads as a filled-in enquiry sheet. Here the name
+        carries the block, the four things administered are the structure,
+        and the addresses are links rather than table cells.
       */}
       {technology.length > 0 ? (
-        <section className="border-t border-rule">
+        <section className="border-t border-rule bg-paper-sunk">
           <Container className="py-24 md:py-36">
-            <h2 className="type-heading text-[1.875rem] md:text-[2.375rem]">
+            <p className="type-data text-[0.8125rem] text-ink-faint">
               Website and systems
-            </h2>
-            <p className="type-body mt-4 text-[1.0625rem]">
-              The group&rsquo;s website, domain and server are administered
-              in-house. Reach the person below about anything technical.
             </p>
 
-            <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
-              {technology.map((person) => (
-                <div
-                  key={person.id}
-                  // Only split into a portrait column when there is a portrait
-                  // to put in it; otherwise the plate would be squeezed into
-                  // half the width beside an empty gap.
-                  className={
-                    person.photo
-                      ? "grid gap-8 sm:grid-cols-[minmax(0,11rem)_1fr]"
-                      : ""
-                  }
-                >
-                  {person.photo ? (
-                    <Image
-                      src={person.photo}
-                      alt={person.photoAlt ?? `${person.name}, ${person.role}`}
-                      width={900}
-                      height={1200}
-                      className="w-full border border-rule-strong"
-                      sizes="(min-width: 640px) 11rem, 100vw"
-                    />
+            {technology.map((person) => (
+              <div key={person.id} className="mt-8">
+                <Reveal>
+                  <h2 className="type-display text-[2rem] sm:text-[2.5rem] lg:text-[2.875rem]">
+                    {person.name}
+                  </h2>
+                  <p className="type-data mt-3 text-[1rem] text-accent">
+                    {person.role}
+                  </p>
+                  {person.remit ? (
+                    <p className="type-body mt-6 text-[1.0625rem]">
+                      {person.remit}
+                    </p>
                   ) : null}
+                </Reveal>
 
-                  <div>
-                    <DataPlate
-                      title={person.role}
-                      rows={[
-                        { label: "Name", value: person.name },
-                        ...(person.email
-                          ? [
-                              {
-                                label: "Email",
-                                value: (
-                                  <a
-                                    href={`mailto:${person.email}`}
-                                    className="transition-colors hover:text-accent"
-                                  >
-                                    {person.email}
-                                  </a>
-                                ),
-                              },
-                            ]
-                          : []),
-                        ...(person.phone
-                          ? [
-                              {
-                                label: "WhatsApp",
-                                value: (
-                                  <a
-                                    href={`https://wa.me/${person.phone.replace(/\D/g, "")}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="transition-colors hover:text-accent"
-                                  >
-                                    {person.phone}
-                                  </a>
-                                ),
-                              },
-                            ]
-                          : []),
-                        {
-                          label: "Administers",
-                          value: person.responsibilities.join(", "),
-                        },
-                      ]}
-                      footnote={person.remit}
-                    />
+                {/*
+                  The four things administered, given the width of the page.
+                  This is the part a reader actually needs — it says what
+                  falls to this person and what does not.
+                */}
+                <Reveal delay={90}>
+                  <ul className="mt-12 grid grid-cols-2 border-t border-rule-strong sm:grid-cols-4">
+                    {person.responsibilities.map((item) => (
+                      <li
+                        key={item}
+                        className="border-b border-rule py-4 pr-6 type-data text-[0.9375rem] text-ink"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
 
-                    {person.links?.length ? (
-                      <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
-                        {person.links.map((link) => (
-                          <li key={link.href}>
-                            <a
-                              href={link.href}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="type-data border-b border-rule-strong pb-0.5 text-[0.875rem] text-navy transition-colors hover:border-accent hover:text-accent"
-                            >
-                              {link.label}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
+                <Reveal delay={150}>
+                  <dl className="mt-12 grid gap-x-10 gap-y-6 sm:grid-cols-3">
+                    {person.email ? (
+                      <div>
+                        <dt className="type-data text-[0.75rem] text-ink-faint">
+                          Email
+                        </dt>
+                        <dd className="mt-1.5">
+                          <a
+                            href={`mailto:${person.email}`}
+                            className="type-data text-[0.9375rem] text-navy underline decoration-rule-strong underline-offset-[6px] transition-colors hover:text-accent hover:decoration-accent"
+                          >
+                            {person.email}
+                          </a>
+                        </dd>
+                      </div>
                     ) : null}
-                  </div>
-                </div>
-              ))}
-            </div>
+
+                    {person.phone ? (
+                      <div>
+                        <dt className="type-data text-[0.75rem] text-ink-faint">
+                          WhatsApp
+                        </dt>
+                        <dd className="mt-1.5">
+                          <a
+                            href={`https://wa.me/${person.phone.replace(/\D/g, "")}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="type-data text-[0.9375rem] text-navy underline decoration-rule-strong underline-offset-[6px] transition-colors hover:text-accent hover:decoration-accent"
+                          >
+                            {person.phone}
+                          </a>
+                        </dd>
+                      </div>
+                    ) : null}
+
+                    {person.links?.map((link) => (
+                      <div key={link.href}>
+                        <dt className="type-data text-[0.75rem] text-ink-faint">
+                          {link.label}
+                        </dt>
+                        <dd className="mt-1.5">
+                          <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="type-data text-[0.9375rem] text-navy underline decoration-rule-strong underline-offset-[6px] transition-colors hover:text-accent hover:decoration-accent"
+                          >
+                            {link.href.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                          </a>
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </Reveal>
+              </div>
+            ))}
           </Container>
         </section>
       ) : null}
