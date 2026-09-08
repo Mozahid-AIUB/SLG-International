@@ -336,7 +336,7 @@ export default function AboutPage() {
           <div>
             <h2 className="type-heading text-[1.75rem]">Where to find us</h2>
             <p className="type-body mt-4 text-[1.0625rem]">
-              One office handles all three divisions. Equipment enquiries and
+              One office handles all divisions. Equipment enquiries and
               recruitment enquiries reach the same desk.
             </p>
             <Link

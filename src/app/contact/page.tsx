@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <PagePlaceholder
       title="Contact"
-      intro="One office in Rampura, Dhaka, handling all three divisions."
+      intro="One office in Rampura, Dhaka, handling all divisions."
     />
   );
 }
