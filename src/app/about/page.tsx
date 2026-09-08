@@ -43,7 +43,7 @@ export default function AboutPage() {
       */}
       <section className="border-b border-rule bg-paper-raised">
         <Container className="grid gap-10 py-16 md:py-20 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-16">
-          <Reveal effect="settle">
+          <Reveal effect="wipe">
             {/*
               Shown whole rather than cropped to a frame: the nameplate above
               him carries the tagline set beside it, so cropping to a portrait
@@ -147,6 +147,14 @@ export default function AboutPage() {
                   key={member.id}
                   className="grid gap-6 border-b border-rule py-10 lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-14"
                 >
+                  {/*
+                    Deliberately not sticky. Pinning the identity column was
+                    tried and measured: at these proportions the portrait and
+                    name are already as tall as the biography beside them, so
+                    a sticky column has nothing to travel through. Shrinking
+                    the portraits to create that travel would be designing for
+                    the technique rather than for the people on the page.
+                  */}
                   <div>
                     {/*
                       Fixed 4:5 frame. The supplied portraits are all
@@ -221,6 +229,52 @@ export default function AboutPage() {
         </section>
       ) : null}
 
+
+      <section className="bg-paper-sunk py-16 md:py-20">
+        <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
+          <div>
+            <h2 className="type-heading text-[1.75rem]">Where to find us</h2>
+            <p className="type-body mt-4 text-[1.0625rem]">
+              One office handles all divisions. Equipment enquiries and
+              recruitment enquiries reach the same desk.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-7 inline-block border border-navy px-5 py-2.5 type-data text-[0.9375rem] text-navy transition-colors hover:bg-navy hover:text-paper-raised"
+            >
+              Contact the office
+            </Link>
+          </div>
+
+          <DataPlate
+            title="Head office"
+            rows={[
+              { label: "Address", value: site.address.line1 },
+              { label: "Area", value: site.address.line2 },
+              {
+                label: "City",
+                value: `${site.address.city} ${site.address.postalCode}`,
+              },
+              { label: "Phone", value: site.phones[0] },
+              // Derived from site.emails rather than listed by hand, so a
+              // new division's address appears here the moment it is added
+              // to the content file.
+              ...Object.entries(site.emails).map(([division, address]) => ({
+                label: division.charAt(0).toUpperCase() + division.slice(1),
+                value: (
+                  <a
+                    href={`mailto:${address}`}
+                    className="transition-colors hover:text-accent"
+                  >
+                    {address}
+                  </a>
+                ),
+              })),
+            ]}
+          />
+        </Container>
+      </section>
+
       {/*
         The technology contact is a nameplate, not an introduction. A visitor
         reaching this section has a broken site or an expiring domain, and
@@ -228,7 +282,7 @@ export default function AboutPage() {
         generator's service details.
       */}
       {technology.length > 0 ? (
-        <section className="border-b border-rule bg-paper-raised">
+        <section className="border-t border-rule">
           <Container className="py-16 md:py-20">
             <h2 className="type-heading text-[1.75rem]">
               Website and systems
@@ -330,51 +384,6 @@ export default function AboutPage() {
           </Container>
         </section>
       ) : null}
-
-      <section className="bg-paper-sunk py-16 md:py-20">
-        <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
-          <div>
-            <h2 className="type-heading text-[1.75rem]">Where to find us</h2>
-            <p className="type-body mt-4 text-[1.0625rem]">
-              One office handles all divisions. Equipment enquiries and
-              recruitment enquiries reach the same desk.
-            </p>
-            <Link
-              href="/contact"
-              className="mt-7 inline-block border border-navy px-5 py-2.5 type-data text-[0.9375rem] text-navy transition-colors hover:bg-navy hover:text-paper-raised"
-            >
-              Contact the office
-            </Link>
-          </div>
-
-          <DataPlate
-            title="Head office"
-            rows={[
-              { label: "Address", value: site.address.line1 },
-              { label: "Area", value: site.address.line2 },
-              {
-                label: "City",
-                value: `${site.address.city} ${site.address.postalCode}`,
-              },
-              { label: "Phone", value: site.phones[0] },
-              // Derived from site.emails rather than listed by hand, so a
-              // new division's address appears here the moment it is added
-              // to the content file.
-              ...Object.entries(site.emails).map(([division, address]) => ({
-                label: division.charAt(0).toUpperCase() + division.slice(1),
-                value: (
-                  <a
-                    href={`mailto:${address}`}
-                    className="transition-colors hover:text-accent"
-                  >
-                    {address}
-                  </a>
-                ),
-              })),
-            ]}
-          />
-        </Container>
-      </section>
     </main>
   );
 }

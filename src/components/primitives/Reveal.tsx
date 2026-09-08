@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
 
-type RevealEffect = "rise" | "settle";
+type RevealEffect = "rise" | "settle" | "wipe";
 
 /**
  * Reveals its children when they scroll into view.
