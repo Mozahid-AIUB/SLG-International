@@ -105,6 +105,7 @@ export const technology: TechnologyContact[] = [
     id: "mozahidul-islam",
     name: "MD Mozahidul Islam",
     role: "Software Engineer, web and mobile apps",
+    photo: "/about/it-600.webp",
     remit:
       "Builds and maintains this website, and administers the domain, server and deployments behind it.",
     email: "mozahidul.islam.ai@gmail.com",

@@ -300,18 +300,37 @@ export default function AboutPage() {
 
             {technology.map((person) => (
               <div key={person.id} className="mt-8">
-                <Reveal>
-                  <h2 className="type-display text-[2rem] sm:text-[2.5rem] lg:text-[2.875rem]">
-                    {person.name}
-                  </h2>
-                  <p className="type-data mt-3 text-[1rem] text-accent">
-                    {person.role}
-                  </p>
-                  {person.remit ? (
-                    <p className="type-body mt-6 text-[1.0625rem]">
-                      {person.remit}
-                    </p>
+                {/*
+                  A byline portrait, not a leadership one: square and small,
+                  set beside the name rather than above it. The section above
+                  already uses a tall 4:5 frame, and repeating it here would
+                  make the two read as one long list of people.
+                */}
+                <Reveal className="flex flex-col gap-7 sm:flex-row sm:items-start sm:gap-9">
+                  {person.photo ? (
+                    <Image
+                      src={person.photo}
+                      alt={person.photoAlt ?? `${person.name}, ${person.role}`}
+                      width={600}
+                      height={600}
+                      className="w-32 shrink-0 border border-rule-strong object-cover sm:w-40"
+                      sizes="(min-width: 640px) 10rem, 8rem"
+                    />
                   ) : null}
+
+                  <div>
+                    <h2 className="type-display text-[2rem] sm:text-[2.5rem] lg:text-[2.875rem]">
+                      {person.name}
+                    </h2>
+                    <p className="type-data mt-3 text-[1rem] text-accent">
+                      {person.role}
+                    </p>
+                    {person.remit ? (
+                      <p className="type-body mt-6 text-[1.0625rem]">
+                        {person.remit}
+                      </p>
+                    ) : null}
+                  </div>
                 </Reveal>
 
                 {/*
