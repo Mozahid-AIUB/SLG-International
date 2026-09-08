@@ -42,7 +42,7 @@ export default function AboutPage() {
         the other, instead of shrinking the picture into a bio avatar.
       */}
       <section className="border-b border-rule bg-paper-raised">
-        <Container className="grid gap-10 py-16 md:py-20 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-16">
+        <Container className="grid gap-10 py-24 md:py-36 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-16">
           <Reveal effect="wipe">
             {/*
               Shown whole rather than cropped to a frame: the nameplate above
@@ -70,7 +70,7 @@ export default function AboutPage() {
               own words, cast in metal on the wall behind him.
             */}
             <blockquote className="mt-5">
-              <p className="type-display text-[1.75rem] sm:text-[2.25rem] lg:text-[2.5rem]">
+              <p className="type-display text-[2rem] sm:text-[2.75rem] lg:text-[3.25rem]">
                 {site.tagline}
               </p>
             </blockquote>
@@ -102,12 +102,19 @@ export default function AboutPage() {
         whole organising idea of the group.
       */}
       <section className="border-b border-rule">
-        <Container className="py-16 md:py-20">
-          <h2 className="type-heading text-[1.75rem]">What the group does</h2>
+        <Container className="py-24 md:py-36">
+          <h2 className="type-heading text-[1.875rem] md:text-[2.375rem]">What the group does</h2>
 
           <ul className="mt-10 border-t border-rule-strong">
-            {divisions.map((division) => (
-              <li key={division.id} data-division={division.id}>
+            {divisions.map((division, index) => (
+              <Reveal
+                as="li"
+                key={division.id}
+                data-division={division.id}
+                // Each row follows the one above it rather than the whole
+                // list arriving at once, so the eye is led down the list.
+                delay={index * 90}
+              >
                 <Link
                   href={division.href}
                   className="group grid items-baseline gap-x-8 gap-y-3 border-b border-rule py-7 md:grid-cols-[minmax(0,15rem)_1fr_auto]"
@@ -124,7 +131,7 @@ export default function AboutPage() {
                       : "Out to the world"}
                   </span>
                 </Link>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </Container>
@@ -138,14 +145,16 @@ export default function AboutPage() {
       */}
       {leadership.length > 0 ? (
         <section className="border-b border-rule bg-paper-raised">
-          <Container className="py-16 md:py-20">
-            <h2 className="type-heading text-[1.75rem]">Leadership</h2>
+          <Container className="py-24 md:py-36">
+            <h2 className="type-heading text-[1.875rem] md:text-[2.375rem]">Leadership</h2>
 
             <ul className="mt-10 border-t border-rule-strong">
-              {leadership.map((member) => (
-                <li
+              {leadership.map((member, index) => (
+                <Reveal
+                  as="li"
                   key={member.id}
-                  className="grid gap-6 border-b border-rule py-10 lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-14"
+                  delay={index * 110}
+                  className="grid gap-6 border-b border-rule py-14 lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-14"
                 >
                   {/*
                     Deliberately not sticky. Pinning the identity column was
@@ -222,7 +231,7 @@ export default function AboutPage() {
                       </div>
                     ) : null}
                   </div>
-                </li>
+                </Reveal>
               ))}
             </ul>
           </Container>
@@ -230,10 +239,10 @@ export default function AboutPage() {
       ) : null}
 
 
-      <section className="bg-paper-sunk py-16 md:py-20">
+      <section className="bg-paper-sunk py-24 md:py-36">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <h2 className="type-heading text-[1.75rem]">Where to find us</h2>
+            <h2 className="type-heading text-[1.875rem] md:text-[2.375rem]">Where to find us</h2>
             <p className="type-body mt-4 text-[1.0625rem]">
               One office handles all divisions. Equipment enquiries and
               recruitment enquiries reach the same desk.
@@ -283,8 +292,8 @@ export default function AboutPage() {
       */}
       {technology.length > 0 ? (
         <section className="border-t border-rule">
-          <Container className="py-16 md:py-20">
-            <h2 className="type-heading text-[1.75rem]">
+          <Container className="py-24 md:py-36">
+            <h2 className="type-heading text-[1.875rem] md:text-[2.375rem]">
               Website and systems
             </h2>
             <p className="type-body mt-4 text-[1.0625rem]">

@@ -22,6 +22,7 @@ export function Reveal({
   delay = 0,
   immediate = false,
   className,
+  ...rest
 }: {
   children: ReactNode;
   as?: ElementType;
@@ -31,6 +32,9 @@ export function Reveal({
   /** For above-the-fold content: play on mount rather than on scroll. */
   immediate?: boolean;
   className?: string;
+  /** Anything else lands on the rendered element — `data-division`, aria
+   *  attributes — so wrapping a node in a reveal never strips it. */
+  [prop: string]: unknown;
 }) {
   const ref = useRef<HTMLElement>(null);
   const [shown, setShown] = useState(false);
@@ -70,6 +74,7 @@ export function Reveal({
       data-shown={shown ? "true" : undefined}
       style={delay ? ({ "--reveal-delay": `${delay}ms` } as React.CSSProperties) : undefined}
       className={className}
+      {...rest}
     >
       {children}
     </Tag>
