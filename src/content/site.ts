@@ -36,6 +36,7 @@ export const site = {
   emails: {
     engineering: "saharalinkengineering@gmail.com",
     renewables: "slgrenewables@gmail.com",
+    manpower: "infosaharalink@gmail.com",
   },
 } as const;
 

@@ -357,8 +357,20 @@ export default function AboutPage() {
                 value: `${site.address.city} ${site.address.postalCode}`,
               },
               { label: "Phone", value: site.phones[0] },
-              { label: "Engineering", value: site.emails.engineering },
-              { label: "Renewables", value: site.emails.renewables },
+              // Derived from site.emails rather than listed by hand, so a
+              // new division's address appears here the moment it is added
+              // to the content file.
+              ...Object.entries(site.emails).map(([division, address]) => ({
+                label: division.charAt(0).toUpperCase() + division.slice(1),
+                value: (
+                  <a
+                    href={`mailto:${address}`}
+                    className="transition-colors hover:text-accent"
+                  >
+                    {address}
+                  </a>
+                ),
+              })),
             ]}
           />
         </Container>
