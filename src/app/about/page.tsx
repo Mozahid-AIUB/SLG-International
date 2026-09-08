@@ -62,7 +62,7 @@ export default function AboutPage() {
 
           <Reveal className="flex flex-col justify-center" delay={120}>
             <p className="type-data text-[0.8125rem] text-ink-faint">
-              Founder and Managing Director
+              Founder
             </p>
 
             {/*
@@ -131,44 +131,89 @@ export default function AboutPage() {
       </section>
 
       {/*
-        Colleagues, once their names and photographs arrive. Renders nothing
-        until then rather than showing seats with placeholder faces in them —
-        an empty team section says less about a company than no section does.
+        Leadership is set as a masthead rather than a row of cards: these are
+        two people with real backgrounds to read, not a wall of headshots.
+        The name column stays fixed so each entry starts on the same line,
+        the way a listing of officers does.
       */}
       {leadership.length > 0 ? (
-        <section className="border-b border-rule">
+        <section className="border-b border-rule bg-paper-raised">
           <Container className="py-16 md:py-20">
-            <h2 className="type-heading text-[1.75rem]">The people here</h2>
+            <h2 className="type-heading text-[1.75rem]">Leadership</h2>
 
-            <ul className="mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="mt-10 border-t border-rule-strong">
               {leadership.map((member) => (
-                <li key={member.id}>
-                  {member.photo ? (
-                    <Image
-                      src={member.photo}
-                      alt={member.photoAlt ?? `${member.name}, ${member.role}`}
-                      width={900}
-                      height={1200}
-                      className="w-full border border-rule-strong"
-                      sizes="(min-width: 1024px) 20rem, (min-width: 640px) 45vw, 100vw"
-                    />
-                  ) : (
-                    // Holds the column's shape so a member without a portrait
-                    // does not pull the row out of alignment.
-                    <div className="aspect-[3/4] w-full border border-rule bg-paper-sunk" />
-                  )}
+                <li
+                  key={member.id}
+                  className="grid gap-6 border-b border-rule py-10 lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-14"
+                >
+                  <div>
+                    {/*
+                      Fixed 4:5 frame. The supplied portraits are all
+                      different shapes, and left at their own ratios the
+                      names below them would sit on three different lines.
+                    */}
+                    {member.photo ? (
+                      <Image
+                        src={member.photo}
+                        alt={member.photoAlt ?? `${member.name}, ${member.role}`}
+                        width={800}
+                        height={1000}
+                        className="mb-5 aspect-4/5 w-full border border-rule-strong object-cover object-top"
+                        sizes="(min-width: 1024px) 17rem, 100vw"
+                      />
+                    ) : null}
 
-                  <h3 className="type-heading mt-5 text-[1.125rem]">
-                    {member.name}
-                  </h3>
-                  <p className="type-data mt-1 text-[0.875rem] text-ink-faint">
-                    {member.role}
-                  </p>
-                  {member.remit ? (
-                    <p className="type-body mt-3 text-[0.9375rem]">
-                      {member.remit}
+                    <h3 className="type-heading text-[1.25rem]">
+                      {member.name}
+                    </h3>
+                    <p className="type-data mt-1.5 text-[0.9375rem] text-accent">
+                      {member.role}
                     </p>
-                  ) : null}
+                    {member.credential ? (
+                      <p className="type-data mt-1 text-[0.8125rem] text-ink-faint">
+                        {member.credential}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  <div>
+                    {member.bio?.map((paragraph) => (
+                      <p
+                        key={paragraph}
+                        className="type-body mt-5 text-[1.0625rem] first:mt-0"
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                    {member.remit && !member.bio ? (
+                      <p className="type-body text-[1.0625rem]">
+                        {member.remit}
+                      </p>
+                    ) : null}
+
+                    {/*
+                      Listed, not numbered: these are six things one person
+                      does, not six steps in an order.
+                    */}
+                    {member.specialisms?.length ? (
+                      <div className="mt-8">
+                        <h4 className="type-data text-[0.8125rem] text-ink-faint">
+                          Areas of specialisation
+                        </h4>
+                        <ul className="mt-3 grid grid-cols-1 gap-x-10 border-t border-rule sm:grid-cols-2">
+                          {member.specialisms.map((item) => (
+                            <li
+                              key={item}
+                              className="border-b border-rule py-2.5 type-data text-[0.9375rem] text-ink"
+                            >
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+                  </div>
                 </li>
               ))}
             </ul>
