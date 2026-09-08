@@ -47,7 +47,7 @@ export const leadership: TeamMember[] = [
     role: "Managing Director",
     photo: "/about/md-800.webp",
     bio: [
-      "Oversees operations and strategic growth across the group, holding all three divisions to the same standard — passenger elevators and heavy-duty generators, renewable solar systems, and manpower supply.",
+      "As Managing Director, Md. Atiqur Rahman Sohail oversees operations and strategic growth across the group, holding all divisions to the same standard — passenger elevators and heavy-duty generators, renewable solar systems, and manpower supply.",
       "He studied law, criminology and forensic sciences at Maastricht University in the Netherlands. That training in reading regulation closely and reasoning from evidence carries directly into the work: complex supply chains, stringent international standards, and project risk that has to be seen before it arrives.",
       "Under his leadership the group works to reliable engineering, operational excellence and corporate governance that holds up to scrutiny.",
     ],
@@ -59,7 +59,7 @@ export const leadership: TeamMember[] = [
     credential: "DUET · Vertical transportation specialist",
     photo: "/about/ceo-800.webp",
     bio: [
-      "A specialist in vertical transportation systems, with a focus on elevator quality control, safety, technical evaluation and project execution.",
+      "Engr. Mamunur Rashid is the Chief Executive Officer of Sahara Link Group and a specialist in vertical transportation systems, with a focus on elevator quality control, safety, technical evaluation and project execution.",
       "His expertise spans the complete elevator project lifecycle. He provides the technical leadership and consultancy that keeps installed systems inside their required standards for quality, safety, performance and reliability, and works alongside clients, contractors and project stakeholders as they make technical and procurement decisions.",
     ],
     specialisms: [
@@ -78,7 +78,7 @@ export const leadership: TeamMember[] = [
     credential: "BEng Architectural Engineering · MSc Renewable Energy, Heriot-Watt",
     photo: "/about/sgp-800.webp",
     bio: [
-      "Works on the group's long-term growth, strategic development and expansion. An academic background in both architectural engineering and renewable energy brings a multidisciplinary view to business strategy, sustainable development and emerging opportunities.",
+      "Banzir Hazra serves as the Strategic Growth Partner of Sahara Link Group, working on its long-term growth, strategic development and expansion. An academic background in both architectural engineering and renewable energy brings a multidisciplinary view to business strategy, sustainable development and emerging opportunities.",
       "She holds a BEng in Architectural Engineering and an MSc in Renewable Energy Engineering from Heriot-Watt University, pairing technical expertise with an understanding of sustainable infrastructure and energy systems.",
       "At Sahara Link Group she identifies strategic opportunities, strengthens partnerships, and supports the group's vision for sustainable and diversified growth.",
     ],
