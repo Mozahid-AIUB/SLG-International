@@ -75,13 +75,20 @@ export const leadership: TeamMember[] = [
     id: "banzir-hazra",
     name: "Engr. Banzir Hazra",
     role: "Strategic Growth Partner",
-    credential: "BEng Architectural Engineering · MSc Renewable Energy, Heriot-Watt",
+    credential: "BEng Architectural Engineering · MSc Renewable Energy Engineering, Heriot-Watt University",
     photo: "/about/sgp-800.webp",
     bio: [
       "Engr. Banzir Hazra serves as the Strategic Growth Partner of Sahara Link Group, working on its long-term growth, strategic development and expansion. An academic background in both architectural engineering and renewable energy brings a multidisciplinary view to business strategy, sustainable development and emerging opportunities.",
       "She holds a BEng in Architectural Engineering and an MSc in Renewable Energy Engineering from Heriot-Watt University, pairing technical expertise with an understanding of sustainable infrastructure and energy systems.",
       "At Sahara Link Group she identifies strategic opportunities, strengthens partnerships, and supports the group's vision for sustainable and diversified growth.",
     ],
+  },
+  {
+    id: "monorama-rahman",
+    name: "Monorama Rahman",
+    role: "General Manager",
+    credential: "BBA (HRM), AIUB",
+    photo: "/about/gm-800.webp",
   },
 ];
 
