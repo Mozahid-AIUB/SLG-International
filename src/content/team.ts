@@ -85,10 +85,14 @@ export const leadership: TeamMember[] = [
   },
   {
     id: "monorama-rahman",
-    name: "Monorama Rahman",
+    name: "Monorama Rahman Monty",
     role: "General Manager",
-    credential: "BBA (HRM), AIUB",
+    credential: "BBA Human Resource Management, AIUB",
     photo: "/about/gm-800.webp",
+    bio: [
+      "Monorama Rahman Monty serves as General Manager at Sahara Link Group, overseeing day-to-day operations, human resource management and organisational coordination.",
+      "Her background in Human Resource Management from American International University-Bangladesh brings a people-focused and organised approach to the company's growth, workforce development and operational excellence.",
+    ],
   },
 ];
 
