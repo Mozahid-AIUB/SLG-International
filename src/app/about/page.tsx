@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/primitives/Container";
 import { Reveal } from "@/components/primitives/Reveal";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { PageHero } from "@/components/patterns/PageHero";
-import { divisions, site } from "@/content/site";
+import { StackingCards } from "@/components/patterns/StackingCards";
+import { site } from "@/content/site";
 import { leadership, technology } from "@/content/team";
 
 export const metadata: Metadata = {
@@ -69,10 +69,10 @@ export default function AboutPage() {
               and size do that work instead, and the titles drop to faint ink
               so the eye lands on the man before his roles.
             */}
-            <p className="type-display text-[2rem] sm:text-[2.25rem]">
+            <p className="type-display text-step-3">
               Kamal Monsur
             </p>
-            <p className="type-data mt-2.5 text-[0.9375rem] text-ink-faint">
+            <p className="type-data mt-2.5 text-step--1 text-ink-faint">
               Founder · Corporate Investor
             </p>
 
@@ -81,20 +81,20 @@ export default function AboutPage() {
               own words, cast in metal on the wall behind him.
             */}
             <blockquote className="mt-7">
-              <p className="type-display text-[2rem] sm:text-[2.75rem] lg:text-[3.25rem]">
+              <p className="type-display text-step-5">
                 {site.tagline}
               </p>
             </blockquote>
 
             <div className="mt-9 border-t border-rule pt-8">
-              <p className="type-body text-[1.0625rem]">
+              <p className="type-body text-step-0">
                 The group began with a single question a Dhaka developer keeps
                 asking: who supplies the lift, and who services it in year
                 three? Answering that properly meant importing directly rather
                 than reselling, and keeping engineers on staff rather than
                 subcontracting the maintenance.
               </p>
-              <p className="type-body mt-5 text-[1.0625rem]">
+              <p className="type-body mt-5 text-step-0">
                 The same reasoning built the second half of the business. The
                 skills Bangladesh exports are real skills, and they deserve
                 employers who are checked before a worker ever boards a plane.
@@ -107,48 +107,6 @@ export default function AboutPage() {
       </section>
 
       {/*
-        Divisions are listed rather than carded: they are three parts of one
-        company, not three products competing for a click. The inbound/outbound
-        label is the only structure they need, because that distinction is the
-        whole organising idea of the group.
-      */}
-      <section className="border-b border-rule">
-        <Container className="py-24 md:py-36">
-          <h2 className="type-heading text-[1.875rem] md:text-[2.375rem]">What the group does</h2>
-
-          <ul className="mt-10 border-t border-rule-strong">
-            {divisions.map((division, index) => (
-              <Reveal
-                as="li"
-                key={division.id}
-                data-division={division.id}
-                // Each row follows the one above it rather than the whole
-                // list arriving at once, so the eye is led down the list.
-                delay={index * 90}
-              >
-                <Link
-                  href={division.href}
-                  className="group grid items-baseline gap-x-8 gap-y-3 border-b border-rule py-7 md:grid-cols-[minmax(0,15rem)_1fr_auto]"
-                >
-                  <span className="type-heading text-[1.25rem] transition-colors group-hover:text-accent">
-                    {division.name}
-                  </span>
-                  <span className="type-body text-[1rem]">
-                    {division.summary}
-                  </span>
-                  <span className="type-data text-[0.8125rem] text-ink-faint">
-                    {division.direction === "inbound"
-                      ? "Into Bangladesh"
-                      : "Out to the world"}
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </ul>
-        </Container>
-      </section>
-
-      {/*
         Leadership is set as a masthead rather than a row of cards: these are
         two people with real backgrounds to read, not a wall of headshots.
         The name column stays fixed so each entry starts on the same line,
@@ -157,15 +115,34 @@ export default function AboutPage() {
       {leadership.length > 0 ? (
         <section className="border-b border-rule bg-paper-raised">
           <Container className="py-24 md:py-36">
-            <h2 className="type-heading text-[1.875rem] md:text-[2.375rem]">Leadership</h2>
+            <h2 className="type-heading text-step-4">Leadership</h2>
 
-            <ul className="mt-10 border-t border-rule-strong">
+            {/*
+              One card per person, pinned and piled on scroll. The list was
+              a plain stack of rows before; at four people it read as a table
+              of staff, and the point of this section is that each of them is
+              worth stopping on.
+
+              The Reveal is gone from the entries: a fade-in and a pin fight
+              each other, because the reveal animates the same element
+              ScrollTrigger is pinning.
+            */}
+            <StackingCards className="mt-10 lg:space-y-8">
               {leadership.map((member, index) => (
-                <Reveal
-                  as="li"
+                <article
+                  data-stack-card
                   key={member.id}
-                  delay={index * 110}
-                  className="grid gap-6 border-b border-rule py-14 lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-14"
+                  className="grid gap-6 border border-rule bg-paper-raised px-8 py-14 shadow-[0_-18px_50px_-30px_rgba(10,18,40,0.35)] lg:sticky lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-0 lg:px-12"
+                  /*
+                    Each card sticks 22px lower than the one before it, so the
+                    pile leaves a visible edge of every card underneath rather
+                    than burying them. z-index follows document order so a
+                    later card lands on top.
+                  */
+                  style={{
+                    zIndex: index + 1,
+                    top: `calc(88px + ${index * 22}px)`,
+                  }}
                 >
                   {/*
                     Deliberately not sticky. Pinning the identity column was
@@ -175,7 +152,7 @@ export default function AboutPage() {
                     the portraits to create that travel would be designing for
                     the technique rather than for the people on the page.
                   */}
-                  <div>
+                  <div className="relative z-10 lg:w-[calc(100%+3.5rem)]">
                     {/*
                       Fixed 4:5 frame. The supplied portraits are all
                       different shapes, and left at their own ratios the
@@ -187,35 +164,50 @@ export default function AboutPage() {
                         alt={member.photoAlt ?? `${member.name}, ${member.role}`}
                         width={800}
                         height={1000}
-                        className="mb-5 aspect-4/5 w-full border border-rule-strong object-cover object-top"
+                        className="mb-5 aspect-4/5 w-full border border-rule-strong object-cover object-top lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
                         sizes="(min-width: 1024px) 17rem, 100vw"
                       />
                     ) : null}
 
-                    <h3 className="type-heading text-[1.25rem]">
+                    <h3 className="type-heading text-step-1">
                       {member.name}
                     </h3>
-                    <p className="type-data mt-1.5 text-[0.9375rem] text-accent">
+                    <p className="type-data mt-1.5 text-step--1 text-accent">
                       {member.role}
                     </p>
                     {member.credential ? (
-                      <p className="type-data mt-1 text-[0.8125rem] text-ink-faint">
+                      <p className="type-data mt-1 text-step--1 text-ink-faint">
                         {member.credential}
                       </p>
                     ) : null}
                   </div>
 
-                  <div>
+                  {/*
+                    The text column starts under the portrait and is padded
+                    clear of it, so the photograph sits on the writing rather
+                    than beside it. Two columns with a gap read as a table of
+                    people; overlapped they read as one entry about a person.
+
+                    The numbers are tied: the portrait is 3.5rem wider than
+                    its 17rem column, so it crosses 56px into this one, and
+                    the 6rem left padding clears that by 40px. Padding equal
+                    to the overhang was tried and the text sat flush on the
+                    photograph's edge, which reads as a collision rather than
+                    a layer.
+
+                    lg only: stacked, there is no column to slide under.
+                  */}
+                  <div className="lg:pl-24">
                     {member.bio?.map((paragraph) => (
                       <p
                         key={paragraph}
-                        className="type-body mt-5 text-[1.0625rem] first:mt-0"
+                        className="type-body mt-5 text-step-0 first:mt-0"
                       >
                         {paragraph}
                       </p>
                     ))}
                     {member.remit && !member.bio ? (
-                      <p className="type-body text-[1.0625rem]">
+                      <p className="type-body text-step-0">
                         {member.remit}
                       </p>
                     ) : null}
@@ -226,14 +218,14 @@ export default function AboutPage() {
                     */}
                     {member.specialisms?.length ? (
                       <div className="mt-8">
-                        <h4 className="type-data text-[0.8125rem] text-ink-faint">
+                        <h4 className="type-data text-step--1 text-ink-faint">
                           Areas of specialisation
                         </h4>
                         <ul className="mt-3 grid grid-cols-1 gap-x-10 border-t border-rule sm:grid-cols-2">
                           {member.specialisms.map((item) => (
                             <li
                               key={item}
-                              className="border-b border-rule py-2.5 type-data text-[0.9375rem] text-ink"
+                              className="border-b border-rule py-2.5 type-data text-step--1 text-ink"
                             >
                               {item}
                             </li>
@@ -242,58 +234,13 @@ export default function AboutPage() {
                       </div>
                     ) : null}
                   </div>
-                </Reveal>
+                </article>
               ))}
-            </ul>
+            </StackingCards>
           </Container>
         </section>
       ) : null}
 
-
-      <section className="bg-paper-sunk py-24 md:py-36">
-        <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
-          <div>
-            <h2 className="type-heading text-[1.875rem] md:text-[2.375rem]">Where to find us</h2>
-            <p className="type-body mt-4 text-[1.0625rem]">
-              One office handles all divisions. Equipment enquiries and
-              recruitment enquiries reach the same desk.
-            </p>
-            <Link
-              href="/contact"
-              className="mt-7 inline-block border border-navy px-5 py-2.5 type-data text-[0.9375rem] text-navy transition-colors hover:bg-navy hover:text-paper-raised"
-            >
-              Contact the office
-            </Link>
-          </div>
-
-          <DataPlate
-            title="Head office"
-            rows={[
-              { label: "Address", value: site.address.line1 },
-              { label: "Area", value: site.address.line2 },
-              {
-                label: "City",
-                value: `${site.address.city} ${site.address.postalCode}`,
-              },
-              { label: "Phone", value: site.phones[0] },
-              // Derived from site.emails rather than listed by hand, so a
-              // new division's address appears here the moment it is added
-              // to the content file.
-              ...Object.entries(site.emails).map(([division, address]) => ({
-                label: division.charAt(0).toUpperCase() + division.slice(1),
-                value: (
-                  <a
-                    href={`mailto:${address}`}
-                    className="transition-colors hover:text-accent"
-                  >
-                    {address}
-                  </a>
-                ),
-              })),
-            ]}
-          />
-        </Container>
-      </section>
 
       {/*
         A colophon, not a specification. The plates elsewhere on the site
@@ -305,7 +252,7 @@ export default function AboutPage() {
       {technology.length > 0 ? (
         <section className="border-t border-rule bg-paper-sunk">
           <Container className="py-24 md:py-36">
-            <p className="type-data text-[0.8125rem] text-ink-faint">
+            <p className="type-data text-step--1 text-ink-faint">
               Website and systems
             </p>
 
@@ -330,14 +277,14 @@ export default function AboutPage() {
                   ) : null}
 
                   <div>
-                    <h2 className="type-display text-[2rem] sm:text-[2.5rem] lg:text-[2.875rem]">
+                    <h2 className="type-display text-step-5">
                       {person.name}
                     </h2>
-                    <p className="type-data mt-3 text-[1rem] text-accent">
+                    <p className="type-data mt-3 text-step-0 text-accent">
                       {person.role}
                     </p>
                     {person.remit ? (
-                      <p className="type-body mt-6 text-[1.0625rem]">
+                      <p className="type-body mt-6 text-step-0">
                         {person.remit}
                       </p>
                     ) : null}
@@ -354,7 +301,7 @@ export default function AboutPage() {
                     {person.responsibilities.map((item) => (
                       <li
                         key={item}
-                        className="border-b border-rule py-4 pr-6 type-data text-[0.9375rem] text-ink"
+                        className="border-b border-rule py-4 pr-6 type-data text-step--1 text-ink"
                       >
                         {item}
                       </li>
@@ -366,13 +313,13 @@ export default function AboutPage() {
                   <dl className="mt-12 grid gap-x-10 gap-y-6 sm:grid-cols-3">
                     {person.email ? (
                       <div>
-                        <dt className="type-data text-[0.75rem] text-ink-faint">
+                        <dt className="type-data text-step--2 text-ink-faint">
                           Email
                         </dt>
                         <dd className="mt-1.5">
                           <a
                             href={`mailto:${person.email}`}
-                            className="type-data text-[0.9375rem] text-navy underline decoration-rule-strong underline-offset-[6px] transition-colors hover:text-accent hover:decoration-accent"
+                            className="type-data text-step--1 text-navy underline decoration-rule-strong underline-offset-[6px] transition-colors hover:text-accent hover:decoration-accent"
                           >
                             {person.email}
                           </a>
@@ -382,7 +329,7 @@ export default function AboutPage() {
 
                     {person.phone ? (
                       <div>
-                        <dt className="type-data text-[0.75rem] text-ink-faint">
+                        <dt className="type-data text-step--2 text-ink-faint">
                           WhatsApp
                         </dt>
                         <dd className="mt-1.5">
@@ -390,7 +337,7 @@ export default function AboutPage() {
                             href={`https://wa.me/${person.phone.replace(/\D/g, "")}`}
                             target="_blank"
                             rel="noreferrer"
-                            className="type-data text-[0.9375rem] text-navy underline decoration-rule-strong underline-offset-[6px] transition-colors hover:text-accent hover:decoration-accent"
+                            className="type-data text-step--1 text-navy underline decoration-rule-strong underline-offset-[6px] transition-colors hover:text-accent hover:decoration-accent"
                           >
                             {person.phone}
                           </a>
@@ -400,7 +347,7 @@ export default function AboutPage() {
 
                     {person.links?.map((link) => (
                       <div key={link.href}>
-                        <dt className="type-data text-[0.75rem] text-ink-faint">
+                        <dt className="type-data text-step--2 text-ink-faint">
                           {link.label}
                         </dt>
                         <dd className="mt-1.5">
@@ -408,7 +355,7 @@ export default function AboutPage() {
                             href={link.href}
                             target="_blank"
                             rel="noreferrer"
-                            className="type-data text-[0.9375rem] text-navy underline decoration-rule-strong underline-offset-[6px] transition-colors hover:text-accent hover:decoration-accent"
+                            className="type-data text-step--1 text-navy underline decoration-rule-strong underline-offset-[6px] transition-colors hover:text-accent hover:decoration-accent"
                           >
                             {link.href.replace(/^https?:\/\//, "").replace(/\/$/, "")}
                           </a>
