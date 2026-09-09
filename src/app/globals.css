@@ -3,19 +3,29 @@
 /* ---------------------------------------------------------------------------
    Tokens
 
-   Ground is a cool drafting neutral rather than cream: the subject is imported
-   industrial equipment, and the client's own Engineering deck already uses
-   faint technical linework. Cool grey also sits with the brand navy, which
-   warm cream fights.
+   Grounds are one warm family, hues 38-41. This replaces an earlier cool
+   drafting neutral (hue ~213). The two were tried together and measured:
+   a cream field beside the cool greys put 169 degrees of hue between two
+   surfaces that read as the same sheet of paper, and the page looked to the
+   client like a colour fault rather than a rhythm. Warmth was the part worth
+   keeping, so the greys moved to meet the cream instead of the reverse.
+
+   Separation is by lightness now, not by temperature: raised 1.00, paper
+   0.96, warm 0.87, sunk 0.78. Rules follow the same hue so a hairline never
+   turns blue against a warm field.
+
+   Navy and gold are unchanged. Navy at hue 220 is the one cool thing on the
+   page, which is what makes it read as ink on paper rather than as another
+   ground.
 
    Gold is a mark, never a fill. The decks use gold gradients and glow badges;
    that reads rich in print and cheap on screen.
 --------------------------------------------------------------------------- */
 
 :root {
-  --paper: #edf0f4;
-  --paper-raised: #f7f9fb;
-  --paper-sunk: #e3e8ef;
+  --paper: #fbfaf8;
+  --paper-raised: #ffffff;
+  --paper-sunk: #eae4d8;
 
   --ink: #0a1228;
   --ink-soft: #46536e;
@@ -24,8 +34,9 @@
   --navy: #16294f;
   --gold: #a97b2c;
 
-  --rule: #c9d2de;
-  --rule-strong: #9fb0c4;
+  --rule: #ddd5c6;
+  --rule-strong: #b9ac96;
+
 
   /* Remapped per division. Components never branch on division; they read
      --accent and stay identical everywhere. */
@@ -64,6 +75,24 @@
 
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
+
+  /* A modular scale, major third (1.25) on a 17px body, per Elements of
+     Typographic Style. It replaces fourteen hand-picked sizes that had
+     drifted up to 4.5px away from any common ratio — close enough to look
+     accidental rather than composed, which is what separates a set page
+     from a typed one. Every size on the site comes from this ladder.
+
+     Fluid between the two ends of each clamp so headings scale with the
+     viewport instead of stepping at breakpoints. */
+  --text-step--2: 0.68rem;
+  --text-step--1: 0.85rem;
+  --text-step-0: 1.0625rem;
+  --text-step-1: 1.328rem;
+  --text-step-2: clamp(1.45rem, 1.2rem + 1.1vw, 1.66rem);
+  --text-step-3: clamp(1.66rem, 1.3rem + 1.7vw, 2.075rem);
+  --text-step-4: clamp(2.075rem, 1.6rem + 2.2vw, 2.594rem);
+  --text-step-5: clamp(2.375rem, 1.6rem + 3.5vw, 3.243rem);
+  --text-step-6: clamp(2.75rem, 1.7rem + 4.8vw, 4.053rem);
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 
@@ -104,9 +133,15 @@
   font-stretch: 125%;
   font-weight: 600;
   line-height: 1.04;
-  letter-spacing: -0.02em;
+  /* Tightened from -0.02em. At display sizes the default fitting leaves
+     gaps that read as a word-processor default; the larger the type, the
+     more it needs pulling in. */
+  letter-spacing: -0.028em;
   color: var(--navy);
   text-wrap: balance;
+  /* Hang punctuation and use the proper lining figures the face carries. */
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
 @utility type-heading {
