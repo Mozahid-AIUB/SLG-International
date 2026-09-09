@@ -51,7 +51,7 @@ export default function AboutPage() {
             */}
             <Image
               src="/about/founder-1000.webp"
-              alt="The founder of Sahara Link Group, photographed in the company's Dhaka office beneath the group nameplate"
+              alt="Kamal Monsur, founder of Sahara Link Group, photographed in the company's Dhaka office beneath the group nameplate"
               width={900}
               height={1600}
               className="w-full border border-rule-strong"
@@ -61,15 +61,26 @@ export default function AboutPage() {
           </Reveal>
 
           <Reveal className="flex flex-col justify-center" delay={120}>
-            <p className="type-data text-[0.8125rem] text-ink-faint">
-              Founder
+            {/*
+              Name first, titles under it — the order a person is introduced
+              in. Set in the display width, not the listing one: on this page
+              --accent resolves to the same navy as the headings, so the name
+              cannot be separated from the tagline beneath it by colour. Width
+              and size do that work instead, and the titles drop to faint ink
+              so the eye lands on the man before his roles.
+            */}
+            <p className="type-display text-[2rem] sm:text-[2.25rem]">
+              Kamal Monsur
+            </p>
+            <p className="type-data mt-2.5 text-[0.9375rem] text-ink-faint">
+              Founder · Corporate Investor
             </p>
 
             {/*
               The tagline is the largest type on the page. It is the client's
               own words, cast in metal on the wall behind him.
             */}
-            <blockquote className="mt-5">
+            <blockquote className="mt-7">
               <p className="type-display text-[2rem] sm:text-[2.75rem] lg:text-[3.25rem]">
                 {site.tagline}
               </p>
