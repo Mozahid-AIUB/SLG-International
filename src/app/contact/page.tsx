@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/primitives/Container";
+import { SectionHeading } from "@/components/primitives/SectionHeading";
 import { DataPlate } from "@/components/patterns/DataPlate";
+import { OfficeMap } from "@/components/patterns/OfficeMap";
 import { PageHero } from "@/components/patterns/PageHero";
 import { site } from "@/content/site";
 
@@ -47,7 +49,7 @@ export default function Page() {
       <section className="py-24 md:py-36">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <h2 className="type-heading text-step-4">How to reach us</h2>
+            <SectionHeading>How to reach us</SectionHeading>
             <p className="type-body mt-4 text-step-0">
               Each division keeps its own address. Anything sent to one of
               them reaches the same office.
@@ -111,6 +113,35 @@ export default function Page() {
               ),
             }))}
           />
+        </Container>
+      </section>
+
+      {/*
+        The map closes the page rather than opening it. Someone arriving here
+        wants a number or an address first; the map matters once they have
+        decided to visit, which is after they have read the rest.
+      */}
+      <section className="border-t border-rule bg-paper-sunk py-16 md:py-20">
+        <Container>
+          <SectionHeading>Find the office</SectionHeading>
+          <p className="type-body mt-4 text-step-0">
+            {site.address.line1}, {site.address.line2}, {site.address.city}{" "}
+            {site.address.postalCode}.
+          </p>
+          <div className="mt-8">
+            <OfficeMap
+              /*
+                Area and city, not the full street line. Searching the flat
+                number ("Lift-2, Flat-C2") sends Google looking for a
+                building it does not index and it drops the pin somewhere
+                unhelpful or nowhere at all; the area name resolves reliably
+                and is what a visitor navigates by anyway. The exact address
+                is printed above the map for the last hundred metres.
+              */
+              query={`${site.address.line2}, ${site.address.city} ${site.address.postalCode}, ${site.address.country}`}
+              label={`${site.address.line2}, ${site.address.city}`}
+            />
+          </div>
         </Container>
       </section>
     </main>
