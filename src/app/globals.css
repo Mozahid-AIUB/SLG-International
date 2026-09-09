@@ -33,6 +33,12 @@
 
   --navy: #16294f;
   --gold: #a97b2c;
+  /* The same gold, darkened until it clears 3:1 on every ground including
+     --paper-sunk, where the brand value measures 2.99 and would fail as a
+     graphical mark. Hue is unmoved at 38, so it is still the mark's gold.
+     Use this one for anything structural; --gold stays for fills and for
+     type large enough not to need the ratio. */
+  --gold-mark: #9c7128;
 
   --rule: #ddd5c6;
   --rule-strong: #b9ac96;
@@ -69,6 +75,7 @@
 
   --color-navy: var(--navy);
   --color-gold: var(--gold);
+  --color-gold-mark: var(--gold-mark);
 
   --color-rule: var(--rule);
   --color-rule-strong: var(--rule-strong);
@@ -197,10 +204,14 @@
     background-size: 96px 96px;
     background-position: center top;
     opacity: 0.32;
+    /* Reaches across the full width rather than pooling at 22%. The data
+       plates sit on the right of these sections and are glass: with the
+       grid stopping short of them the blur had nothing behind it to refract
+       and the panel read as flat translucent plastic. */
     mask-image: radial-gradient(
-      ellipse 90% 70% at 22% 0%,
+      ellipse 130% 78% at 40% 0%,
       #000 0%,
-      transparent 72%
+      transparent 78%
     );
   }
 }
