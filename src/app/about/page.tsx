@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Container } from "@/components/primitives/Container";
 import { Reveal } from "@/components/primitives/Reveal";
+import { SectionHeading } from "@/components/primitives/SectionHeading";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { PageHero } from "@/components/patterns/PageHero";
 import { StackingCards } from "@/components/patterns/StackingCards";
@@ -115,7 +116,7 @@ export default function AboutPage() {
       {leadership.length > 0 ? (
         <section className="border-b border-rule bg-paper-raised">
           <Container className="py-24 md:py-36">
-            <h2 className="type-heading text-step-4">Leadership</h2>
+            <SectionHeading>Leadership</SectionHeading>
 
             {/*
               One card per person, pinned and piled on scroll. The list was
@@ -251,13 +252,26 @@ export default function AboutPage() {
       */}
       {technology.length > 0 ? (
         <section className="border-t border-rule bg-paper-sunk">
-          <Container className="py-24 md:py-36">
-            <p className="type-data text-step--1 text-ink-faint">
+          {/*
+            Tighter than the sections above it. This is a colophon — who to
+            call when the site breaks — not another chapter, and at the
+            page's standard py-24/36 it took as much height as the four
+            leadership cards while carrying one short block of contact
+            details.
+          */}
+          <Container className="py-16 md:py-20">
+            {/*
+              Centred and a step up from the other small labels: this one
+              heads a card rather than sitting above a column of prose, and
+              at listing size on the left it read as a stray caption instead
+              of the section's title.
+            */}
+            <p className="type-data text-step-1 text-center text-ink-faint">
               Website and systems
             </p>
 
             {technology.map((person) => (
-              <div key={person.id} className="mt-8">
+              <div key={person.id} className="mt-10">
                 {/*
                   A byline portrait, not a leadership one: square and small,
                   set beside the name rather than above it. The section above
@@ -297,11 +311,11 @@ export default function AboutPage() {
                   falls to this person and what does not.
                 */}
                 <Reveal delay={90}>
-                  <ul className="mt-12 grid grid-cols-2 border-t border-rule-strong sm:grid-cols-4">
+                  <ul className="mt-9 grid grid-cols-2 border-t border-rule-strong sm:grid-cols-4">
                     {person.responsibilities.map((item) => (
                       <li
                         key={item}
-                        className="border-b border-rule py-4 pr-6 type-data text-step--1 text-ink"
+                        className="border-b border-rule py-3 pr-6 type-data text-step--1 text-ink"
                       >
                         {item}
                       </li>
@@ -310,7 +324,7 @@ export default function AboutPage() {
                 </Reveal>
 
                 <Reveal delay={150}>
-                  <dl className="mt-12 grid gap-x-10 gap-y-6 sm:grid-cols-3">
+                  <dl className="mt-9 grid gap-x-10 gap-y-6 sm:grid-cols-3">
                     {person.email ? (
                       <div>
                         <dt className="type-data text-step--2 text-ink-faint">
