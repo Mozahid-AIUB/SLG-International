@@ -93,17 +93,24 @@ export default function Home() {
 
       <section className="blueprint border-b border-rule">
         <Container className="grid gap-12 py-16 md:py-20 lg:grid-cols-[1.45fr_1fr] lg:items-start">
-          <Reveal>
+          {/*
+            No Reveal around these. A block fade and a word-lift animate the
+            same element from two directions: the wrapper sets opacity on the
+            parent while the split spans are still travelling inside it, and
+            the words arrive already faded up. Each part now carries its own
+            entrance.
+          */}
+          <div>
             <AnimatedText as="h2" className="type-heading text-step-4">
               One group, both directions
             </AnimatedText>
-            <p className="type-body mt-4 text-[1.0625rem]">
+            <AnimatedText as="p" delay={0.15} className="type-body mt-4 text-step-0">
               Sahara Link Group has spent fifteen years bringing equipment into
               Bangladesh and sending skilled workers out of it. Two divisions
               import, one places workforce, and all three run from one office in
               Dhaka.
-            </p>
-          </Reveal>
+            </AnimatedText>
+          </div>
 
           <Reveal delay={120}>
             <DataPlate
@@ -126,14 +133,14 @@ export default function Home() {
 
       <section className="py-20 md:py-24">
         <Container>
-          <Reveal>
+          <div>
             <AnimatedText as="h2" className="type-heading text-step-4">
               Three divisions
             </AnimatedText>
-            <p className="type-body mt-4 text-[1.0625rem]">
+            <AnimatedText as="p" delay={0.15} className="type-body mt-4 text-step-0">
               Two bring equipment in. One sends workforce out.
-            </p>
-          </Reveal>
+            </AnimatedText>
+          </div>
 
           <div className="mt-12 border-t border-rule">
             {divisions.map((division, index) => (
@@ -195,15 +202,15 @@ export default function Home() {
 
       <section className="border-y border-rule bg-paper-sunk py-20 md:py-24">
         <Container>
-          <Reveal>
+          <div>
             <AnimatedText as="h2" className="type-heading text-step-4">
               What we do
             </AnimatedText>
-            <p className="type-body mt-4 text-[1.0625rem]">
+            <AnimatedText as="p" delay={0.15} className="type-body mt-4 text-step-0">
               Everything the group offers, across three divisions. Each one ends
               with somebody in Dhaka answering the phone.
-            </p>
-          </Reveal>
+            </AnimatedText>
+          </div>
 
           <ul className="mt-12 grid gap-x-12 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => (
@@ -235,16 +242,16 @@ export default function Home() {
 
       <section className="bg-ink py-20 text-paper-raised md:py-24">
         <Container>
-          <Reveal>
+          <div>
             <AnimatedText as="h2" className="type-heading text-step-4 text-paper-raised">
               Seven brands, represented in Bangladesh
             </AnimatedText>
-            <p className="type-body mt-4 max-w-[62ch] text-[1.0625rem] text-paper-sunk/70">
+            <AnimatedText as="p" delay={0.15} className="type-body mt-4 max-w-[62ch] text-step-0 text-paper-sunk/70">
               SLG does not manufacture. It imports, supplies, installs and
               services equipment made by these seven, and answers the phone
               afterwards.
-            </p>
-          </Reveal>
+            </AnimatedText>
+          </div>
         </Container>
 
         {/*
@@ -310,6 +317,135 @@ export default function Home() {
               </Link>
             </Reveal>
           </ul>
+        </Container>
+      </section>
+
+      {/*
+        The solar side, stated in the terms a buyer chooses by: which of the
+        three system types they need. The voltage and current ranges are the
+        only hard figures either client deck contains — everything else that
+        looks like a specification in those PDFs is stock artwork on a mock
+        controller screen, including two panels that contradict each other on
+        frequency. Those are not repeated here.
+      */}
+      <section className="border-t border-rule bg-paper-sunk py-20 md:py-24">
+        <Container>
+          <div>
+            <AnimatedText as="h2" className="type-heading text-step-4">
+              Solar, three ways
+            </AnimatedText>
+            <AnimatedText as="p" delay={0.15} className="type-body mt-4 text-step-0">
+              Panels, inverters, charge controllers, batteries and mounting —
+              sized as one system rather than sold as parts.
+            </AnimatedText>
+          </div>
+
+          <div className="mt-12 grid gap-px border border-rule bg-rule lg:grid-cols-3">
+            {[
+              {
+                title: "On-grid",
+                body: "Runs alongside the mains and offsets what the building draws. No batteries, so the shortest payback of the three.",
+              },
+              {
+                title: "Off-grid",
+                body: "Stands alone with battery storage, for sites the grid does not reach or cannot be relied on.",
+              },
+              {
+                title: "Hybrid",
+                body: "Grid-connected with storage behind it. Solar by day, battery through an outage.",
+              },
+            ].map((item, index) => (
+              <Reveal
+                as="article"
+                key={item.title}
+                effect="settle"
+                delay={index * 90}
+                className="bg-paper-raised p-7"
+              >
+                <span aria-hidden className="block h-[3px] w-10 bg-gold-mark" />
+                <h3 className="type-heading mt-4 text-step-2">{item.title}</h3>
+                <p className="type-body mt-3 text-step--1">{item.body}</p>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={200} className="mt-10">
+            <DataPlate
+              title="Charge controllers"
+              rows={[
+                { label: "System voltage", value: "12V / 24V / 48V" },
+                { label: "Current range", value: "10A – 60A" },
+              ]}
+              footnote="Sizing depends on array and battery bank. Confirmed per project."
+              className="max-w-md"
+            />
+          </Reveal>
+        </Container>
+      </section>
+
+      {/*
+        What actually happens between an enquiry and a working machine. The
+        page said what the group sells and who it represents but never what
+        the buyer is signing up for, which is the question behind most first
+        enquiries.
+
+        Numbered because this genuinely is a sequence — the one case where
+        numbered markers describe the content rather than decorate it.
+
+        Every step is drawn from what the client's own decks describe. No
+        durations are given: the decks state none, and a timeline invented
+        here would be quoted back at the company by a customer.
+      */}
+      <section className="border-t border-rule py-20 md:py-24">
+        <Container>
+          <div>
+            <AnimatedText as="h2" className="type-heading text-step-4">
+              From enquiry to running equipment
+            </AnimatedText>
+            <AnimatedText as="p" delay={0.15} className="type-body mt-4 text-step-0">
+              The same office handles the specification, the import, the
+              installation and the service visit three years later.
+            </AnimatedText>
+          </div>
+
+          <ol className="mt-12 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                step: "01",
+                title: "Specification",
+                body: "The building, the load and the traffic decide the machine. We size it against what the site actually needs rather than a catalogue page.",
+              },
+              {
+                step: "02",
+                title: "Supply",
+                body: "Imported directly from the manufacturer, not bought from a local reseller. One less party between the factory and the site.",
+              },
+              {
+                step: "03",
+                title: "Installation",
+                body: "Installed and commissioned by engineers on staff, then tested against the specification it was sold on.",
+              },
+              {
+                step: "04",
+                title: "Service",
+                body: "Maintenance and parts from the same office that supplied it. The people who installed it are the people who return to it.",
+              },
+            ].map((item, index) => (
+              <Reveal
+                as="li"
+                key={item.step}
+                effect="settle"
+                delay={index * 90}
+                className="bg-paper-raised p-7"
+              >
+                <span className="type-data text-step--1 text-gold-mark">
+                  {item.step}
+                </span>
+                <h3 className="type-heading mt-4 text-step-1">{item.title}</h3>
+                <p className="type-body mt-3 text-step--1">{item.body}</p>
+              </Reveal>
+            ))}
+          </ol>
         </Container>
       </section>
 
