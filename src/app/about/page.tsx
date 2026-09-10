@@ -17,7 +17,33 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main id="main" className="flex-1">
+    <main id="main" className="relative isolate flex-1">
+      {/*
+        The group mark, held still behind the whole page while the content
+        travels over it — a watermark on the paper rather than a picture in
+        the column.
+
+        This only works if the sections stop fighting it. Tried first with
+        each section keeping its own ground and its own hard border: the mark
+        stayed put correctly, but the borders swept across it and cut it into
+        pieces at every scroll position, and the two different grounds showed
+        it at two different strengths. It read as a poster taped behind a
+        blind. So the sections that pass over it now share one ground and
+        drop their rules; the only division left between them is the space
+        around them.
+      */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10 hidden items-center justify-center lg:flex"
+      >
+        <Image
+          src="/brand/group-512.webp"
+          alt=""
+          width={512}
+          height={512}
+          className="w-[46rem] max-w-none opacity-[0.045]"
+        />
+      </div>
       <PageHero
         title="Fifteen years, one office, two directions of trade"
         lead="Sahara Link Group imports the equipment that keeps Bangladeshi buildings running, and places Bangladeshi workers with employers abroad. Three divisions, one company, one address in Dhaka."
@@ -42,7 +68,7 @@ export default function AboutPage() {
         Setting the tagline beside the photo at display size lets each finish
         the other, instead of shrinking the picture into a bio avatar.
       */}
-      <section className="border-b border-rule bg-paper-raised">
+      <section className="bg-paper-raised/75 backdrop-blur-[2px]">
         <Container className="grid gap-10 py-24 md:py-36 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-16">
           <Reveal effect="wipe">
             {/*
@@ -114,7 +140,7 @@ export default function AboutPage() {
         the way a listing of officers does.
       */}
       {leadership.length > 0 ? (
-        <section className="border-b border-rule bg-paper-raised">
+        <section className="bg-paper-raised/75 backdrop-blur-[2px]">
           <Container className="py-24 md:py-36">
             <SectionHeading>Leadership</SectionHeading>
 
@@ -133,7 +159,7 @@ export default function AboutPage() {
                 <article
                   data-stack-card
                   key={member.id}
-                  className="grid gap-6 border border-rule bg-paper-raised px-8 py-14 shadow-[0_-18px_50px_-30px_rgba(10,18,40,0.35)] lg:sticky lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-0 lg:px-12"
+                  className="grid gap-6 border border-rule bg-paper-raised px-8 py-14 shadow-[0_-18px_50px_-30px_rgba(10,18,40,0.35)] lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-0 lg:px-12 lg:sticky"
                   /*
                     Each card sticks 22px lower than the one before it, so the
                     pile leaves a visible edge of every card underneath rather
@@ -155,21 +181,14 @@ export default function AboutPage() {
                   */}
                   <div className="relative z-10 lg:w-[calc(100%+3.5rem)]">
                     {/*
-                      Fixed 4:5 frame. The supplied portraits are all
-                      different shapes, and left at their own ratios the
-                      names below them would sit on three different lines.
+                      Name above the portrait, not below it. A pinned card can
+                      be taller than the window it is pinned in — at a browser
+                      height of 740px, which is what a maximised window with a
+                      bookmarks bar actually gives, the tallest card overran by
+                      29px and the identity was the part that fell off the
+                      bottom. Whoever is on screen is now named first, and it
+                      is the biography that runs on.
                     */}
-                    {member.photo ? (
-                      <Image
-                        src={member.photo}
-                        alt={member.photoAlt ?? `${member.name}, ${member.role}`}
-                        width={800}
-                        height={1000}
-                        className="mb-5 aspect-4/5 w-full border border-rule-strong object-cover object-top lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
-                        sizes="(min-width: 1024px) 17rem, 100vw"
-                      />
-                    ) : null}
-
                     <h3 className="type-heading text-step-1">
                       {member.name}
                     </h3>
@@ -180,6 +199,22 @@ export default function AboutPage() {
                       <p className="type-data mt-1 text-step--1 text-ink-faint">
                         {member.credential}
                       </p>
+                    ) : null}
+
+                    {/*
+                      Fixed 4:5 frame. The supplied portraits are all
+                      different shapes, and left at their own ratios the
+                      cards beside them would end on different lines.
+                    */}
+                    {member.photo ? (
+                      <Image
+                        src={member.photo}
+                        alt={member.photoAlt ?? `${member.name}, ${member.role}`}
+                        width={800}
+                        height={1000}
+                        className="mt-5 aspect-4/5 w-full border border-rule-strong object-cover object-top lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
+                        sizes="(min-width: 1024px) 17rem, 100vw"
+                      />
                     ) : null}
                   </div>
 
@@ -251,7 +286,7 @@ export default function AboutPage() {
         and the addresses are links rather than table cells.
       */}
       {technology.length > 0 ? (
-        <section className="border-t border-rule bg-paper-sunk">
+        <section className="bg-paper-raised/75 backdrop-blur-[2px]">
           {/*
             Tighter than the sections above it. This is a colophon — who to
             call when the site breaks — not another chapter, and at the

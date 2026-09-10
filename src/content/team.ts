@@ -94,6 +94,18 @@ export const leadership: TeamMember[] = [
       "Her background in Human Resource Management from American International University-Bangladesh brings a people-focused and organised approach to the company's growth, workforce development and operational excellence.",
     ],
   },
+  {
+    id: "sujon-chowdhury",
+    name: "Advocate Sujon Chowdhury",
+    role: "Corporate Legal Adviser",
+    credential: "LLB (Hons), LLM · ITP, National Board of Revenue",
+    photo: "/about/legal-800.webp",
+    bio: [
+      "Advocate Sujon Chowdhury advises Sahara Link Group on corporate law, taxation and VAT. He is an Income Tax Practitioner registered with the National Board of Revenue, and holds an LLM alongside an honours degree in law.",
+      "His work for the group covers corporate legal matters, tax planning and return filing, VAT compliance, and the financing side of expansion — bank, project and SME loan documentation, and the banking guidelines each has to satisfy.",
+      "He is also the founder of Tax Care Home's, a Dhaka practice in corporate tax, VAT and loan consultancy.",
+    ],
+  },
 ];
 
 export type TechnologyContact = TeamMember & {
