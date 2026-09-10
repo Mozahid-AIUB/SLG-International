@@ -46,6 +46,27 @@ export function AnimatedText({
       gsap.registerPlugin(ScrollTrigger);
 
       const ctx = gsap.context(() => {
+        // Anything but plain text is left alone. The split rebuilds the
+        // element from its textContent, so a link, a <strong> or any other
+        // child inside would be silently destroyed — which is exactly what
+        // happened to a /contact link on the manpower page. Falling back to
+        // a plain fade keeps the markup intact and still animates.
+        if (node.children.length > 0) {
+          gsap.fromTo(
+            node,
+            { opacity: 0, y: 18 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+              delay,
+              ease: "power3.out",
+              scrollTrigger: { trigger: node, start: "top 88%" },
+            },
+          );
+          return;
+        }
+
         const text = node.textContent ?? "";
         if (!text.trim()) return;
 
