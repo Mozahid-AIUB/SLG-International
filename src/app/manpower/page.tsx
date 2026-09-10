@@ -11,6 +11,21 @@ export const metadata: Metadata = {
   title: "Sahara Link International",
   description:
     "Bangladeshi workers placed with employers overseas, from the same Dhaka office that handles the group's equipment business.",
+  alternates: { canonical: "/manpower/" },
+  openGraph: {
+    type: "website",
+    siteName: "Sahara Link Group",
+    locale: "en_US",
+    url: "/manpower/",
+    images: [
+      {
+        url: "/media/hero-elevator-still.webp",
+        width: 1600,
+        height: 900,
+        alt: "Elevator doors in a building lobby",
+      },
+    ],
+  },
 };
 
 /**

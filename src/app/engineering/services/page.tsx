@@ -10,6 +10,21 @@ export const metadata: Metadata = {
   title: "Engineering services",
   description:
     "Consultation, project planning, supply, technical coordination and maintenance from SLG Engineering.",
+  alternates: { canonical: "/engineering/services/" },
+  openGraph: {
+    type: "website",
+    siteName: "Sahara Link Group",
+    locale: "en_US",
+    url: "/engineering/services/",
+    images: [
+      {
+        url: "/media/hero-elevator-still.webp",
+        width: 1600,
+        height: 900,
+        alt: "Elevator doors in a building lobby",
+      },
+    ],
+  },
 };
 
 export default function ServicesPage() {

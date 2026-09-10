@@ -9,6 +9,21 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Reach Sahara Link Group in Rampura, Dhaka.",
+  alternates: { canonical: "/contact/" },
+  openGraph: {
+    type: "website",
+    siteName: "Sahara Link Group",
+    locale: "en_US",
+    url: "/contact/",
+    images: [
+      {
+        url: "/media/hero-elevator-still.webp",
+        width: 1600,
+        height: 900,
+        alt: "Elevator doors in a building lobby",
+      },
+    ],
+  },
 };
 
 /**

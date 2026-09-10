@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { site } from "@/content/site";
 import "./globals.css";
 import { SmoothScroll } from "@/components/primitives/SmoothScroll";
+import { StructuredData } from "./_seo/structured-data";
 
 /**
  * One family, three widths. Loading the `wdth` axis lets display (125%),
@@ -26,31 +27,57 @@ export const metadata: Metadata = {
   },
   description:
     "Sahara Link Group supplies elevators, diesel generators and complete solar systems across Bangladesh, and places Bangladeshi workforce with employers overseas.",
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  publisher: site.name,
+  /*
+    `"./"` rather than `"/"`. Next resolves a canonical beginning with `./`
+    against the page's own pathname, so every route that does not declare
+    its own canonical is self-canonical instead of inheriting the home
+    page's. A literal `"/"` here would point all ten routes at the root and
+    de-index nine of them. `trailingSlash: true` in next.config.ts means the
+    emitted href gets its slash added automatically.
+    See node_modules/next/dist/lib/metadata/resolvers/resolve-url.js.
+  */
+  alternates: { canonical: "./" },
   openGraph: {
     type: "website",
     siteName: site.name,
     locale: "en_US",
+    url: "./",
+    images: [
+      {
+        url: "/media/hero-elevator-still.webp",
+        width: 1600,
+        height: 900,
+        alt: "Elevator doors in a building lobby",
+      },
+    ],
   },
-  robots: { index: true, follow: true },
-};
-
-/** Tells search engines the group is one organisation with one address. */
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: site.name,
-  alternateName: site.shortName,
-  url: site.url,
-  slogan: site.tagline,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: `${site.address.line1}, ${site.address.line2}`,
-    addressLocality: site.address.city,
-    postalCode: site.address.postalCode,
-    addressCountry: "BD",
+  /*
+    Card type only. Deliberately no `images` here: a page that sets its own
+    `openGraph` replaces the parent's whole `openGraph` object, and Next then
+    back-fills `twitter.images` from that page's `openGraph.images` — but
+    only if `twitter` has no `images` key of its own. Listing an image here
+    would pin every page's Twitter card to the elevator photo while its
+    og:image showed something else.
+    See node_modules/next/dist/lib/metadata/resolve-metadata.js, postProcessMetadata.
+  */
+  twitter: { card: "summary_large_image" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      // Lets Google show a full-size image and an unclipped snippet, which
+      // is also what the AI answer engines read when they cite a page.
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
-  telephone: site.phones[0],
-  email: site.emails.engineering,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -67,12 +94,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         {children}
         <Footer />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
-        />
+        <StructuredData />
       </body>
     </html>
   );

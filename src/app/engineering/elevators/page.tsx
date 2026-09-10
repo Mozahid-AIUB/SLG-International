@@ -11,6 +11,21 @@ export const metadata: Metadata = {
   title: "Elevators",
   description:
     "Sigma, Sino Hyundai and Fuji elevators supplied and installed by SLG Engineering — passenger, hospital, freight, panoramic and home lifts.",
+  alternates: { canonical: "/engineering/elevators/" },
+  openGraph: {
+    type: "website",
+    siteName: "Sahara Link Group",
+    locale: "en_US",
+    url: "/engineering/elevators/",
+    images: [
+      {
+        url: "/media/hero-elevator-still.webp",
+        width: 1600,
+        height: 900,
+        alt: "Elevator doors in a building lobby",
+      },
+    ],
+  },
 };
 
 const types = [

@@ -11,6 +11,21 @@ export const metadata: Metadata = {
   title: "Diesel generators",
   description:
     "Perkins, Cummins, Ricardo and EVOL diesel generators supplied and serviced by SLG Engineering — standby and prime power for commercial and industrial sites.",
+  alternates: { canonical: "/engineering/generators/" },
+  openGraph: {
+    type: "website",
+    siteName: "Sahara Link Group",
+    locale: "en_US",
+    url: "/engineering/generators/",
+    images: [
+      {
+        url: "/media/hero-generator.webp",
+        width: 1600,
+        height: 696,
+        alt: "Diesel generator in a soundproof canopy",
+      },
+    ],
+  },
 };
 
 const duties = [

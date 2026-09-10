@@ -15,6 +15,21 @@ export const metadata: Metadata = {
   title: "SLG Engineering",
   description:
     "Elevators from Sigma, Sino Hyundai and Fuji. Diesel generators from Perkins, Cummins, Ricardo and EVOL. Supplied, installed and maintained across Bangladesh.",
+  alternates: { canonical: "/engineering/" },
+  openGraph: {
+    type: "website",
+    siteName: "Sahara Link Group",
+    locale: "en_US",
+    url: "/engineering/",
+    images: [
+      {
+        url: "/media/hero-elevator-still.webp",
+        width: 1600,
+        height: 900,
+        alt: "Elevator doors in a building lobby",
+      },
+    ],
+  },
 };
 
 const lines = [

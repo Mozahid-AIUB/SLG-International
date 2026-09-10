@@ -127,10 +127,15 @@ export const technology: TechnologyContact[] = [
   {
     id: "mozahidul-islam",
     name: "MD Mozahidul Islam",
-    role: "Software Engineer, web and mobile apps",
+    role: "Head of IT",
+    credential: "Software Engineer · Web, mobile and AI systems",
     photo: "/about/it-600.webp",
     remit:
       "Builds and maintains this website, and administers the domain, server and deployments behind it.",
+    bio: [
+      "MD Mozahidul Islam heads IT at Sahara Link Group. He designed and built this website, and runs the domain, server and deployment pipeline it sits on.",
+      "He works across web and mobile engineering and applied AI, building software that has to keep running after launch rather than only demonstrate well. Available for consulting on the same.",
+    ],
     email: "mozahidul.islam.ai@gmail.com",
     /** Also the WhatsApp number. */
     phone: "+880 1707 591255",

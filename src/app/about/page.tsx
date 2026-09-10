@@ -13,6 +13,21 @@ export const metadata: Metadata = {
   title: "About Sahara Link Group",
   description:
     "Fifteen years of equipment supply and overseas workforce placement, from one office in Dhaka.",
+  alternates: { canonical: "/about/" },
+  openGraph: {
+    type: "website",
+    siteName: "Sahara Link Group",
+    locale: "en_US",
+    url: "/about/",
+    images: [
+      {
+        url: "/media/hero-elevator-still.webp",
+        width: 1600,
+        height: 900,
+        alt: "Elevator doors in a building lobby",
+      },
+    ],
+  },
 };
 
 export default function AboutPage() {
@@ -68,7 +83,7 @@ export default function AboutPage() {
         Setting the tagline beside the photo at display size lets each finish
         the other, instead of shrinking the picture into a bio avatar.
       */}
-      <section className="bg-paper-raised/75 backdrop-blur-[2px]">
+      <section className="border-b border-rule bg-paper-raised">
         <Container className="grid gap-10 py-24 md:py-36 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-16">
           <Reveal effect="wipe">
             {/*
@@ -140,7 +155,7 @@ export default function AboutPage() {
         the way a listing of officers does.
       */}
       {leadership.length > 0 ? (
-        <section className="bg-paper-raised/75 backdrop-blur-[2px]">
+        <section className="border-b border-rule bg-paper-raised">
           <Container className="py-24 md:py-36">
             <SectionHeading>Leadership</SectionHeading>
 
@@ -286,24 +301,12 @@ export default function AboutPage() {
         and the addresses are links rather than table cells.
       */}
       {technology.length > 0 ? (
-        <section className="bg-paper-raised/75 backdrop-blur-[2px]">
-          {/*
-            Tighter than the sections above it. This is a colophon — who to
-            call when the site breaks — not another chapter, and at the
-            page's standard py-24/36 it took as much height as the four
-            leadership cards while carrying one short block of contact
-            details.
-          */}
-          <Container className="py-16 md:py-20">
-            {/*
-              Centred and a step up from the other small labels: this one
-              heads a card rather than sitting above a column of prose, and
-              at listing size on the left it read as a stray caption instead
-              of the section's title.
-            */}
-            <p className="type-data text-step-1 text-center text-ink-faint">
-              Website and systems
-            </p>
+        <section className="border-t border-rule bg-paper-sunk">
+          <Container className="py-20 md:py-24">
+            {/* Now that this section carries a card like Leadership does,
+                it takes the same heading treatment. A centred grey label
+                over a bordered card read as a caption that had drifted. */}
+            <SectionHeading>Website and systems</SectionHeading>
 
             {technology.map((person) => (
               <div key={person.id} className="mt-10">
@@ -313,29 +316,49 @@ export default function AboutPage() {
                   already uses a tall 4:5 frame, and repeating it here would
                   make the two read as one long list of people.
                 */}
-                <Reveal className="flex flex-col gap-7 sm:flex-row sm:items-start sm:gap-9">
-                  {person.photo ? (
-                    <Image
-                      src={person.photo}
-                      alt={person.photoAlt ?? `${person.name}, ${person.role}`}
-                      width={600}
-                      height={600}
-                      className="w-32 shrink-0 border border-rule-strong object-cover sm:w-40"
-                      sizes="(min-width: 640px) 10rem, 8rem"
-                    />
-                  ) : null}
-
-                  <div>
-                    <h2 className="type-display text-step-5">
-                      {person.name}
-                    </h2>
-                    <p className="type-data mt-3 text-step-0 text-accent">
+                {/*
+                  Set as a card, matching the leadership entries above. This
+                  block was a byline: a small square portrait beside a name,
+                  on the reasoning that a service contact is not an
+                  introduction. But the person heading IT is on the staff
+                  like everyone else on this page, and the byline treatment
+                  read as a footer credit rather than a colleague.
+                */}
+                <Reveal className="grid gap-6 border border-rule bg-paper-raised px-8 py-12 shadow-[0_-18px_50px_-30px_rgba(10,18,40,0.35)] lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-0 lg:px-12">
+                  <div className="relative z-10 lg:w-[calc(100%+3.5rem)]">
+                    <h2 className="type-heading text-step-1">{person.name}</h2>
+                    <p className="type-data mt-1.5 text-step--1 text-accent">
                       {person.role}
                     </p>
-                    {person.remit ? (
-                      <p className="type-body mt-6 text-step-0">
-                        {person.remit}
+                    {person.credential ? (
+                      <p className="type-data mt-1 text-step--1 text-ink-faint">
+                        {person.credential}
                       </p>
+                    ) : null}
+
+                    {person.photo ? (
+                      <Image
+                        src={person.photo}
+                        alt={person.photoAlt ?? `${person.name}, ${person.role}`}
+                        width={600}
+                        height={750}
+                        className="mt-5 aspect-4/5 w-full border border-rule-strong object-cover object-top lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
+                        sizes="(min-width: 1024px) 17rem, 100vw"
+                      />
+                    ) : null}
+                  </div>
+
+                  <div className="lg:pl-24">
+                    {person.bio?.map((paragraph) => (
+                      <p
+                        key={paragraph}
+                        className="type-body mt-5 text-step-0 first:mt-0"
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                    {person.remit && !person.bio ? (
+                      <p className="type-body text-step-0">{person.remit}</p>
                     ) : null}
                   </div>
                 </Reveal>
