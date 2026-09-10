@@ -16,6 +16,10 @@ export type Slide = {
 
 const INTERVAL = 6000;
 
+/** Pixels the backdrop shifts against the cursor, at the very edge of the
+ *  hero. Small on purpose — see the note where it is applied. */
+const MAX_TILT = 14;
+
 /**
  * Hero slides.
  *
@@ -44,6 +48,8 @@ export function HeroSlides({
   /** Whether this viewer should be sent video at all. Decided once, on the
    *  client, and false until then so the server and the first paint agree. */
   const [motionOk, setMotionOk] = useState(false);
+  /** Cursor position as -1..1 on each axis, 0,0 when the pointer is away. */
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     // Next frame rather than straight away. Setting state synchronously in an
@@ -88,16 +94,34 @@ export function HeroSlides({
     <div
       className={className}
       onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseLeave={() => {
+        setPaused(false);
+        setTilt({ x: 0, y: 0 });
+      }}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
+      onMouseMove={(e) => {
+        if (!motionOk) return;
+        // Where the cursor is inside the hero, as -1..1 on each axis.
+        const b = e.currentTarget.getBoundingClientRect();
+        setTilt({
+          x: ((e.clientX - b.left) / b.width - 0.5) * 2,
+          y: ((e.clientY - b.top) / b.height - 0.5) * 2,
+        });
+      }}
     >
       <div
         aria-hidden="true"
         className="absolute inset-0 flex h-full transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none"
         style={{
           width: `${slides.length * 100}%`,
-          transform: `translateX(-${index * (100 / slides.length)}%)`,
+          // The slide track carries the slide change; the parallax rides on
+          // top of it as a translate of a few pixels against the cursor.
+          // MAX_TILT is 14px deliberately: enough that the picture feels like
+          // it sits behind the glass, small enough that nobody notices it as
+          // an effect. The media inside is scaled 105% so the shift never
+          // drags an edge into view.
+          transform: `translateX(-${index * (100 / slides.length)}%) translate3d(${-tilt.x * MAX_TILT}px, ${-tilt.y * MAX_TILT}px, 0)`,
         }}
       >
         {slides.map((slide, i) => (
@@ -121,7 +145,7 @@ export function HeroSlides({
                 playsInline
                 preload={i === 0 ? "auto" : "none"}
                 aria-hidden="true"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full scale-105 object-cover"
                 ref={(el) => {
                   if (!el) return;
                   if (i === index) void el.play().catch(() => {});
@@ -136,7 +160,7 @@ export function HeroSlides({
                 height={900}
                 priority={i === 0}
                 sizes="100vw"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full scale-105 object-cover"
               />
             )}
           </div>

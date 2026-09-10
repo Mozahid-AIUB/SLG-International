@@ -35,14 +35,31 @@ export function HeroReveal({ children }: { children: ReactNode }) {
         const heading = node.querySelector<HTMLElement>("[data-hero-heading]");
         const items = gsap.utils.toArray<HTMLElement>("[data-hero-item]");
 
-        // Wrap each word so it can be lifted from behind its own edge.
-        let words: HTMLElement[] = [];
+        // Split to letters, but wrap by word.
+        //
+        // Each word is still one inline-block, so the line breaks where it
+        // always did — splitting to bare letters lets a line wrap mid-word,
+        // which is how per-letter animation usually ruins a headline. The
+        // letters inside each word then lift individually.
+        //
+        // The stagger is 0.022s. Per-letter reads as premium only while it
+        // stays quick: this headline is 44 characters, so at that rate the
+        // last one lands under a second after the first, and nobody is left
+        // waiting to read the one sentence the page has to say. Letters
+        // inside a word overlap heavily, which is what makes it look like
+        // type being set rather than characters being dealt out.
+        let letters: HTMLElement[] = [];
         if (heading) {
           const text = heading.textContent ?? "";
           heading.textContent = "";
-          words = text.split(/\s+/).filter(Boolean).map((word) => {
-            const clip = document.createElement("span");
-            clip.style.display = "inline-block";
+          text.split(/\s+/).filter(Boolean).forEach((word) => {
+            const wordBox = document.createElement("span");
+            wordBox.style.display = "inline-block";
+            wordBox.style.whiteSpace = "nowrap";
+
+            for (const ch of Array.from(word)) {
+              const clip = document.createElement("span");
+              clip.style.display = "inline-block";
             // The clip box is the line box, and both display and heading
             // roles run line-heights below 1.15 — shorter than Archivo's
             // glyph box. A plain overflow:hidden therefore shears the tails
@@ -51,17 +68,21 @@ export function HeroReveal({ children }: { children: ReactNode }) {
             // pulling it back with a negative margin gives the descenders
             // room without moving the baseline or opening a gap the word can
             // be seen through before it arrives.
-            clip.style.overflow = "hidden";
-            clip.style.paddingBottom = "0.18em";
-            clip.style.marginBottom = "-0.18em";
-            clip.style.verticalAlign = "top";
-            const inner = document.createElement("span");
-            inner.style.display = "inline-block";
-            inner.textContent = word;
-            clip.appendChild(inner);
-            heading.appendChild(clip);
+              clip.style.overflow = "hidden";
+              clip.style.paddingBottom = "0.18em";
+              clip.style.marginBottom = "-0.18em";
+              clip.style.verticalAlign = "top";
+
+              const inner = document.createElement("span");
+              inner.style.display = "inline-block";
+              inner.textContent = ch;
+              clip.appendChild(inner);
+              wordBox.appendChild(clip);
+              letters.push(inner);
+            }
+
+            heading.appendChild(wordBox);
             heading.appendChild(document.createTextNode(" "));
-            return inner;
           });
         }
 
@@ -80,11 +101,11 @@ export function HeroReveal({ children }: { children: ReactNode }) {
           0,
         );
 
-        if (words.length) {
+        if (letters.length) {
           tl.fromTo(
-            words,
-            { yPercent: 108 },
-            { yPercent: 0, duration: 0.85, stagger: 0.045 },
+            letters,
+            { yPercent: 112 },
+            { yPercent: 0, duration: 0.62, stagger: 0.022 },
             0.15,
           );
         }

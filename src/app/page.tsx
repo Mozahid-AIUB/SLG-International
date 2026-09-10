@@ -37,8 +37,13 @@ export default function Home() {
               label: "Solar systems",
             },
             {
-              src: "/media/hero-elevator-still.webp",
-              alt: "Elevator doors in a building lobby",
+              // High-rise towers going up, which is where a lift goes in.
+              // Footage of a lift car itself is all interiors shot from
+              // inside one, and at hero scale that reads as a corridor
+              // rather than as the business.
+              src: "/media/video/towers-poster.webp",
+              video: "/media/video/towers-1280.mp4",
+              alt: "High-rise towers under construction with tower cranes",
               label: "Elevators",
             },
             {
