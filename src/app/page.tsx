@@ -8,6 +8,7 @@ import { HeroSlides } from "@/components/patterns/HeroSlides";
 import { HeroReveal } from "@/components/patterns/HeroReveal";
 import { AnimatedText } from "@/components/primitives/AnimatedText";
 import { BrandMarquee } from "@/components/patterns/BrandMarquee";
+import { ScrollScene } from "@/components/primitives/ScrollScene";
 import { divisions, site } from "@/content/site";
 import { brands } from "@/content/brands";
 import { services } from "@/content/services";
@@ -273,8 +274,25 @@ export default function Home() {
                 as="li"
                 effect="settle"
                 delay={index * 60}
-                className="bg-ink p-6"
+                className="group bg-ink"
               >
+                {/*
+                  A fixed 16:10 frame with object-cover. The supplied shots
+                  run from 0.59 to 2.30 in aspect — lifts are tall, gensets
+                  are wide — and at their own ratios the seven cells ended on
+                  seven different lines.
+                */}
+                <div className="relative aspect-[16/10] overflow-hidden bg-white/5">
+                  <Image
+                    src={brand.image}
+                    alt={brand.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                </div>
+
+                <div className="p-6">
                 {/* The brand names are what a buyer scans this grid for, so
                     they arrive the way the headings do rather than fading in
                     with the cell around them. A step up in size too — at
@@ -293,6 +311,7 @@ export default function Home() {
                 <p className="type-body mt-3 text-[0.9375rem] text-paper-sunk/70">
                   {brand.headline}
                 </p>
+                </div>
               </Reveal>
             ))}
 
@@ -339,6 +358,22 @@ export default function Home() {
               sized as one system rather than sold as parts.
             </AnimatedText>
           </div>
+
+          {/*
+            A photograph of the thing being described, held on a parallax so
+            it drifts against the scroll. Static it was a stock roof; moving
+            at a different rate from the text beside it, it reads as depth.
+          */}
+          <ScrollScene scene="parallax" className="mt-10 overflow-hidden">
+            <Image
+              src="/media/solar-roof.webp"
+              alt="Solar array installed across a pitched roof"
+              width={1200}
+              height={936}
+              sizes="(min-width: 1024px) 68rem, 100vw"
+              className="aspect-[21/9] w-full scale-110 border border-rule object-cover"
+            />
+          </ScrollScene>
 
           <div className="mt-12 grid gap-px border border-rule bg-rule lg:grid-cols-3">
             {[
