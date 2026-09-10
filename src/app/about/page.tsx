@@ -30,35 +30,28 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Bolds the subject's name where a paragraph opens with it.
+ *
+ * Several biographies begin "Engr. Billal Hossain Uzzol is the Chairman…".
+ * Set flat, that repetition of the name directly under the heading reads as
+ * a stutter; in bold it reads as the sentence naming its subject, the way a
+ * profile in print does. Only the opening of a paragraph qualifies — the
+ * name appearing mid-sentence later on is ordinary prose and is left alone.
+ */
+function BioParagraph({ text, name }: { text: string; name: string }) {
+  if (!text.startsWith(name)) return <>{text}</>;
+  return (
+    <>
+      <strong className="font-semibold text-ink">{name}</strong>
+      {text.slice(name.length)}
+    </>
+  );
+}
+
 export default function AboutPage() {
   return (
-    <main id="main" className="relative isolate flex-1">
-      {/*
-        The group mark, held still behind the whole page while the content
-        travels over it — a watermark on the paper rather than a picture in
-        the column.
-
-        This only works if the sections stop fighting it. Tried first with
-        each section keeping its own ground and its own hard border: the mark
-        stayed put correctly, but the borders swept across it and cut it into
-        pieces at every scroll position, and the two different grounds showed
-        it at two different strengths. It read as a poster taped behind a
-        blind. So the sections that pass over it now share one ground and
-        drop their rules; the only division left between them is the space
-        around them.
-      */}
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 hidden items-center justify-center lg:flex"
-      >
-        <Image
-          src="/brand/group-512.webp"
-          alt=""
-          width={512}
-          height={512}
-          className="w-[46rem] max-w-none opacity-[0.045]"
-        />
-      </div>
+    <main id="main" className="flex-1">
       <PageHero
         title="Fifteen years, one office, two directions of trade"
         lead="Sahara Link Group imports the equipment that keeps Bangladeshi buildings running, and places Bangladeshi workers with employers abroad. Three divisions, one company, one address in Dhaka."
@@ -272,7 +265,7 @@ export default function AboutPage() {
                         key={paragraph}
                         className="type-body mt-5 text-step-0 first:mt-0"
                       >
-                        {paragraph}
+                        <BioParagraph text={paragraph} name={member.name} />
                       </p>
                     ))}
                     {member.remit && !member.bio ? (
@@ -372,7 +365,7 @@ export default function AboutPage() {
                         key={paragraph}
                         className="type-body mt-5 text-step-0 first:mt-0"
                       >
-                        {paragraph}
+                        <BioParagraph text={paragraph} name={person.name} />
                       </p>
                     ))}
                     {person.remit && !person.bio ? (
