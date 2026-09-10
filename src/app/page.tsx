@@ -7,6 +7,7 @@ import { FlowSchematic } from "@/components/patterns/FlowSchematic";
 import { HeroSlides } from "@/components/patterns/HeroSlides";
 import { HeroReveal } from "@/components/patterns/HeroReveal";
 import { AnimatedText } from "@/components/primitives/AnimatedText";
+import { BrandMarquee } from "@/components/patterns/BrandMarquee";
 import { divisions, site } from "@/content/site";
 import { brands } from "@/content/brands";
 import { services } from "@/content/services";
@@ -244,6 +245,20 @@ export default function Home() {
               afterwards.
             </p>
           </Reveal>
+        </Container>
+
+        {/*
+          The names as a moving strip, full-bleed so it runs edge to edge and
+          reads as a ticker rather than a widget parked in the column. It is
+          the rhythm; the grid under it is the reference. Aria-hidden because
+          the same seven names are listed properly below and announcing them
+          twice helps nobody.
+        */}
+        <div aria-hidden className="mt-12 border-y border-white/12 py-8">
+          <BrandMarquee items={brands.map((b) => b.name)} />
+        </div>
+
+        <Container>
           <ul className="mt-12 grid gap-px border border-white/12 bg-white/12 sm:grid-cols-2 lg:grid-cols-4">
             {brands.map((brand, index) => (
               <Reveal
@@ -253,9 +268,18 @@ export default function Home() {
                 delay={index * 60}
                 className="bg-ink p-6"
               >
-                <p className="type-display text-[1.375rem] text-paper-raised">
+                {/* The brand names are what a buyer scans this grid for, so
+                    they arrive the way the headings do rather than fading in
+                    with the cell around them. A step up in size too — at
+                    1.375rem they sat level with the body copy under them and
+                    the grid read as seven paragraphs. */}
+                <AnimatedText
+                  as="p"
+                  delay={index * 0.05}
+                  className="type-display text-step-2 text-paper-raised"
+                >
                   {brand.name}
-                </p>
+                </AnimatedText>
                 <p className="type-data mt-1.5 text-[0.8125rem] text-paper-sunk/55">
                   {brand.category === "elevator" ? "Elevators" : "Generators"}
                 </p>
