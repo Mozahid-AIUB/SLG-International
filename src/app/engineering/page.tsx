@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/primitives/Container";
 import { Reveal } from "@/components/primitives/Reveal";
+import { ScrollScene } from "@/components/primitives/ScrollScene";
 import { AnimatedText } from "@/components/primitives/AnimatedText";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { PageHero } from "@/components/patterns/PageHero";
@@ -138,66 +139,107 @@ export default function EngineeringPage() {
         substations, sales", and the first two had pages while the third
         appeared nowhere on the site.
 
-        Set as a single block rather than a product line like the two above,
+        Set as a scope of work rather than a product line like the two above,
         because there is no brand list, no capacity range and no equipment
-        schedule to publish yet — substation work is a scope of work, not a
-        catalogue. What is described here is the shape of that work. Ratings,
-        configurations and the utility approvals each installation needs are
-        left to the enquiry, where they are answered against a real site.
+        schedule to publish yet. Ratings, configurations and the utility
+        approvals each installation needs are left to the enquiry, where they
+        get answered against a real site rather than guessed at here.
+
+        Photography is open-licence stock. It shows plant of the kind the
+        work involves, not installations the group has carried out, which is
+        why no caption claims otherwise.
       */}
-      <section className="border-t border-rule py-16 md:py-20">
-        <Container className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
-          <div>
-            <SectionHeading>Substations</SectionHeading>
-            <AnimatedText
-              as="p"
-              delay={0.15}
-              className="type-body mt-4 text-step-0"
-            >
-              The third line the division runs. A building that has a lift and
-              a generator still needs the supply between them to be right, and
-              that is where a substation sits.
-            </AnimatedText>
+      <section className="overflow-x-clip border-t border-rule">
+        <ScrollScene scene="parallax" className="overflow-hidden">
+          <Image
+            src="/media/substation/yard-1600.webp"
+            alt="High-voltage substation yard against an evening sky"
+            width={1600}
+            height={1067}
+            sizes="100vw"
+            className="aspect-[21/8] w-full scale-110 object-cover"
+          />
+        </ScrollScene>
+      </section>
 
-            <Link
-              href="/enquiry"
-              className="mt-7 inline-block border border-navy bg-navy px-6 py-3 type-data text-step--1 text-paper-raised transition-colors hover:bg-ink"
-            >
-              Discuss a substation
-            </Link>
-          </div>
-
-          <ul className="grid gap-px self-start border border-rule bg-rule sm:grid-cols-2">
-            {[
-              {
-                title: "Supply and installation",
-                body: "Transformers, switchgear and protection, supplied and installed as one scope rather than assembled from separate orders.",
-              },
-              {
-                title: "Load and layout",
-                body: "What the building actually draws, and where the equipment can go, worked out before anything is ordered.",
-              },
-              {
-                title: "Testing and handover",
-                body: "Commissioned, tested and handed over to the people who will operate it, with the protection settings explained.",
-              },
-              {
-                title: "Maintenance",
-                body: "Servicing and call-out from the same office, for substations we supplied and for ones we did not.",
-              },
-            ].map((item, index) => (
-              <Reveal
-                as="li"
-                key={item.title}
-                effect="settle"
-                delay={index * 80}
-                className="bg-paper-raised p-7"
+      <section className="border-t border-rule py-20 md:py-24">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+            <div>
+              <SectionHeading>Substations</SectionHeading>
+              <AnimatedText
+                as="p"
+                delay={0.15}
+                className="type-body mt-4 text-step-0"
               >
-                <h3 className="type-heading text-step-1">{item.title}</h3>
-                <p className="type-body mt-3 text-step--1">{item.body}</p>
-              </Reveal>
-            ))}
-          </ul>
+                The third line the division runs. A building that has a lift
+                and a generator still needs the supply between them to be
+                right, and that is where a substation sits.
+              </AnimatedText>
+
+              <ScrollScene
+                scene="mask"
+                delay={0.2}
+                className="mt-8 overflow-hidden border border-rule"
+              >
+                <Image
+                  src="/media/substation/insulators-1200.webp"
+                  alt="Close-up of high-voltage insulators and disconnect switches"
+                  width={1200}
+                  height={800}
+                  sizes="(min-width: 1024px) 26rem, 100vw"
+                  className="aspect-[3/2] w-full object-cover"
+                />
+              </ScrollScene>
+
+              <Link
+                href="/enquiry"
+                className="mt-8 inline-block border border-navy bg-navy px-6 py-3 type-data text-step--1 text-paper-raised transition-colors hover:bg-ink"
+              >
+                Discuss a substation
+              </Link>
+            </div>
+
+            <ul className="grid gap-px self-start border border-rule bg-rule sm:grid-cols-2">
+              {[
+                {
+                  title: "Supply and installation",
+                  body: "Transformers, switchgear and protection, supplied and installed as one scope rather than assembled from separate orders arriving on different days.",
+                },
+                {
+                  title: "Load and layout",
+                  body: "What the building actually draws, and where the equipment can physically go, worked out before anything is ordered.",
+                },
+                {
+                  title: "Protection and earthing",
+                  body: "Relays set and earthing installed so a fault stops at the equipment rather than travelling into the building.",
+                },
+                {
+                  title: "Testing and handover",
+                  body: "Commissioned, tested and handed over to the people who will operate it, with the protection settings explained rather than left in a folder.",
+                },
+                {
+                  title: "Utility coordination",
+                  body: "The approvals and inspections an installation has to satisfy, handled alongside the distribution company rather than left to the client.",
+                },
+                {
+                  title: "Maintenance",
+                  body: "Servicing and call-out from the same office, for substations we supplied and for ones we did not.",
+                },
+              ].map((item, index) => (
+                <Reveal
+                  as="li"
+                  key={item.title}
+                  effect="settle"
+                  delay={index * 70}
+                  className="bg-paper-raised p-7"
+                >
+                  <h3 className="type-heading text-step-1">{item.title}</h3>
+                  <p className="type-body mt-3 text-step--1">{item.body}</p>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
         </Container>
       </section>
 
