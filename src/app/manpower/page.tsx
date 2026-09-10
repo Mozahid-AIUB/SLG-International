@@ -6,6 +6,7 @@ import { AnimatedText } from "@/components/primitives/AnimatedText";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { PageHero } from "@/components/patterns/PageHero";
 import { site } from "@/content/site";
+import { SectionHeading } from "@/components/primitives/SectionHeading";
 
 export const metadata: Metadata = {
   title: "Sahara Link International",
@@ -94,9 +95,7 @@ export default function ManpowerPage() {
       <section className="border-b border-rule bg-paper-raised">
         <Container className="py-20 md:py-24">
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              How we work
-            </AnimatedText>
+            <SectionHeading>How we work</SectionHeading>
             <AnimatedText
               as="p"
               delay={0.15}

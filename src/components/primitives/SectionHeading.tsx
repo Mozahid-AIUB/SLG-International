@@ -20,18 +20,26 @@ import { AnimatedText } from "@/components/primitives/AnimatedText";
  */
 export function SectionHeading({
   children,
+  /** Set on ink grounds. The gold mark carries on both, but navy type does
+   *  not, and the two dark sections on the site were the reason this
+   *  component was being bypassed there. */
+  tone = "paper",
   className,
 }: {
   children: ReactNode;
+  tone?: "paper" | "ink";
   className?: string;
 }) {
   return (
     <div className={className}>
-      <span
-        aria-hidden
-        className="block h-[3px] w-12 bg-gold-mark"
-      />
-      <AnimatedText as="h2" delay={0.1} className="type-heading mt-5 text-step-4">
+      <span aria-hidden className="block h-[3px] w-12 bg-gold-mark" />
+      <AnimatedText
+        as="h2"
+        delay={0.1}
+        className={`type-heading mt-5 text-step-4 ${
+          tone === "ink" ? "text-paper-raised" : ""
+        }`}
+      >
         {children}
       </AnimatedText>
     </div>

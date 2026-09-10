@@ -43,7 +43,17 @@ export function HeroReveal({ children }: { children: ReactNode }) {
           words = text.split(/\s+/).filter(Boolean).map((word) => {
             const clip = document.createElement("span");
             clip.style.display = "inline-block";
+            // The clip box is the line box, and both display and heading
+            // roles run line-heights below 1.15 — shorter than Archivo's
+            // glyph box. A plain overflow:hidden therefore shears the tails
+            // off g, j, p, q and y and never restores them, because the clip
+            // stays after the animation ends. Padding the box down and
+            // pulling it back with a negative margin gives the descenders
+            // room without moving the baseline or opening a gap the word can
+            // be seen through before it arrives.
             clip.style.overflow = "hidden";
+            clip.style.paddingBottom = "0.18em";
+            clip.style.marginBottom = "-0.18em";
             clip.style.verticalAlign = "top";
             const inner = document.createElement("span");
             inner.style.display = "inline-block";

@@ -6,6 +6,7 @@ import { BrandBlock } from "@/components/patterns/BrandBlock";
 import { PageHero } from "@/components/patterns/PageHero";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { generatorBrands } from "@/content/brands";
+import { SectionHeading } from "@/components/primitives/SectionHeading";
 
 export const metadata: Metadata = {
   title: "Diesel generators",
@@ -88,9 +89,7 @@ export default function GeneratorsPage() {
       <section className="border-b border-rule py-16 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              Duty
-            </AnimatedText>
+            <SectionHeading>Duty</SectionHeading>
             <AnimatedText
               as="p"
               delay={0.15}
@@ -102,10 +101,10 @@ export default function GeneratorsPage() {
             <dl className="mt-8">
               {duties.map((duty) => (
                 <div key={duty.name} className="border-t border-rule py-4">
-                  <dt className="type-data text-[1rem] text-navy">
+                  <dt className="type-data text-step-0 text-navy">
                     {duty.name}
                   </dt>
-                  <dd className="type-body mt-1.5 text-[0.9375rem]">
+                  <dd className="type-body mt-1.5 text-step--1">
                     {duty.note}
                   </dd>
                 </div>
@@ -114,9 +113,7 @@ export default function GeneratorsPage() {
           </div>
 
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              Configuration
-            </AnimatedText>
+            <SectionHeading>Configuration</SectionHeading>
             <AnimatedText
               as="p"
               delay={0.15}
@@ -128,10 +125,10 @@ export default function GeneratorsPage() {
             <dl className="mt-8">
               {options.map((option) => (
                 <div key={option.name} className="border-t border-rule py-4">
-                  <dt className="type-data text-[1rem] text-navy">
+                  <dt className="type-data text-step-0 text-navy">
                     {option.name}
                   </dt>
-                  <dd className="type-body mt-1.5 text-[0.9375rem]">
+                  <dd className="type-body mt-1.5 text-step--1">
                     {option.note}
                   </dd>
                 </div>
@@ -158,7 +155,7 @@ export default function GeneratorsPage() {
             <AnimatedText
               as="p"
               delay={0.15}
-              className="type-body mt-2 text-[1rem]"
+              className="type-body mt-2 text-step-0"
             >
               Connected load, starting current, run hours and site conditions
               are enough to come back with a specification.
@@ -166,7 +163,7 @@ export default function GeneratorsPage() {
           </div>
           <Link
             href="/enquiry"
-            className="border border-navy bg-navy px-6 py-3 type-data text-[0.9375rem] text-paper-raised transition-colors hover:bg-ink"
+            className="border border-navy bg-navy px-6 py-3 type-data text-step--1 text-paper-raised transition-colors hover:bg-ink"
           >
             Start an enquiry
           </Link>

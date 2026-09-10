@@ -40,7 +40,7 @@ export const services: Service[] = [
     description:
       "Lead-acid, lithium and commercial battery banks matched to the inverter and the backup duration required.",
     division: "renewables",
-    href: "/renewables/products",
+    href: "/renewables",
   },
   {
     title: "Maintenance and service",
@@ -75,7 +75,7 @@ export const services: Service[] = [
     description:
       "Wiring, protection, testing and handover, with the system left running and explained to whoever operates it.",
     division: "group",
-    href: "/renewables/process",
+    href: "/renewables",
   },
   {
     title: "Spare parts and after-sales",

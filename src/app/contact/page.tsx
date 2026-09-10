@@ -76,11 +76,12 @@ export default function Page() {
                   key={phone}
                   className="flex items-baseline justify-between gap-6 border-b border-rule py-3"
                 >
-                  {/* Both numbers ring the same office, so the second is a
-                      fallback rather than a different department. Labelling
-                      both "Phone" left the reader to guess which to try. */}
+                  {/* All three ring the same office; the second and third
+                      are fallbacks rather than different departments.
+                      Labelling them all "Phone" left the reader to guess
+                      which to try. */}
                   <dt className="type-data text-step--1 text-ink-faint">
-                    {index === 0 ? "Phone" : "Alternate"}
+                    {index === 0 ? "Phone" : "Also"}
                   </dt>
                   <dd className="type-data text-step-0 text-navy">
                     <a

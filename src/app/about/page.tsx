@@ -324,9 +324,9 @@ export default function AboutPage() {
                   like everyone else on this page, and the byline treatment
                   read as a footer credit rather than a colleague.
                 */}
-                <Reveal className="grid gap-6 border border-rule bg-paper-raised px-8 py-12 shadow-[0_-18px_50px_-30px_rgba(10,18,40,0.35)] lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-0 lg:px-12">
+                <Reveal className="grid gap-6 border border-rule bg-paper-raised px-8 py-14 shadow-[0_-18px_50px_-30px_rgba(10,18,40,0.35)] lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-0 lg:px-12">
                   <div className="relative z-10 lg:w-[calc(100%+3.5rem)]">
-                    <h2 className="type-heading text-step-1">{person.name}</h2>
+                    <h3 className="type-heading text-step-1">{person.name}</h3>
                     <p className="type-data mt-1.5 text-step--1 text-accent">
                       {person.role}
                     </p>

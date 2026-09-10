@@ -30,7 +30,9 @@ export const site = {
     country: "Bangladesh",
   },
 
-  phones: ["+880 9697 711 115", "+880 1673 757417"],
+  /** All three ring the same Rampura office. The middle one appears on the
+   *  client's own Renewables flyer and was confirmed from it. */
+  phones: ["+880 9697 711 115", "+880 1791 113360", "+880 1673 757417"],
   whatsapp: "+8801991115505",
 
   emails: {

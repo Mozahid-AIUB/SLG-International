@@ -6,6 +6,7 @@ import { BrandBlock } from "@/components/patterns/BrandBlock";
 import { PageHero } from "@/components/patterns/PageHero";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { elevatorBrands } from "@/content/brands";
+import { SectionHeading } from "@/components/primitives/SectionHeading";
 
 export const metadata: Metadata = {
   title: "Elevators",
@@ -76,9 +77,7 @@ export default function ElevatorsPage() {
 
       <section className="border-b border-rule py-16 md:py-20">
         <Container>
-          <AnimatedText as="h2" className="type-heading text-step-4">
-            Configurations
-          </AnimatedText>
+          <SectionHeading>Configurations</SectionHeading>
           <AnimatedText
             as="p"
             delay={0.15}
@@ -90,8 +89,8 @@ export default function ElevatorsPage() {
           <dl className="mt-10 grid gap-x-12 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
             {types.map((type) => (
               <div key={type.name} className="border-t border-rule pt-4">
-                <dt className="type-data text-[1rem] text-navy">{type.name}</dt>
-                <dd className="type-body mt-1.5 text-[0.9375rem]">
+                <dt className="type-data text-step-0 text-navy">{type.name}</dt>
+                <dd className="type-body mt-1.5 text-step--1">
                   {type.note}
                 </dd>
               </div>
@@ -117,7 +116,7 @@ export default function ElevatorsPage() {
             <AnimatedText
               as="p"
               delay={0.15}
-              className="type-body mt-2 text-[1rem]"
+              className="type-body mt-2 text-step-0"
             >
               Send the floor count, the shaft dimensions and the expected
               traffic. We will come back with options and a price.
@@ -125,7 +124,7 @@ export default function ElevatorsPage() {
           </div>
           <Link
             href="/enquiry"
-            className="border border-navy bg-navy px-6 py-3 type-data text-[0.9375rem] text-paper-raised transition-colors hover:bg-ink"
+            className="border border-navy bg-navy px-6 py-3 type-data text-step--1 text-paper-raised transition-colors hover:bg-ink"
           >
             Start an enquiry
           </Link>

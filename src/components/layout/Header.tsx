@@ -26,7 +26,7 @@ export function Header() {
             className="h-11 w-auto sm:h-12"
             priority
           />
-          <span className="hidden border-l border-rule pl-4 type-heading text-[1.0625rem] leading-tight text-navy sm:block">
+          <span className="hidden border-l border-rule pl-4 type-heading text-step-0 leading-tight text-navy sm:block">
             Sahara Link Group
           </span>
         </Link>
@@ -37,7 +37,7 @@ export function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="type-data text-[0.9375rem] text-ink-soft transition-colors hover:text-navy"
+                  className="type-data text-step--1 text-ink-soft transition-colors hover:text-navy"
                 >
                   {item.label}
                 </Link>
@@ -49,7 +49,7 @@ export function Header() {
         {/* Disclosure rather than a scripted drawer: the site is a static
             export, and this needs no JavaScript to work. */}
         <details className="group relative md:hidden">
-          <summary className="flex cursor-pointer list-none items-center gap-2 border border-rule-strong px-3 py-2 type-data text-[0.875rem] text-navy [&::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer list-none items-center gap-2 border border-rule-strong px-3 py-2 type-data text-step--1 text-navy [&::-webkit-details-marker]:hidden">
             <span className="grid gap-[3px]" aria-hidden="true">
               <span className="block h-[1.5px] w-4 bg-current" />
               <span className="block h-[1.5px] w-4 bg-current" />
@@ -62,7 +62,7 @@ export function Header() {
               <li key={item.href} className="border-b border-rule last:border-b-0">
                 <Link
                   href={item.href}
-                  className="block px-4 py-3 type-data text-[0.9375rem] text-navy"
+                  className="block px-4 py-3 type-data text-step--1 text-navy"
                 >
                   {item.label}
                 </Link>

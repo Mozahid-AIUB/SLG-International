@@ -41,7 +41,10 @@ export function DataPlate({
       style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.85), 0 18px 44px -24px rgba(10,18,40,0.45)" }}
     >
       <div className="border-b border-gold-mark/45 bg-white/45 px-4 py-3">
-        <h3 className="type-data text-[0.8125rem] text-navy">{title}</h3>
+        {/* A label, not an outline entry. As an h3 it landed straight
+            after the page h1 and put a heading-level skip on every page
+            that carries a plate. */}
+        <p className="type-data text-step--1 text-navy">{title}</p>
       </div>
 
       <dl className="divide-y divide-white/60">
@@ -50,16 +53,16 @@ export function DataPlate({
             key={row.label}
             className="grid grid-cols-[minmax(0,7.5rem)_1fr] gap-4 px-4 py-3"
           >
-            <dt className="type-data text-[0.8125rem] text-ink-faint">
+            <dt className="type-data text-step--1 text-ink-faint">
               {row.label}
             </dt>
-            <dd className="type-data text-[0.875rem] text-ink">{row.value}</dd>
+            <dd className="type-data text-step--1 text-ink">{row.value}</dd>
           </div>
         ))}
       </dl>
 
       {footnote ? (
-        <p className="border-t border-white/60 px-4 py-2.5 type-data text-[0.75rem] text-ink-faint">
+        <p className="border-t border-white/60 px-4 py-2.5 type-data text-step--2 text-ink-faint">
           {footnote}
         </p>
       ) : null}

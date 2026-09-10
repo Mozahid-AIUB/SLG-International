@@ -39,7 +39,13 @@ export function HeroSlides({
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    setAuto(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    // Next frame rather than straight away. Setting state synchronously in an
+    // effect body cascades a second render before the first has painted, and
+    // the React Compiler flags it. Same pattern Reveal uses.
+    const id = requestAnimationFrame(() =>
+      setAuto(!window.matchMedia("(prefers-reduced-motion: reduce)").matches),
+    );
+    return () => cancelAnimationFrame(id);
   }, []);
 
   useEffect(() => {
@@ -117,7 +123,7 @@ export function HeroSlides({
                   }`}
                 />
                 <span
-                  className={`type-data text-[0.8125rem] transition-colors ${
+                  className={`type-data text-step--1 transition-colors ${
                     i === index ? "text-paper-raised" : "text-paper-sunk/55"
                   }`}
                 >

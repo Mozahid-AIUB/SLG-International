@@ -7,6 +7,7 @@ import { DataPlate } from "@/components/patterns/DataPlate";
 import { EnquiryForm } from "@/components/patterns/EnquiryForm";
 import { PageHero } from "@/components/patterns/PageHero";
 import { site } from "@/content/site";
+import { SectionHeading } from "@/components/primitives/SectionHeading";
 
 export const metadata: Metadata = {
   title: "Start an enquiry",
@@ -96,9 +97,7 @@ export default function EnquiryPage() {
       <section className="border-b border-rule bg-paper-raised">
         <Container className="grid gap-12 py-20 md:py-24 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              Send the details
-            </AnimatedText>
+            <SectionHeading>Send the details</SectionHeading>
             <AnimatedText
               as="p"
               delay={0.15}

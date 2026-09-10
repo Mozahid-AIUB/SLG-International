@@ -35,18 +35,18 @@ export function Footer() {
                 height={192}
                 className="h-14 w-14"
               />
-              <span className="type-heading text-[1.0625rem] leading-tight text-paper-raised">
+              <span className="type-heading text-step-0 leading-tight text-paper-raised">
                 Sahara Link Group
               </span>
             </Link>
-            <p className="type-body mt-5 max-w-[36ch] text-[0.9375rem] text-paper-sunk/65">
+            <p className="type-body mt-5 max-w-[36ch] text-step--1 text-paper-sunk/65">
               {site.tagline}
             </p>
             <SocialLinks tone="dark" className="mt-7" />
           </div>
 
           <nav>
-            <h2 className="type-data text-[0.875rem] text-paper-sunk/50">
+            <h2 className="type-data text-step--1 text-paper-sunk/50">
               Divisions
             </h2>
             <ul className="mt-4 space-y-2.5">
@@ -54,7 +54,7 @@ export function Footer() {
                 <li key={division.id}>
                   <Link
                     href={division.href}
-                    className="type-data text-[0.9375rem] text-paper-raised transition-colors hover:text-white"
+                    className="type-data text-step--1 text-paper-raised transition-colors hover:text-white"
                   >
                     {division.name}
                   </Link>
@@ -67,7 +67,7 @@ export function Footer() {
                 <li key={page.href}>
                   <Link
                     href={page.href}
-                    className="type-data text-[0.9375rem] text-paper-sunk/70 transition-colors hover:text-white"
+                    className="type-data text-step--1 text-paper-sunk/70 transition-colors hover:text-white"
                   >
                     {page.label}
                   </Link>
@@ -77,7 +77,7 @@ export function Footer() {
           </nav>
 
           <div>
-            <h2 className="type-data text-[0.875rem] text-paper-sunk/50">
+            <h2 className="type-data text-step--1 text-paper-sunk/50">
               Speak to the team
             </h2>
             <ul className="mt-3 space-y-1.5">
@@ -89,8 +89,8 @@ export function Footer() {
                       index === 0
                         ? // Never wrap: a phone number broken across two lines
                           // is harder to read and harder to trust.
-                          "type-display block whitespace-nowrap text-[1.625rem] text-paper-raised transition-colors hover:text-white sm:text-[1.875rem]"
-                        : "type-data block text-[1.0625rem] text-paper-sunk/75 transition-colors hover:text-white"
+                          "type-display block whitespace-nowrap text-step-2 text-paper-raised transition-colors hover:text-white sm:text-step-3"
+                        : "type-data block text-step-0 text-paper-sunk/75 transition-colors hover:text-white"
                     }
                   >
                     {phone}
@@ -101,7 +101,7 @@ export function Footer() {
 
             <a
               href={`https://wa.me/${whatsappDigits}`}
-              className="mt-5 inline-flex items-center gap-3 border border-white/25 px-5 py-3 type-data text-[0.9375rem] text-paper-raised transition-colors hover:border-white/60 hover:text-white"
+              className="mt-5 inline-flex items-center gap-3 border border-white/25 px-5 py-3 type-data text-step--1 text-paper-raised transition-colors hover:border-white/60 hover:text-white"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -113,7 +113,7 @@ export function Footer() {
               Message on WhatsApp
             </a>
 
-            <address className="type-data mt-7 space-y-1 text-[0.9375rem] not-italic text-paper-sunk/75">
+            <address className="type-data mt-7 space-y-1 text-step--1 not-italic text-paper-sunk/75">
               <p>{address.line1}</p>
               <p>{address.line2}</p>
               <p>
@@ -126,7 +126,7 @@ export function Footer() {
                 <li key={email}>
                   <a
                     href={`mailto:${email}`}
-                    className="type-data text-[0.9375rem] text-paper-sunk/70 transition-colors hover:text-white"
+                    className="type-data text-step--1 text-paper-sunk/70 transition-colors hover:text-white"
                   >
                     {email}
                   </a>
@@ -137,10 +137,10 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-white/12 pt-6">
-          <p className="type-data text-[0.8125rem] text-paper-sunk/45">
+          <p className="type-data text-step--1 text-paper-sunk/45">
             © {new Date().getFullYear()} {site.name}. Registered in Bangladesh.
           </p>
-          <p className="type-data text-[0.8125rem] text-paper-sunk/45">
+          <p className="type-data text-step--1 text-paper-sunk/45">
             Importer and distributor. Dhaka, Bangladesh.
           </p>
         </div>

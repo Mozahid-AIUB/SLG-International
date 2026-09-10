@@ -8,6 +8,7 @@ import { ScrollScene } from "@/components/primitives/ScrollScene";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { PageHero } from "@/components/patterns/PageHero";
 import { site } from "@/content/site";
+import { SectionHeading } from "@/components/primitives/SectionHeading";
 
 export const metadata: Metadata = {
   title: "SLG Renewables",
@@ -68,6 +69,42 @@ const systems = [
     fit: "Buildings that need both a lower bill and continuity",
     image: "/media/solar/underside-1400.webp",
     alt: "Sunlight through the underside of a solar panel array",
+  },
+];
+
+/**
+ * The government incentive package, from the client's own Renewables flyer.
+ *
+ * Every figure here is theirs and is reproduced exactly. The flyer carries
+ * its own provenance line — "based on government incentive announcements
+ * reported on 9 September 2026" — and that line is carried onto the page
+ * rather than dropped, because a tariff and two deadlines are the kind of
+ * thing a reader will act on and they need to know how fresh it is.
+ */
+const incentive = [
+  {
+    figure: "Tk 10.50",
+    unit: "per unit",
+    label: "Grid-feed tariff",
+    body: "The fixed purchase tariff for surplus electricity sent to the grid under the new incentive package.",
+  },
+  {
+    figure: "28 Feb 2027",
+    unit: "",
+    label: "Installation deadline",
+    body: "A system has to be installed within this period to qualify for the package at all.",
+  },
+  {
+    figure: "28 Feb 2030",
+    unit: "",
+    label: "Benefit runs until",
+    body: "Three years of the incentive for installations that qualify before the deadline above.",
+  },
+  {
+    figure: "180 days",
+    unit: "",
+    label: "Duty and tax relief",
+    body: "Most duties and taxes on imported solar machinery and spare parts are waived for this window.",
   },
 ];
 
@@ -162,6 +199,79 @@ export default function RenewablesPage() {
       </section>
 
       {/*
+        The incentive package, placed directly under the opening photograph
+        because it is the strongest reason on the page to act now rather than
+        next year — and because two of its four figures are deadlines.
+
+        Set on the dark ground so it reads as a notice rather than another
+        product section, and dated in plain sight: a tariff a reader might
+        commit money against has to say how current it is.
+      */}
+      <section className="border-b border-rule bg-ink py-20 text-paper-raised md:py-24">
+        <Container>
+          <div>
+            <span aria-hidden className="block h-[3px] w-12 bg-gold-mark" />
+            <AnimatedText
+              as="h2"
+              className="type-heading mt-5 text-step-4 text-paper-raised"
+            >
+              Rooftop solar now earns a tariff
+            </AnimatedText>
+            <AnimatedText
+              as="p"
+              delay={0.15}
+              className="type-body mt-4 max-w-[64ch] text-step-0 text-paper-sunk/75"
+            >
+              Bangladesh has introduced an incentive package for rooftop solar
+              with battery storage. Surplus electricity sent to the grid is
+              measured and paid for by the distribution company, and the
+              benchmark generation cost is set at Tk 8 per unit — if a system
+              runs below that, the difference stays with the owner.
+            </AnimatedText>
+          </div>
+
+          <ul className="mt-12 grid gap-px border border-white/12 bg-white/12 sm:grid-cols-2 lg:grid-cols-4">
+            {incentive.map((item, index) => (
+              <Reveal
+                as="li"
+                key={item.label}
+                effect="settle"
+                delay={index * 80}
+                className="bg-ink p-7"
+              >
+                {/* A step down from the headings, and held on one line. At
+                    step-4 the dates broke across two lines inside a quarter
+                    column and a wrapped date reads as two facts. */}
+                <p className="type-display whitespace-nowrap text-step-3 text-paper-raised">
+                  {item.figure}
+                  {item.unit ? (
+                    <span className="type-data ml-2 text-step--1 text-paper-sunk/60">
+                      {item.unit}
+                    </span>
+                  ) : null}
+                </p>
+                <p className="type-data mt-3 text-step--1 text-gold-mark">
+                  {item.label}
+                </p>
+                <p className="type-body mt-3 text-step--1 text-paper-sunk/70">
+                  {item.body}
+                </p>
+              </Reveal>
+            ))}
+          </ul>
+
+          <Reveal delay={340}>
+            <p className="type-data mt-8 text-step--2 text-paper-sunk/55">
+              Equipment must meet BSTI and SREDA technical standards. Figures
+              from government incentive announcements reported on 9 September
+              2026 — confirm current terms with us before committing to a
+              system.
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/*
         Three systems, and choosing between them is the first real decision a
         buyer makes. Set as alternating full-width entries rather than three
         cards: the difference between them is a paragraph of reasoning and a
@@ -170,9 +280,7 @@ export default function RenewablesPage() {
       <section className="border-b border-rule bg-paper-raised">
         <Container className="py-20 md:py-28">
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              Three systems, one decision
-            </AnimatedText>
+            <SectionHeading>Three systems, one decision</SectionHeading>
             <AnimatedText
               as="p"
               delay={0.15}
@@ -214,7 +322,7 @@ export default function RenewablesPage() {
                   />
                   <AnimatedText
                     as="h3"
-                    className="type-display mt-5 text-step-4"
+                    className="type-display mt-5 text-step-3"
                   >
                     {system.name}
                   </AnimatedText>
@@ -242,9 +350,7 @@ export default function RenewablesPage() {
         <Container className="py-20 md:py-28">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
             <div>
-              <AnimatedText as="h2" className="type-heading text-step-4">
-                What goes into one
-              </AnimatedText>
+              <SectionHeading>What goes into one</SectionHeading>
               <AnimatedText
                 as="p"
                 delay={0.15}
@@ -296,9 +402,7 @@ export default function RenewablesPage() {
       <section className="border-b border-rule">
         <Container className="py-20 md:py-28">
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              How a system gets built
-            </AnimatedText>
+            <SectionHeading>How a system gets built</SectionHeading>
             <AnimatedText
               as="p"
               delay={0.15}
@@ -332,7 +436,12 @@ export default function RenewablesPage() {
       {/* An industrial array, wide. Scale rather than parallax here — the
           shot is already aerial, and drifting it as well would fight the
           scroll rather than follow it. */}
-      <section className="border-b border-rule">
+      {/* overflow-x-clip on the section, not the ScrollScene: the scale is
+          applied to the ScrollScene's own wrapper, so a full-bleed one grows
+          to 112% of the viewport and its inner overflow-hidden clips the
+          child rather than itself. That was putting a horizontal scrollbar on
+          this page at every width. */}
+      <section className="overflow-x-clip border-b border-rule">
         <ScrollScene scene="scale" className="overflow-hidden">
           <Image
             src="/media/solar/industrial-aerial-1800.webp"
@@ -359,10 +468,7 @@ export default function RenewablesPage() {
           </ScrollScene>
 
           <div>
-            <span aria-hidden className="block h-[3px] w-12 bg-gold-mark" />
-            <AnimatedText as="h2" className="type-heading mt-5 text-step-4">
-              Installed and kept running
-            </AnimatedText>
+            <SectionHeading>Installed and kept running</SectionHeading>
             <AnimatedText
               as="p"
               delay={0.15}

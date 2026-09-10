@@ -66,13 +66,13 @@ function Node({
         <p
           className={
             emphasis
-              ? "type-heading text-[1.125rem] text-navy"
-              : "type-data text-[0.9375rem] text-ink"
+              ? "type-heading text-step-0 text-navy"
+              : "type-data text-step--1 text-ink"
           }
         >
           {label}
         </p>
-        <p className="type-data text-[0.8125rem] text-ink-faint">{note}</p>
+        <p className="type-data text-step--1 text-ink-faint">{note}</p>
       </div>
     </div>
   );
@@ -93,7 +93,7 @@ function Link({
         className="flow-line ml-[0.1875rem] h-10 w-px bg-rule-strong md:ml-0 md:mt-[5px] md:h-px md:w-full"
         style={{ "--flow-delay": delay } as CSSProperties}
       />
-      <p className="type-data ml-[1.375rem] mt-1 text-[0.8125rem] text-ink-faint md:ml-0 md:mt-3 md:text-center">
+      <p className="type-data ml-[1.375rem] mt-1 text-step--1 text-ink-faint md:ml-0 md:mt-3 md:text-center">
         {label}
       </p>
     </div>

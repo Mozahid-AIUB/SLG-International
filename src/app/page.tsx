@@ -12,6 +12,7 @@ import { ScrollScene } from "@/components/primitives/ScrollScene";
 import { divisions, site } from "@/content/site";
 import { brands } from "@/content/brands";
 import { services } from "@/content/services";
+import { SectionHeading } from "@/components/primitives/SectionHeading";
 
 const flowLabel: Record<string, string> = {
   inbound: "Equipment into Bangladesh",
@@ -52,7 +53,7 @@ export default function Home() {
                 height={192}
                 className="h-14 w-14"
               />
-              <span className="type-heading text-[1.0625rem] leading-tight text-paper-raised">
+              <span className="type-heading text-step-0 leading-tight text-paper-raised">
                 {site.name}
               </span>
             </div>
@@ -76,13 +77,13 @@ export default function Home() {
             <div data-hero-item className="mt-9 flex flex-wrap gap-3">
               <Link
                 href="/engineering"
-                className="border border-paper-raised bg-paper-raised px-6 py-3 type-data text-[0.9375rem] text-navy transition-colors hover:bg-white"
+                className="border border-paper-raised bg-paper-raised px-6 py-3 type-data text-step--1 text-navy transition-colors hover:bg-white"
               >
                 See what we supply
               </Link>
               <Link
                 href="/enquiry"
-                className="border border-white/35 px-6 py-3 type-data text-[0.9375rem] text-paper-raised transition-colors hover:border-white/70"
+                className="border border-white/35 px-6 py-3 type-data text-step--1 text-paper-raised transition-colors hover:border-white/70"
               >
                 Start an enquiry
               </Link>
@@ -93,7 +94,7 @@ export default function Home() {
       </section>
 
       <section className="blueprint border-b border-rule">
-        <Container className="grid gap-12 py-16 md:py-20 lg:grid-cols-[1.45fr_1fr] lg:items-start">
+        <Container className="grid gap-12 py-20 md:py-24 lg:grid-cols-[1.45fr_1fr] lg:items-start">
           {/*
             No Reveal around these. A block fade and a word-lift animate the
             same element from two directions: the wrapper sets opacity on the
@@ -102,9 +103,7 @@ export default function Home() {
             entrance.
           */}
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              One group, both directions
-            </AnimatedText>
+            <SectionHeading>One group, both directions</SectionHeading>
             <AnimatedText as="p" delay={0.15} className="type-body mt-4 text-step-0">
               Sahara Link Group has spent fifteen years bringing equipment into
               Bangladesh and sending skilled workers out of it. Two divisions
@@ -135,9 +134,7 @@ export default function Home() {
       <section className="py-20 md:py-24">
         <Container>
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              Three divisions
-            </AnimatedText>
+            <SectionHeading>Three divisions</SectionHeading>
             <AnimatedText as="p" delay={0.15} className="type-body mt-4 text-step-0">
               Two bring equipment in. One sends workforce out.
             </AnimatedText>
@@ -164,7 +161,7 @@ export default function Home() {
                   />
 
                   <div>
-                    <h3 className="type-display text-[1.625rem] sm:text-[1.875rem]">
+                    <h3 className="type-display text-step-2 sm:text-step-3">
                       <Link
                         href={division.href}
                         className="text-navy transition-colors hover:text-accent"
@@ -172,17 +169,17 @@ export default function Home() {
                         {division.name}
                       </Link>
                     </h3>
-                    <p className="type-data mt-1 text-[0.9375rem] text-ink-faint">
+                    <p className="type-data mt-1 text-step--1 text-ink-faint">
                       {division.strapline}
                     </p>
-                    <p className="type-body mt-4 text-[1.0625rem]">
+                    <p className="type-body mt-4 text-step-0">
                       {division.summary}
                     </p>
                     <dl className="mt-5 flex gap-3">
-                      <dt className="type-data text-[0.875rem] text-ink-faint">
+                      <dt className="type-data text-step--1 text-ink-faint">
                         Flow
                       </dt>
-                      <dd className="type-data text-[0.875rem] text-ink">
+                      <dd className="type-data text-step--1 text-ink">
                         {flowLabel[division.direction]}
                       </dd>
                     </dl>
@@ -190,7 +187,7 @@ export default function Home() {
 
                   <Link
                     href={division.href}
-                    className="self-center whitespace-nowrap border border-navy px-5 py-2.5 type-data text-[0.9375rem] text-navy transition-colors hover:bg-navy hover:text-paper-raised"
+                    className="self-center whitespace-nowrap border border-navy px-5 py-2.5 type-data text-step--1 text-navy transition-colors hover:bg-navy hover:text-paper-raised"
                   >
                     Go to {division.name}
                   </Link>
@@ -204,9 +201,7 @@ export default function Home() {
       <section className="border-y border-rule bg-paper-sunk py-20 md:py-24">
         <Container>
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              What we do
-            </AnimatedText>
+            <SectionHeading>What we do</SectionHeading>
             <AnimatedText as="p" delay={0.15} className="type-body mt-4 text-step-0">
               Everything the group offers, across three divisions. Each one ends
               with somebody in Dhaka answering the phone.
@@ -228,10 +223,10 @@ export default function Home() {
                   }
                   className="group flex h-full flex-col border-t-2 border-accent py-6"
                 >
-                  <h3 className="type-heading text-[1.1875rem] text-navy transition-colors group-hover:text-accent">
+                  <h3 className="type-heading text-step-1 text-navy transition-colors group-hover:text-accent">
                     {service.title}
                   </h3>
-                  <p className="type-body mt-3 text-[0.9375rem]">
+                  <p className="type-body mt-3 text-step--1">
                     {service.description}
                   </p>
                 </Link>
@@ -244,9 +239,7 @@ export default function Home() {
       <section className="bg-ink py-20 text-paper-raised md:py-24">
         <Container>
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4 text-paper-raised">
-              Seven brands, represented in Bangladesh
-            </AnimatedText>
+            <SectionHeading tone="ink">Seven brands, represented in Bangladesh</SectionHeading>
             <AnimatedText as="p" delay={0.15} className="type-body mt-4 max-w-[62ch] text-step-0 text-paper-sunk/70">
               SLG does not manufacture. It imports, supplies, installs and
               services equipment made by these seven, and answers the phone
@@ -305,10 +298,10 @@ export default function Home() {
                 >
                   {brand.name}
                 </AnimatedText>
-                <p className="type-data mt-1.5 text-[0.8125rem] text-paper-sunk/55">
+                <p className="type-data mt-1.5 text-step--1 text-paper-sunk/55">
                   {brand.category === "elevator" ? "Elevators" : "Generators"}
                 </p>
-                <p className="type-body mt-3 text-[0.9375rem] text-paper-sunk/70">
+                <p className="type-body mt-3 text-step--1 text-paper-sunk/70">
                   {brand.headline}
                 </p>
                 </div>
@@ -327,10 +320,10 @@ export default function Home() {
                 href="/engineering"
                 className="flex h-full flex-col justify-between gap-6 p-6 transition-colors hover:bg-white/[0.04]"
               >
-                <p className="type-body text-[0.9375rem] text-paper-sunk/70">
+                <p className="type-body text-step--1 text-paper-sunk/70">
                   Specifications, safety systems and applications for all seven.
                 </p>
-                <span className="type-data text-[0.9375rem] text-paper-raised underline decoration-white/30 underline-offset-4">
+                <span className="type-data text-step--1 text-paper-raised underline decoration-white/30 underline-offset-4">
                   See the full range
                 </span>
               </Link>
@@ -350,9 +343,7 @@ export default function Home() {
       <section className="border-t border-rule bg-paper-sunk py-20 md:py-24">
         <Container>
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              Solar, three ways
-            </AnimatedText>
+            <SectionHeading>Solar, three ways</SectionHeading>
             <AnimatedText as="p" delay={0.15} className="type-body mt-4 text-step-0">
               Panels, inverters, charge controllers, batteries and mounting —
               sized as one system rather than sold as parts.
@@ -434,9 +425,7 @@ export default function Home() {
       <section className="border-t border-rule py-20 md:py-24">
         <Container>
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              From enquiry to running equipment
-            </AnimatedText>
+            <SectionHeading>From enquiry to running equipment</SectionHeading>
             <AnimatedText as="p" delay={0.15} className="type-body mt-4 text-step-0">
               The same office handles the specification, the import, the
               installation and the service visit three years later.
@@ -498,7 +487,7 @@ export default function Home() {
           <Reveal delay={120}>
             <Link
               href="/enquiry"
-              className="inline-block border border-navy bg-navy px-6 py-3 type-data text-[0.9375rem] text-paper-raised transition-colors hover:bg-ink"
+              className="inline-block border border-navy bg-navy px-6 py-3 type-data text-step--1 text-paper-raised transition-colors hover:bg-ink"
             >
               Start an enquiry
             </Link>

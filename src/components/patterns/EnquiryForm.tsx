@@ -41,8 +41,11 @@ export function EnquiryForm() {
   const prompt: Record<DivisionId, string> = {
     engineering:
       "Building type and number of floors, passenger or load capacity, and when it is needed. For a generator: the connected load and whether it is standby or prime.",
+    // The client's own quotation checklist, from their Renewables flyer.
+    // Asking for exactly what they ask for means the first reply can be a
+    // quotation rather than a request for more information.
     renewables:
-      "Monthly consumption or a recent bill, the roof or ground area available, and what has to stay running during an outage.",
+      "Your latest electricity bill and monthly consumption, roof size or a rooftop photo, the site address, the building type (home, office, commercial, factory), your backup requirement, and a preferred system size or budget if you have one.",
     manpower:
       "The roles, how many people, where the work is, and when you need them on site.",
   };

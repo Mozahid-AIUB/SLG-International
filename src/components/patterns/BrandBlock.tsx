@@ -41,7 +41,7 @@ export function BrandBlock({ brand, index }: { brand: Brand; index: number }) {
           {/* The brand name is the largest thing on these pages and the
               thing a buyer is scanning for, so it assembles the way the
               section headings do rather than arriving with the block. */}
-          <AnimatedText as="h3" className="type-display text-step-4">
+          <AnimatedText as="h3" className="type-display text-step-3">
             {brand.name}
           </AnimatedText>
           <p className="type-heading mt-2 text-step-1 text-accent">

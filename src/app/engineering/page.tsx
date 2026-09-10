@@ -5,6 +5,7 @@ import { Container } from "@/components/primitives/Container";
 import { AnimatedText } from "@/components/primitives/AnimatedText";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { PageHero } from "@/components/patterns/PageHero";
+import { SectionHeading } from "@/components/primitives/SectionHeading";
 import {
   elevatorBrands,
   generatorBrands,
@@ -108,11 +109,11 @@ export default function EngineeringPage() {
                     >
                       <Link
                         href={`${line.href}#${brand.id}`}
-                        className="type-data text-[1rem] text-navy transition-colors hover:text-accent"
+                        className="type-data text-step-0 text-navy transition-colors hover:text-accent"
                       >
                         {brand.name}
                       </Link>
-                      <span className="type-body text-[0.9375rem]">
+                      <span className="type-body text-step--1">
                         {brand.headline}
                       </span>
                     </li>
@@ -121,7 +122,7 @@ export default function EngineeringPage() {
 
                 <Link
                   href={line.href}
-                  className="mt-8 inline-block border border-navy px-5 py-2.5 type-data text-[0.9375rem] text-navy transition-colors hover:bg-navy hover:text-paper-raised"
+                  className="mt-8 inline-block border border-navy px-5 py-2.5 type-data text-step--1 text-navy transition-colors hover:bg-navy hover:text-paper-raised"
                 >
                   {line.cta}
                 </Link>
@@ -134,9 +135,7 @@ export default function EngineeringPage() {
       <section className="border-t border-rule bg-paper-sunk py-16 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              Where we work
-            </AnimatedText>
+            <SectionHeading>Where we work</SectionHeading>
             <AnimatedText
               as="p"
               delay={0.15}
@@ -148,7 +147,7 @@ export default function EngineeringPage() {
             </AnimatedText>
             <Link
               href="/engineering/services"
-              className="mt-7 inline-block border border-navy px-5 py-2.5 type-data text-[0.9375rem] text-navy transition-colors hover:bg-navy hover:text-paper-raised"
+              className="mt-7 inline-block border border-navy px-5 py-2.5 type-data text-step--1 text-navy transition-colors hover:bg-navy hover:text-paper-raised"
             >
               What we do around the product
             </Link>
@@ -157,7 +156,7 @@ export default function EngineeringPage() {
             {engineeringSegments.map((segment) => (
               <li
                 key={segment}
-                className="border-b border-rule py-3 type-data text-[0.9375rem] text-ink"
+                className="border-b border-rule py-3 type-data text-step--1 text-ink"
               >
                 {segment}
               </li>

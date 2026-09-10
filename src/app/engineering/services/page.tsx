@@ -5,6 +5,7 @@ import { AnimatedText } from "@/components/primitives/AnimatedText";
 import { PageHero } from "@/components/patterns/PageHero";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { engineeringServices, engineeringSegments } from "@/content/brands";
+import { SectionHeading } from "@/components/primitives/SectionHeading";
 
 export const metadata: Metadata = {
   title: "Engineering services",
@@ -48,14 +49,21 @@ export default function ServicesPage() {
 
       <section className="border-b border-rule py-16 md:py-20">
         <Container>
-          <ol className="grid gap-x-12 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          {/* The five steps were h2s at step-1 while this page's other h2 runs
+              at step-4 — a 2x size difference at the same level — and nothing
+              introduced them, so the page went h1 straight to five small h2s.
+              They are h3s under a heading now, and the grid is five-up so the
+              last cell is not a hole with a broken rule above it. */}
+          <SectionHeading>How a project runs</SectionHeading>
+
+          <ol className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-5">
             {engineeringServices.map((service, index) => (
               <li key={service.title} className="border-t border-rule pt-5">
-                <p className="type-data text-[0.8125rem] text-accent">
+                <p className="type-data text-step--1 text-accent">
                   Step {index + 1}
                 </p>
                 <AnimatedText
-                  as="h2"
+                  as="h3"
                   delay={index * 0.05}
                   className="type-heading mt-2 text-step-1"
                 >
@@ -77,9 +85,7 @@ export default function ServicesPage() {
       <section className="py-16 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div>
-            <AnimatedText as="h2" className="type-heading text-step-4">
-              Buildings we serve
-            </AnimatedText>
+            <SectionHeading>Buildings we serve</SectionHeading>
             <AnimatedText
               as="p"
               delay={0.15}
@@ -94,7 +100,7 @@ export default function ServicesPage() {
             {engineeringSegments.map((segment) => (
               <li
                 key={segment}
-                className="border-b border-rule py-3 type-data text-[0.9375rem] text-ink"
+                className="border-b border-rule py-3 type-data text-step--1 text-ink"
               >
                 {segment}
               </li>
@@ -112,7 +118,7 @@ export default function ServicesPage() {
             <AnimatedText
               as="p"
               delay={0.15}
-              className="type-body mt-2 text-[1rem]"
+              className="type-body mt-2 text-step-0"
             >
               We service what we supply, and we will look at what someone else
               supplied. Tell us the brand and the age.
@@ -120,7 +126,7 @@ export default function ServicesPage() {
           </div>
           <Link
             href="/contact"
-            className="border border-navy bg-navy px-6 py-3 type-data text-[0.9375rem] text-paper-raised transition-colors hover:bg-ink"
+            className="border border-navy bg-navy px-6 py-3 type-data text-step--1 text-paper-raised transition-colors hover:bg-ink"
           >
             Contact the team
           </Link>
