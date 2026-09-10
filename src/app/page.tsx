@@ -5,6 +5,8 @@ import { Reveal } from "@/components/primitives/Reveal";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { FlowSchematic } from "@/components/patterns/FlowSchematic";
 import { HeroSlides } from "@/components/patterns/HeroSlides";
+import { HeroReveal } from "@/components/patterns/HeroReveal";
+import { AnimatedText } from "@/components/primitives/AnimatedText";
 import { divisions, site } from "@/content/site";
 import { brands } from "@/content/brands";
 import { services } from "@/content/services";
@@ -39,7 +41,8 @@ export default function Home() {
           className="relative min-h-[600px] w-full overflow-hidden bg-ink md:min-h-[660px] lg:min-h-[720px]"
         >
           <Container className="py-16 pb-28 md:py-20 md:pb-32">
-            <Reveal immediate className="flex items-center gap-4">
+           <HeroReveal>
+            <div data-hero-mark className="flex items-center gap-4">
               <Image
                 src="/brand/group-192.webp"
                 alt=""
@@ -50,29 +53,25 @@ export default function Home() {
               <span className="type-heading text-[1.0625rem] leading-tight text-paper-raised">
                 {site.name}
               </span>
-            </Reveal>
+            </div>
 
-            <Reveal
-              as="h1"
-              immediate
-              delay={140}
-              className="mt-8 max-w-[18ch] type-display text-[2.25rem] text-paper-raised sm:text-[3rem] lg:text-[3.75rem]"
+            <h1
+              data-hero-heading
+              className="mt-8 max-w-[18ch] type-display text-step-6 text-paper-raised"
             >
               Equipment into Bangladesh. Workforce out to the world.
-            </Reveal>
+            </h1>
 
-            <Reveal
-              as="p"
-              immediate
-              delay={280}
-              className="type-body mt-6 max-w-[54ch] text-[1.0625rem] text-paper-sunk/80"
+            <p
+              data-hero-item
+              className="type-body mt-6 max-w-[54ch] text-step-0 text-paper-sunk/80"
             >
               Elevators, diesel generators and complete solar systems from seven
               global brands — supplied, installed and serviced. And Bangladeshi
               workers placed with employers overseas.
-            </Reveal>
+            </p>
 
-            <Reveal immediate delay={400} className="mt-9 flex flex-wrap gap-3">
+            <div data-hero-item className="mt-9 flex flex-wrap gap-3">
               <Link
                 href="/engineering"
                 className="border border-paper-raised bg-paper-raised px-6 py-3 type-data text-[0.9375rem] text-navy transition-colors hover:bg-white"
@@ -85,7 +84,8 @@ export default function Home() {
               >
                 Start an enquiry
               </Link>
-            </Reveal>
+            </div>
+           </HeroReveal>
           </Container>
         </HeroSlides>
       </section>
@@ -93,9 +93,9 @@ export default function Home() {
       <section className="blueprint border-b border-rule">
         <Container className="grid gap-12 py-16 md:py-20 lg:grid-cols-[1.45fr_1fr] lg:items-start">
           <Reveal>
-            <h2 className="type-heading text-[1.75rem] sm:text-[2rem]">
+            <AnimatedText as="h2" className="type-heading text-step-4">
               One group, both directions
-            </h2>
+            </AnimatedText>
             <p className="type-body mt-4 text-[1.0625rem]">
               Sahara Link Group has spent fifteen years bringing equipment into
               Bangladesh and sending skilled workers out of it. Two divisions
@@ -126,9 +126,9 @@ export default function Home() {
       <section className="py-20 md:py-24">
         <Container>
           <Reveal>
-            <h2 className="type-heading text-[1.75rem] sm:text-[2rem]">
+            <AnimatedText as="h2" className="type-heading text-step-4">
               Three divisions
-            </h2>
+            </AnimatedText>
             <p className="type-body mt-4 text-[1.0625rem]">
               Two bring equipment in. One sends workforce out.
             </p>
@@ -195,9 +195,9 @@ export default function Home() {
       <section className="border-y border-rule bg-paper-sunk py-20 md:py-24">
         <Container>
           <Reveal>
-            <h2 className="type-heading text-[1.75rem] sm:text-[2rem]">
+            <AnimatedText as="h2" className="type-heading text-step-4">
               What we do
-            </h2>
+            </AnimatedText>
             <p className="type-body mt-4 text-[1.0625rem]">
               Everything the group offers, across three divisions. Each one ends
               with somebody in Dhaka answering the phone.
@@ -235,16 +235,15 @@ export default function Home() {
       <section className="bg-ink py-20 text-paper-raised md:py-24">
         <Container>
           <Reveal>
-            <h2 className="type-heading text-[1.75rem] text-paper-raised sm:text-[2rem]">
+            <AnimatedText as="h2" className="type-heading text-step-4 text-paper-raised">
               Seven brands, represented in Bangladesh
-            </h2>
+            </AnimatedText>
             <p className="type-body mt-4 max-w-[62ch] text-[1.0625rem] text-paper-sunk/70">
               SLG does not manufacture. It imports, supplies, installs and
               services equipment made by these seven, and answers the phone
               afterwards.
             </p>
           </Reveal>
-
           <ul className="mt-12 grid gap-px border border-white/12 bg-white/12 sm:grid-cols-2 lg:grid-cols-4">
             {brands.map((brand, index) => (
               <Reveal
@@ -293,9 +292,9 @@ export default function Home() {
       <section className="border-t border-rule bg-paper-sunk py-16">
         <Container className="flex flex-wrap items-center justify-between gap-6">
           <Reveal>
-            <h2 className="type-heading text-[1.375rem]">
+            <AnimatedText as="h2" className="type-heading text-step-2">
               Tell us what the project needs
-            </h2>
+            </AnimatedText>
             <p className="type-body mt-2 text-[1rem]">
               Send the load, the building and the timeline. We will come back
               with the specification and a price.
