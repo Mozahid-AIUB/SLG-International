@@ -109,7 +109,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      <section className="border-t border-rule bg-paper-sunk py-16">
+      <section className="border-t border-rule bg-paper-sunk/80 py-16">
         <Container className="flex flex-wrap items-center justify-between gap-6">
           <div>
             <AnimatedText as="h2" className="type-heading text-step-2">

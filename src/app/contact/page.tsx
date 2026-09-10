@@ -137,7 +137,7 @@ export default function Page() {
         wants a number or an address first; the map matters once they have
         decided to visit, which is after they have read the rest.
       */}
-      <section className="border-t border-rule bg-paper-sunk py-16 md:py-20">
+      <section className="border-t border-rule bg-paper-sunk/80 py-16 md:py-20">
         <Container>
           <SectionHeading>Find the office</SectionHeading>
           <p className="type-body mt-4 text-step-0">

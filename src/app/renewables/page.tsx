@@ -277,7 +277,7 @@ export default function RenewablesPage() {
         cards: the difference between them is a paragraph of reasoning and a
         photograph, not a row in a comparison table.
       */}
-      <section className="border-b border-rule bg-paper-raised">
+      <section className="border-b border-rule bg-paper-raised/80">
         <Container className="py-20 md:py-28">
           <div>
             <SectionHeading>Three systems, one decision</SectionHeading>
@@ -346,7 +346,7 @@ export default function RenewablesPage() {
         </Container>
       </section>
 
-      <section className="border-b border-rule bg-paper-sunk">
+      <section className="border-b border-rule bg-paper-sunk/80">
         <Container className="py-20 md:py-28">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
             <div>
@@ -454,7 +454,7 @@ export default function RenewablesPage() {
         </ScrollScene>
       </section>
 
-      <section className="border-b border-rule bg-paper-raised">
+      <section className="border-b border-rule bg-paper-raised/80">
         <Container className="grid items-center gap-10 py-20 md:py-24 lg:grid-cols-2 lg:gap-16">
           <ScrollScene scene="mask" className="overflow-hidden border border-rule">
             <Image
@@ -483,7 +483,7 @@ export default function RenewablesPage() {
         </Container>
       </section>
 
-      <section className="bg-paper-sunk py-16">
+      <section className="bg-paper-sunk/80 py-16">
         <Container className="flex flex-wrap items-center justify-between gap-6">
           <div>
             <AnimatedText as="h2" className="type-heading text-step-2">

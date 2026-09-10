@@ -208,7 +208,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="border-y border-rule bg-paper-sunk py-20 md:py-24">
+      <section className="border-y border-rule bg-paper-sunk/80 py-20 md:py-24">
         <Container>
           <div>
             <SectionHeading>What we do</SectionHeading>
@@ -350,7 +350,7 @@ export default function Home() {
         controller screen, including two panels that contradict each other on
         frequency. Those are not repeated here.
       */}
-      <section className="border-t border-rule bg-paper-sunk py-20 md:py-24">
+      <section className="border-t border-rule bg-paper-sunk/80 py-20 md:py-24">
         <Container>
           <div>
             <SectionHeading>Solar, three ways</SectionHeading>
@@ -483,7 +483,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="border-t border-rule bg-paper-sunk py-16">
+      <section className="border-t border-rule bg-paper-sunk/80 py-16">
         <Container className="flex flex-wrap items-center justify-between gap-6">
           <div>
             <AnimatedText as="h2" className="type-heading text-step-2">

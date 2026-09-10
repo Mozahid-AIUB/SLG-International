@@ -201,7 +201,7 @@ export default function EngineeringPage() {
         </Container>
       </section>
 
-      <section className="border-t border-rule bg-paper-sunk py-16 md:py-20">
+      <section className="border-t border-rule bg-paper-sunk/80 py-16 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
             <SectionHeading>Where we work</SectionHeading>

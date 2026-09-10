@@ -52,29 +52,6 @@ function BioParagraph({ text, name }: { text: string; name: string }) {
 export default function AboutPage() {
   return (
     <main id="main" className="relative isolate flex-1">
-      {/*
-        The group mark, held still behind the page while the content scrolls
-        over it — a watermark on the paper rather than a picture in a column.
-        Fixed, so it does not travel; 34rem rather than the 46rem it was first
-        set at, which crowded the headline it sits behind.
-
-        The sections above it carry their ground at 80% so the mark reads
-        through. They keep their rules: a hairline crossing a mark at 4.5%
-        opacity is not the collision it sounds like, and without them the
-        page loses its section divisions entirely.
-      */}
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 hidden items-center justify-center lg:flex"
-      >
-        <Image
-          src="/brand/group-512.webp"
-          alt=""
-          width={512}
-          height={512}
-          className="w-[34rem] max-w-none opacity-[0.045]"
-        />
-      </div>
       <PageHero
         title="Fifteen years, one office, two directions of trade"
         lead="Sahara Link Group imports the equipment that keeps Bangladeshi buildings running, and places Bangladeshi workers with employers abroad. Three divisions, one company, one address in Dhaka."

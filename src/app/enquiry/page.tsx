@@ -94,7 +94,7 @@ export default function EnquiryPage() {
         }
       />
 
-      <section className="border-b border-rule bg-paper-raised">
+      <section className="border-b border-rule bg-paper-raised/80">
         <Container className="grid gap-12 py-20 md:py-24 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
           <div>
             <SectionHeading>Send the details</SectionHeading>
