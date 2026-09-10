@@ -145,12 +145,17 @@
    already capped against the viewport, but one card is sized by its list of
    specialisms rather than its picture and cannot shrink with it.
 
-   Below this height the pile is abandoned and the cards become an ordinary
-   scrolling list, which is the honest behaviour: no effect is better than an
-   effect that hides content.
+   A full card needs about 794px: 96 of padding, 90 of name block, a 410px
+   portrait, and the 198px offset the sixth card sits at. Below 820 the pile
+   is abandoned and the cards become an ordinary scrolling list, at full size.
+
+   Shrinking the photograph to fit was tried first and is worse: the frame
+   flattens from 4:5 to square and then to landscape, and object-top means
+   what is left is the top of the head. No effect beats an effect that
+   mangles the content it is showing.
 --------------------------------------------------------------------------- */
 
-@media (max-height: 700px) {
+@media (max-height: 820px) {
   [data-stack-card] {
     position: static;
   }

@@ -231,14 +231,13 @@ export default function AboutPage() {
                       at lg, so the frame is the same size either side of the
                       breakpoint.
 
-                      Height is capped against the viewport as well. A pinned
-                      card cannot be taller than the window it is pinned in,
-                      and at 4:5 this photograph alone is 410px: on a 709px
-                      window — what a maximised browser with a bookmarks bar
-                      actually gives — the card overran by 104px and the
-                      bottom of the picture was cut off the screen. The cap
-                      lets the frame shorten on a short window, and object-top
-                      means it loses the bottom of the picture, not the face.
+                      Height is deliberately NOT capped against the viewport.
+                      That was tried: it squashed the 4:5 frame to 1.01:1 in a
+                      747px window and to 0.71:1 in a 650px one, and since
+                      object-top holds the top edge what survived was the
+                      crown of the head rather than the face. A portrait that
+                      short is worse than no pinning at all, so the short-
+                      window fallback in globals.css handles it instead.
                     */}
                     {member.photo ? (
                       <Image
@@ -246,7 +245,7 @@ export default function AboutPage() {
                         alt={member.photoAlt ?? `${member.name}, ${member.role}`}
                         width={800}
                         height={1000}
-                        className="mt-5 aspect-4/5 w-full max-w-[17rem] border border-rule-strong object-cover object-top lg:max-h-[calc(100vh-26rem)] lg:max-w-none lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
+                        className="mt-5 aspect-4/5 w-full max-w-[17rem] border border-rule-strong object-cover object-top lg:max-w-none lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
                         sizes="(min-width: 1024px) 17rem, 100vw"
                       />
                     ) : null}
@@ -361,7 +360,7 @@ export default function AboutPage() {
                         alt={person.photoAlt ?? `${person.name}, ${person.role}`}
                         width={600}
                         height={750}
-                        className="mt-5 aspect-4/5 w-full max-w-[17rem] border border-rule-strong object-cover object-top lg:max-h-[calc(100vh-26rem)] lg:max-w-none lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
+                        className="mt-5 aspect-4/5 w-full max-w-[17rem] border border-rule-strong object-cover object-top lg:max-w-none lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
                         sizes="(min-width: 1024px) 17rem, 100vw"
                       />
                     ) : null}
