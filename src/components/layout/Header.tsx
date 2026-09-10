@@ -14,21 +14,34 @@ export function Header() {
   return (
     <header className="border-b border-rule bg-paper-raised">
       <Container className="flex items-center justify-between gap-6 py-4">
-        {/* The supplied logo is a circular badge carrying four lines of type.
-            At header scale that type is unreadable, so the badge's own SLG
-            monogram is used as the mark and the name is set beside it. */}
+        {/* The whole circular badge, not a crop of it.
+            A rectangular crop of the monogram was used here before, and it
+            clipped: the badge is a circle, so any rectangle tight enough to
+            exclude the gold ring at the corners also cut the top of the S,
+            the right of the globe and the tail of the swoosh. Shown whole at
+            44-48px the wordmark still reads and nothing is cut. */}
         <Link href="/" className="flex items-center gap-4">
           <Image
-            src="/brand/group-mark-400.webp"
+            src="/brand/group-badge-144.webp"
             alt="Sahara Link Group"
-            width={400}
-            height={197}
-            className="h-11 w-auto sm:h-12"
+            width={144}
+            height={144}
+            className="h-11 w-11 sm:h-12 sm:w-12"
             priority
           />
-          <span className="hidden border-l border-rule pl-4 type-heading text-step-0 leading-tight text-navy sm:block">
-            Sahara Link Group
-          </span>
+          {/* The name as the brand sets it, not as Archivo sets it. The
+              wordmark was being retyped in the site's own face beside a logo
+              that already carries it, so the header showed the company name
+              in two different typefaces at once. */}
+          <Image
+            src="/brand/wordmark-540.webp"
+            alt=""
+            aria-hidden
+            width={540}
+            height={97}
+            className="hidden h-7 w-auto border-l border-rule pl-4 sm:block"
+            priority
+          />
         </Link>
 
         <nav className="hidden md:block">

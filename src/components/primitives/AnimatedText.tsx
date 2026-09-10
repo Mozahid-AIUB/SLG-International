@@ -77,8 +77,11 @@ export function AnimatedText({
             return inner;
           });
 
-        gsap.from(inners, {
-          yPercent: 110,
+        // fromTo rather than from, for the same reason as HeroReveal: a
+        // second effect run in development would otherwise read the current
+        // position as the destination and animate to nowhere.
+        gsap.fromTo(inners, { yPercent: 110 }, {
+          yPercent: 0,
           duration: 0.8,
           delay,
           stagger: 0.038,

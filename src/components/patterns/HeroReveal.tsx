@@ -65,22 +65,35 @@ export function HeroReveal({ children }: { children: ReactNode }) {
           });
         }
 
+        // fromTo, never from. React runs effects twice in development, and
+        // gsap.from() reads the element's current value as its destination —
+        // so a second run that starts while the first is still at opacity 0
+        // animates 0 to 0 and the block never appears. It did exactly that
+        // here. Explicit destinations make the timeline idempotent however
+        // many times it is built.
         const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-        tl.from("[data-hero-mark]", { opacity: 0, x: -18, duration: 0.7 }, 0);
+        tl.fromTo(
+          "[data-hero-mark]",
+          { opacity: 0, x: -18 },
+          { opacity: 1, x: 0, duration: 0.7 },
+          0,
+        );
 
         if (words.length) {
-          tl.from(
+          tl.fromTo(
             words,
-            { yPercent: 108, duration: 0.85, stagger: 0.045 },
+            { yPercent: 108 },
+            { yPercent: 0, duration: 0.85, stagger: 0.045 },
             0.15,
           );
         }
 
         if (items.length) {
-          tl.from(
+          tl.fromTo(
             items,
-            { opacity: 0, y: 26, duration: 0.8, stagger: 0.12 },
+            { opacity: 0, y: 26 },
+            { opacity: 1, y: 0, duration: 0.8, stagger: 0.12 },
             0.6,
           );
         }

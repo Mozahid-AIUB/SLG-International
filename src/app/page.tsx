@@ -53,9 +53,19 @@ export default function Home() {
                 height={192}
                 className="h-14 w-14"
               />
-              <span className="type-heading text-step-0 leading-tight text-paper-raised">
-                {site.name}
-              </span>
+              {/* The wordmark, not the name retyped in Archivo. This is the
+                  light cut: the brand sets the letters in navy, which
+                  disappears against the hero photograph, so the letterforms
+                  are lifted to paper and the gold rules and triangles are
+                  kept as they are. */}
+              <Image
+                src="/brand/wordmark-light-540.webp"
+                alt="Sahara Link Group"
+                width={540}
+                height={97}
+                className="h-8 w-auto"
+                priority
+              />
             </div>
 
             <h1
