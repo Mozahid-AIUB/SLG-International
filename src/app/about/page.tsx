@@ -51,7 +51,30 @@ function BioParagraph({ text, name }: { text: string; name: string }) {
 
 export default function AboutPage() {
   return (
-    <main id="main" className="flex-1">
+    <main id="main" className="relative isolate flex-1">
+      {/*
+        The group mark, held still behind the page while the content scrolls
+        over it — a watermark on the paper rather than a picture in a column.
+        Fixed, so it does not travel; 34rem rather than the 46rem it was first
+        set at, which crowded the headline it sits behind.
+
+        The sections above it carry their ground at 80% so the mark reads
+        through. They keep their rules: a hairline crossing a mark at 4.5%
+        opacity is not the collision it sounds like, and without them the
+        page loses its section divisions entirely.
+      */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10 hidden items-center justify-center lg:flex"
+      >
+        <Image
+          src="/brand/group-512.webp"
+          alt=""
+          width={512}
+          height={512}
+          className="w-[34rem] max-w-none opacity-[0.045]"
+        />
+      </div>
       <PageHero
         title="Fifteen years, one office, two directions of trade"
         lead="Sahara Link Group imports the equipment that keeps Bangladeshi buildings running, and places Bangladeshi workers with employers abroad. Three divisions, one company, one address in Dhaka."
@@ -76,7 +99,7 @@ export default function AboutPage() {
         Setting the tagline beside the photo at display size lets each finish
         the other, instead of shrinking the picture into a bio avatar.
       */}
-      <section className="border-b border-rule bg-paper-raised">
+      <section className="border-b border-rule bg-paper-raised/80">
         <Container className="grid gap-10 py-24 md:py-36 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-16">
           <Reveal effect="wipe">
             {/*
@@ -148,7 +171,7 @@ export default function AboutPage() {
         the way a listing of officers does.
       */}
       {leadership.length > 0 ? (
-        <section className="border-b border-rule bg-paper-raised">
+        <section className="border-b border-rule bg-paper-raised/80">
           <Container className="py-24 md:py-36">
             <SectionHeading>Leadership</SectionHeading>
 
@@ -312,7 +335,7 @@ export default function AboutPage() {
         and the addresses are links rather than table cells.
       */}
       {technology.length > 0 ? (
-        <section className="border-t border-rule bg-paper-sunk">
+        <section className="border-t border-rule bg-paper-sunk/80">
           <Container className="py-20 md:py-24">
             {/* Now that this section carries a card like Leadership does,
                 it takes the same heading treatment. A centred grey label
