@@ -42,6 +42,18 @@ export type TeamMember = {
  */
 export const leadership: TeamMember[] = [
   {
+    id: "billal-hossain-uzzol",
+    name: "Engr. Billal Hossain Uzzol",
+    role: "Chairman",
+    credential: "Electrical & Electronic Engineering",
+    photo: "/about/chairman-560.webp",
+    photoAlt: "Engr. Billal Hossain Uzzol at his desk in the Dhaka office",
+    bio: [
+      "Engr. Billal Hossain Uzzol is the Chairman of Sahara Link Group and an Electrical and Electronic Engineering professional.",
+      "He studied at Green University of Bangladesh and at Ahsanullah University of Science and Technology, and brings that grounding in electrical and electronic engineering to the direction of the group and to its growth.",
+    ],
+  },
+  {
     id: "atiqur-rahman-sohail",
     name: "Md. Atiqur Rahman Sohail",
     role: "Managing Director",
