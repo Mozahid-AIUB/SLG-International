@@ -221,6 +221,16 @@ export default function AboutPage() {
                       different shapes, and left at their own ratios the
                       cards beside them would end on different lines.
 
+                      Width is capped below lg, and that matters more than it
+                      sounds. Under the breakpoint the card collapses to one
+                      column and the picture takes the full width of it: in a
+                      1005px window that is 859px across, which at 4:5 makes
+                      it 1074px tall — a portrait taller than the window,
+                      with the viewport-height cap sitting behind an lg: prefix
+                      where it cannot help. 17rem matches the column it gets
+                      at lg, so the frame is the same size either side of the
+                      breakpoint.
+
                       Height is capped against the viewport as well. A pinned
                       card cannot be taller than the window it is pinned in,
                       and at 4:5 this photograph alone is 410px: on a 709px
@@ -236,7 +246,7 @@ export default function AboutPage() {
                         alt={member.photoAlt ?? `${member.name}, ${member.role}`}
                         width={800}
                         height={1000}
-                        className="mt-5 aspect-4/5 w-full border border-rule-strong object-cover object-top lg:max-h-[calc(100vh-26rem)] lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
+                        className="mt-5 aspect-4/5 w-full max-w-[17rem] border border-rule-strong object-cover object-top lg:max-h-[calc(100vh-26rem)] lg:max-w-none lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
                         sizes="(min-width: 1024px) 17rem, 100vw"
                       />
                     ) : null}
@@ -351,7 +361,7 @@ export default function AboutPage() {
                         alt={person.photoAlt ?? `${person.name}, ${person.role}`}
                         width={600}
                         height={750}
-                        className="mt-5 aspect-4/5 w-full border border-rule-strong object-cover object-top lg:max-h-[calc(100vh-26rem)] lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
+                        className="mt-5 aspect-4/5 w-full max-w-[17rem] border border-rule-strong object-cover object-top lg:max-h-[calc(100vh-26rem)] lg:max-w-none lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
                         sizes="(min-width: 1024px) 17rem, 100vw"
                       />
                     ) : null}
