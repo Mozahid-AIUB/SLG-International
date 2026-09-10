@@ -174,7 +174,7 @@ export default function AboutPage() {
                 <article
                   data-stack-card
                   key={member.id}
-                  className="grid gap-6 border border-rule bg-paper-raised px-8 py-14 shadow-[0_-18px_50px_-30px_rgba(10,18,40,0.35)] lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-0 lg:px-12 lg:sticky"
+                  className="grid gap-6 border border-rule bg-paper-raised px-8 py-12 shadow-[0_-18px_50px_-30px_rgba(10,18,40,0.35)] lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-0 lg:px-12 lg:sticky"
                   /*
                     Each card sticks 22px lower than the one before it, so the
                     pile leaves a visible edge of every card underneath rather
@@ -220,6 +220,15 @@ export default function AboutPage() {
                       Fixed 4:5 frame. The supplied portraits are all
                       different shapes, and left at their own ratios the
                       cards beside them would end on different lines.
+
+                      Height is capped against the viewport as well. A pinned
+                      card cannot be taller than the window it is pinned in,
+                      and at 4:5 this photograph alone is 410px: on a 709px
+                      window — what a maximised browser with a bookmarks bar
+                      actually gives — the card overran by 104px and the
+                      bottom of the picture was cut off the screen. The cap
+                      lets the frame shorten on a short window, and object-top
+                      means it loses the bottom of the picture, not the face.
                     */}
                     {member.photo ? (
                       <Image
@@ -227,7 +236,7 @@ export default function AboutPage() {
                         alt={member.photoAlt ?? `${member.name}, ${member.role}`}
                         width={800}
                         height={1000}
-                        className="mt-5 aspect-4/5 w-full border border-rule-strong object-cover object-top lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
+                        className="mt-5 aspect-4/5 w-full border border-rule-strong object-cover object-top lg:max-h-[calc(100vh-26rem)] lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
                         sizes="(min-width: 1024px) 17rem, 100vw"
                       />
                     ) : null}
@@ -324,7 +333,7 @@ export default function AboutPage() {
                   like everyone else on this page, and the byline treatment
                   read as a footer credit rather than a colleague.
                 */}
-                <Reveal className="grid gap-6 border border-rule bg-paper-raised px-8 py-14 shadow-[0_-18px_50px_-30px_rgba(10,18,40,0.35)] lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-0 lg:px-12">
+                <Reveal className="grid gap-6 border border-rule bg-paper-raised px-8 py-12 shadow-[0_-18px_50px_-30px_rgba(10,18,40,0.35)] lg:grid-cols-[minmax(0,17rem)_1fr] lg:gap-0 lg:px-12">
                   <div className="relative z-10 lg:w-[calc(100%+3.5rem)]">
                     <h3 className="type-heading text-step-1">{person.name}</h3>
                     <p className="type-data mt-1.5 text-step--1 text-accent">
@@ -342,7 +351,7 @@ export default function AboutPage() {
                         alt={person.photoAlt ?? `${person.name}, ${person.role}`}
                         width={600}
                         height={750}
-                        className="mt-5 aspect-4/5 w-full border border-rule-strong object-cover object-top lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
+                        className="mt-5 aspect-4/5 w-full border border-rule-strong object-cover object-top lg:max-h-[calc(100vh-26rem)] lg:shadow-[0_18px_50px_-24px_rgba(10,18,40,0.45)]"
                         sizes="(min-width: 1024px) 17rem, 100vw"
                       />
                     ) : null}

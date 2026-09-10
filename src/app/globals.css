@@ -136,6 +136,26 @@
    display, normal body and condensed data all come from a single download.
 --------------------------------------------------------------------------- */
 
+/* ---------------------------------------------------------------------------
+   Stacking cards, short windows
+
+   The leadership cards pin and pile as you scroll. A card that is taller
+   than the window it is pinned in never shows its own bottom — the reader
+   scrolls and the lower half simply stays off-screen. The photographs are
+   already capped against the viewport, but one card is sized by its list of
+   specialisms rather than its picture and cannot shrink with it.
+
+   Below this height the pile is abandoned and the cards become an ordinary
+   scrolling list, which is the honest behaviour: no effect is better than an
+   effect that hides content.
+--------------------------------------------------------------------------- */
+
+@media (max-height: 700px) {
+  [data-stack-card] {
+    position: static;
+  }
+}
+
 @utility type-display {
   font-stretch: 125%;
   font-weight: 600;
