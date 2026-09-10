@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { HeroWatermark } from "@/components/patterns/HeroWatermark";
 import { Container } from "@/components/primitives/Container";
 
 export function PageHero({
@@ -11,7 +12,9 @@ export function PageHero({
   aside?: ReactNode;
 }) {
   return (
-    <section className="border-b border-rule">
+    <section className="relative isolate overflow-hidden border-b border-rule">
+      <HeroWatermark />
+
       <Container
         className={
           aside
