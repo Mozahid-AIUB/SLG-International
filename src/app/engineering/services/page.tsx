@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/primitives/Container";
+import { AnimatedText } from "@/components/primitives/AnimatedText";
 import { PageHero } from "@/components/patterns/PageHero";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { engineeringServices, engineeringSegments } from "@/content/brands";
@@ -38,12 +39,20 @@ export default function ServicesPage() {
                 <p className="type-data text-[0.8125rem] text-accent">
                   Step {index + 1}
                 </p>
-                <h2 className="type-heading mt-2 text-[1.25rem]">
+                <AnimatedText
+                  as="h2"
+                  delay={index * 0.05}
+                  className="type-heading mt-2 text-step-1"
+                >
                   {service.title}
-                </h2>
-                <p className="type-body mt-2 text-[0.9375rem]">
+                </AnimatedText>
+                <AnimatedText
+                  as="p"
+                  delay={index * 0.05 + 0.15}
+                  className="type-body mt-2 text-step--1"
+                >
                   {service.description}
-                </p>
+                </AnimatedText>
               </li>
             ))}
           </ol>
@@ -53,12 +62,18 @@ export default function ServicesPage() {
       <section className="py-16 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div>
-            <h2 className="type-heading text-[1.75rem]">Buildings we serve</h2>
-            <p className="type-body mt-4 text-[1.0625rem]">
+            <AnimatedText as="h2" className="type-heading text-step-4">
+              Buildings we serve
+            </AnimatedText>
+            <AnimatedText
+              as="p"
+              delay={0.15}
+              className="type-body mt-4 text-step-0"
+            >
               A hospital lift and an office lift are not the same machine, even
               when the brand on the door matches. Car size, door timing and
               service priority all change with the building.
-            </p>
+            </AnimatedText>
           </div>
           <ul className="grid grid-cols-1 gap-x-10 sm:grid-cols-2">
             {engineeringSegments.map((segment) => (
@@ -76,13 +91,17 @@ export default function ServicesPage() {
       <section className="border-t border-rule bg-paper-sunk py-16">
         <Container className="flex flex-wrap items-center justify-between gap-6">
           <div>
-            <h2 className="type-heading text-[1.375rem]">
+            <AnimatedText as="h2" className="type-heading text-step-2">
               Already have equipment installed?
-            </h2>
-            <p className="type-body mt-2 text-[1rem]">
+            </AnimatedText>
+            <AnimatedText
+              as="p"
+              delay={0.15}
+              className="type-body mt-2 text-[1rem]"
+            >
               We service what we supply, and we will look at what someone else
               supplied. Tell us the brand and the age.
-            </p>
+            </AnimatedText>
           </div>
           <Link
             href="/contact"

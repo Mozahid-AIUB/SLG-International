@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { DataPlate, type PlateRow } from "@/components/patterns/DataPlate";
 import type { Brand } from "@/content/brands";
+import { AnimatedText } from "@/components/primitives/AnimatedText";
 
 /**
  * One represented brand: what it is, where it is used, and what protects it.
@@ -37,33 +38,36 @@ export function BrandBlock({ brand, index }: { brand: Brand; index: number }) {
         </div>
 
         <div className={imageFirst ? "" : "lg:order-1"}>
-          <h3 className="type-display text-[2rem] sm:text-[2.375rem]">
+          {/* The brand name is the largest thing on these pages and the
+              thing a buyer is scanning for, so it assembles the way the
+              section headings do rather than arriving with the block. */}
+          <AnimatedText as="h3" className="type-display text-step-4">
             {brand.name}
-          </h3>
-          <p className="type-heading mt-2 text-[1.125rem] text-accent">
+          </AnimatedText>
+          <p className="type-heading mt-2 text-step-1 text-accent">
             {brand.headline}
           </p>
-          <p className="type-body mt-5 text-[1.0625rem]">{brand.positioning}</p>
+          <p className="type-body mt-5 text-step-0">{brand.positioning}</p>
 
           <DataPlate title={`${brand.name} — supply summary`} rows={rows} className="mt-8" />
         </div>
       </div>
 
       <div className="mt-12 border-t border-rule pt-10">
-        <h4 className="type-heading text-[1.125rem]">{brand.featuresTitle}</h4>
+        <h4 className="type-heading text-step-1">{brand.featuresTitle}</h4>
         <dl className="mt-6 grid gap-x-12 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
           {brand.features.map((feature) => (
             <div key={feature.title} className="border-t border-rule pt-4">
-              <dt className="type-data text-[0.9375rem] text-navy">
+              <dt className="type-data text-step--1 text-navy">
                 {feature.title}
               </dt>
-              <dd className="type-body mt-1.5 text-[0.9375rem]">
+              <dd className="type-body mt-1.5 text-step--1">
                 {feature.description}
               </dd>
             </div>
           ))}
         </dl>
-        <p className="type-data mt-8 text-[0.8125rem] text-ink-faint">
+        <p className="type-data mt-8 text-step--1 text-ink-faint">
           {brand.disclaimer}
         </p>
       </div>

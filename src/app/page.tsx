@@ -486,15 +486,15 @@ export default function Home() {
 
       <section className="border-t border-rule bg-paper-sunk py-16">
         <Container className="flex flex-wrap items-center justify-between gap-6">
-          <Reveal>
+          <div>
             <AnimatedText as="h2" className="type-heading text-step-2">
               Tell us what the project needs
             </AnimatedText>
-            <p className="type-body mt-2 text-[1rem]">
+            <AnimatedText as="p" delay={0.15} className="type-body mt-2 text-step-0">
               Send the load, the building and the timeline. We will come back
               with the specification and a price.
-            </p>
-          </Reveal>
+            </AnimatedText>
+          </div>
           <Reveal delay={120}>
             <Link
               href="/enquiry"

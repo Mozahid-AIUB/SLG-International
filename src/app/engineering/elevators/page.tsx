@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/primitives/Container";
+import { AnimatedText } from "@/components/primitives/AnimatedText";
 import { BrandBlock } from "@/components/patterns/BrandBlock";
 import { PageHero } from "@/components/patterns/PageHero";
 import { DataPlate } from "@/components/patterns/DataPlate";
@@ -60,11 +61,17 @@ export default function ElevatorsPage() {
 
       <section className="border-b border-rule py-16 md:py-20">
         <Container>
-          <h2 className="type-heading text-[1.75rem]">Configurations</h2>
-          <p className="type-body mt-4 text-[1.0625rem]">
+          <AnimatedText as="h2" className="type-heading text-step-4">
+            Configurations
+          </AnimatedText>
+          <AnimatedText
+            as="p"
+            delay={0.15}
+            className="type-body mt-4 text-step-0"
+          >
             Which one fits depends on the building, the traffic it carries and
             the shaft available. Send the drawings and we will tell you.
-          </p>
+          </AnimatedText>
           <dl className="mt-10 grid gap-x-12 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
             {types.map((type) => (
               <div key={type.name} className="border-t border-rule pt-4">
@@ -89,13 +96,17 @@ export default function ElevatorsPage() {
       <section className="border-t border-rule bg-paper-sunk py-16">
         <Container className="flex flex-wrap items-center justify-between gap-6">
           <div>
-            <h2 className="type-heading text-[1.375rem]">
+            <AnimatedText as="h2" className="type-heading text-step-2">
               Not sure which brand suits the building?
-            </h2>
-            <p className="type-body mt-2 text-[1rem]">
+            </AnimatedText>
+            <AnimatedText
+              as="p"
+              delay={0.15}
+              className="type-body mt-2 text-[1rem]"
+            >
               Send the floor count, the shaft dimensions and the expected
               traffic. We will come back with options and a price.
-            </p>
+            </AnimatedText>
           </div>
           <Link
             href="/enquiry"

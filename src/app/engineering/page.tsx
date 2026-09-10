@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/primitives/Container";
+import { AnimatedText } from "@/components/primitives/AnimatedText";
 import { DataPlate } from "@/components/patterns/DataPlate";
 import { PageHero } from "@/components/patterns/PageHero";
 import {
@@ -73,10 +74,16 @@ export default function EngineeringPage() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
               <div>
-                <h2 className="type-display text-[2rem] sm:text-[2.375rem]">
+                <AnimatedText as="h2" className="type-display text-step-4">
                   {line.title}
-                </h2>
-                <p className="type-body mt-5 text-[1.0625rem]">{line.lead}</p>
+                </AnimatedText>
+                <AnimatedText
+                  as="p"
+                  delay={0.15}
+                  className="type-body mt-5 text-step-0"
+                >
+                  {line.lead}
+                </AnimatedText>
 
                 <ul className="mt-8 border-t border-rule">
                   {line.brands.map((brand) => (
@@ -112,12 +119,18 @@ export default function EngineeringPage() {
       <section className="border-t border-rule bg-paper-sunk py-16 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <h2 className="type-heading text-[1.75rem]">Where we work</h2>
-            <p className="type-body mt-4 text-[1.0625rem]">
+            <AnimatedText as="h2" className="type-heading text-step-4">
+              Where we work
+            </AnimatedText>
+            <AnimatedText
+              as="p"
+              delay={0.15}
+              className="type-body mt-4 text-step-0"
+            >
               The same team handles a six-storey apartment block and a hospital
               tower. What changes is the traffic calculation, the load and the
               service schedule.
-            </p>
+            </AnimatedText>
             <Link
               href="/engineering/services"
               className="mt-7 inline-block border border-navy px-5 py-2.5 type-data text-[0.9375rem] text-navy transition-colors hover:bg-navy hover:text-paper-raised"

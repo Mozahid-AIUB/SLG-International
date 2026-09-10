@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/primitives/Container";
+import { AnimatedText } from "@/components/primitives/AnimatedText";
 import { BrandBlock } from "@/components/patterns/BrandBlock";
 import { PageHero } from "@/components/patterns/PageHero";
 import { DataPlate } from "@/components/patterns/DataPlate";
@@ -72,11 +73,17 @@ export default function GeneratorsPage() {
       <section className="border-b border-rule py-16 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <h2 className="type-heading text-[1.75rem]">Duty</h2>
-            <p className="type-body mt-4 text-[1.0625rem]">
+            <AnimatedText as="h2" className="type-heading text-step-4">
+              Duty
+            </AnimatedText>
+            <AnimatedText
+              as="p"
+              delay={0.15}
+              className="type-body mt-4 text-step-0"
+            >
               How often the set runs decides the engine, the cooling and the
               service interval.
-            </p>
+            </AnimatedText>
             <dl className="mt-8">
               {duties.map((duty) => (
                 <div key={duty.name} className="border-t border-rule py-4">
@@ -92,11 +99,17 @@ export default function GeneratorsPage() {
           </div>
 
           <div>
-            <h2 className="type-heading text-[1.75rem]">Configuration</h2>
-            <p className="type-body mt-4 text-[1.0625rem]">
+            <AnimatedText as="h2" className="type-heading text-step-4">
+              Configuration
+            </AnimatedText>
+            <AnimatedText
+              as="p"
+              delay={0.15}
+              className="type-body mt-4 text-step-0"
+            >
               Decided at quotation, not after delivery. Getting these wrong is
               the usual reason a genset disappoints.
-            </p>
+            </AnimatedText>
             <dl className="mt-8">
               {options.map((option) => (
                 <div key={option.name} className="border-t border-rule py-4">
@@ -124,13 +137,17 @@ export default function GeneratorsPage() {
       <section className="border-t border-rule bg-paper-sunk py-16">
         <Container className="flex flex-wrap items-center justify-between gap-6">
           <div>
-            <h2 className="type-heading text-[1.375rem]">
+            <AnimatedText as="h2" className="type-heading text-step-2">
               Tell us the load, we will size the set
-            </h2>
-            <p className="type-body mt-2 text-[1rem]">
+            </AnimatedText>
+            <AnimatedText
+              as="p"
+              delay={0.15}
+              className="type-body mt-2 text-[1rem]"
+            >
               Connected load, starting current, run hours and site conditions
               are enough to come back with a specification.
-            </p>
+            </AnimatedText>
           </div>
           <Link
             href="/enquiry"
