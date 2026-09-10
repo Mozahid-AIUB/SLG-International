@@ -178,43 +178,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* ---------------------------------------------------------------------------
-   Blueprint ground
-
-   A faint drafting grid, drawn in CSS so it costs nothing and scales cleanly.
-   Applied to a few large sections, not the whole page — the point is a hint
-   of drawing paper, not graph paper.
---------------------------------------------------------------------------- */
-
-@utility blueprint {
-  position: relative;
-  isolation: isolate;
-
-  /* The grid lives on a pseudo-element. Masking the section itself would
-     fade its content along with the drawing. */
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image:
-      linear-gradient(to right, var(--rule-strong) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--rule-strong) 1px, transparent 1px);
-    background-size: 96px 96px;
-    background-position: center top;
-    opacity: 0.32;
-    /* Reaches across the full width rather than pooling at 22%. The data
-       plates sit on the right of these sections and are glass: with the
-       grid stopping short of them the blur had nothing behind it to refract
-       and the panel read as flat translucent plastic. */
-    mask-image: radial-gradient(
-      ellipse 130% 78% at 40% 0%,
-      #000 0%,
-      transparent 78%
-    );
-  }
-}
 
 /* ---------------------------------------------------------------------------
    Scroll reveal

@@ -93,7 +93,7 @@ export default function Home() {
         </HeroSlides>
       </section>
 
-      <section className="blueprint border-b border-rule">
+      <section className="border-b border-rule">
         <Container className="grid gap-12 py-20 md:py-24 lg:grid-cols-[1.45fr_1fr] lg:items-start">
           {/*
             No Reveal around these. A block fade and a word-lift animate the

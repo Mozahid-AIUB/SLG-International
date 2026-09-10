@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
+import { HeroWatermark } from "@/components/patterns/HeroWatermark";
 import { Container } from "@/components/primitives/Container";
 
 export function PageHero({
@@ -12,29 +12,9 @@ export function PageHero({
   aside?: ReactNode;
 }) {
   return (
-    <section className="blueprint relative isolate overflow-hidden border-b border-rule">
-      {/*
-        The group mark, set very large and very faint behind the heading.
+    <section className="relative isolate overflow-hidden border-b border-rule">
+      <HeroWatermark />
 
-        Two jobs. It puts the brand on the page rather than leaving it to the
-        header image, and it gives the glass data plate something to refract:
-        the drafting grid alone is regular enough that a blur over it barely
-        registers, while a curved edge passing under the panel is visible as
-        refraction and is what makes the glass read as glass.
-
-        4% opacity. At anything higher it competes with the headline it sits
-        behind, and the point is a watermark, not a second logo. Hidden from
-        assistive technology and non-interactive.
-      */}
-      <Image
-        src="/brand/group-512.webp"
-        alt=""
-        aria-hidden
-        width={512}
-        height={512}
-        priority={false}
-        className="pointer-events-none absolute -left-16 -top-24 -z-10 hidden w-[34rem] max-w-none opacity-[0.04] lg:block"
-      />
       <Container
         className={
           aside
