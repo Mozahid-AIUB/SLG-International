@@ -26,8 +26,14 @@ export default function Home() {
         <HeroSlides
           slides={[
             {
-              src: "/media/hero-solar.webp",
-              alt: "Rooftop solar array on a house at sunset",
+              // The only one of the three with motion, and deliberately so.
+              // Stock footage of a foreign refinery or a snowy power station
+              // was the alternative for the other two: handsome, and silent
+              // about a company that puts lifts in Dhaka apartment blocks.
+              // The photographs of the actual products say more.
+              src: "/media/video/solar-poster.webp",
+              video: "/media/video/solar-1280.mp4",
+              alt: "Aerial view of a rooftop solar array",
               label: "Solar systems",
             },
             {

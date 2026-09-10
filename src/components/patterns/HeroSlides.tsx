@@ -8,6 +8,10 @@ export type Slide = {
   alt: string;
   /** Shown in the indicator row, so a viewer knows what they are looking at. */
   label: string;
+  /** Optional motion for this slide. `src` stays the poster and the fallback,
+   *  so a slide with no video, or a viewer who should not be sent one, gets
+   *  exactly the photograph it had before. */
+  video?: string;
 };
 
 const INTERVAL = 6000;
@@ -37,6 +41,9 @@ export function HeroSlides({
   const [auto, setAuto] = useState(false);
   /** Temporarily held, while a pointer or keyboard focus is inside. */
   const [paused, setPaused] = useState(false);
+  /** Whether this viewer should be sent video at all. Decided once, on the
+   *  client, and false until then so the server and the first paint agree. */
+  const [motionOk, setMotionOk] = useState(false);
 
   useEffect(() => {
     // Next frame rather than straight away. Setting state synchronously in an
@@ -45,6 +52,26 @@ export function HeroSlides({
     const id = requestAnimationFrame(() =>
       setAuto(!window.matchMedia("(prefers-reduced-motion: reduce)").matches),
     );
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  useEffect(() => {
+    // Three ways to say no, and any of them settles it. Reduced motion is a
+    // stated preference. Save-Data is a stated preference too — the browser
+    // is telling us the viewer pays for this. And a 2G connection will not
+    // finish the file before the slide has moved on anyway, so it would cost
+    // the data and show nothing.
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const conn = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean; effectiveType?: string };
+      }
+    ).connection;
+    const cheap =
+      conn?.saveData === true ||
+      (typeof conn?.effectiveType === "string" && /2g/.test(conn.effectiveType));
+
+    const id = requestAnimationFrame(() => setMotionOk(!reduced && !cheap));
     return () => cancelAnimationFrame(id);
   }, []);
 
@@ -79,15 +106,39 @@ export function HeroSlides({
             className="relative h-full"
             style={{ width: `${100 / slides.length}%` }}
           >
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              width={1600}
-              height={900}
-              priority={i === 0}
-              sizes="100vw"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+            {slide.video && motionOk ? (
+              // Poster is the photograph, so the slide looks right from the
+              // first frame and identical to the no-video case if the file
+              // never arrives. Only the slide on screen plays: the others
+              // would burn a decoder each for something nobody is watching.
+              <video
+                key={slide.video}
+                src={slide.video}
+                poster={slide.src}
+                autoPlay={i === index}
+                muted
+                loop
+                playsInline
+                preload={i === 0 ? "auto" : "none"}
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full object-cover"
+                ref={(el) => {
+                  if (!el) return;
+                  if (i === index) void el.play().catch(() => {});
+                  else el.pause();
+                }}
+              />
+            ) : (
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                width={1600}
+                height={900}
+                priority={i === 0}
+                sizes="100vw"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            )}
           </div>
         ))}
       </div>
