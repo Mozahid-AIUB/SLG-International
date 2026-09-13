@@ -143,7 +143,13 @@ export function HeroSlides({
                 muted
                 loop
                 playsInline
-                preload={i === 0 ? "auto" : "none"}
+                // metadata, not auto. The poster is already the photograph,
+                // so the hero is complete before a byte of video arrives;
+                // autoplay then pulls what it needs on its own. With "auto"
+                // the first clip put 1.2MB in front of the load event, which
+                // on the connection most of this audience is using is the
+                // whole hero paid for twice.
+                preload={i === 0 ? "metadata" : "none"}
                 aria-hidden="true"
                 className="absolute inset-0 h-full w-full scale-105 object-cover"
                 ref={(el) => {
