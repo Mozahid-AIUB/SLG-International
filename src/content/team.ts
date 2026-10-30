@@ -54,24 +54,13 @@ export const leadership: TeamMember[] = [
     ],
   },
   {
-    id: "atiqur-rahman-sohail",
-    name: "Md. Atiqur Rahman Sohail",
-    role: "Managing Director",
-    photo: "/about/md-800.webp",
-    bio: [
-      "As Managing Director, Md. Atiqur Rahman Sohail oversees operations and strategic growth across the group, holding all divisions to the same standard — passenger elevators and heavy-duty generators, renewable solar systems, and manpower supply.",
-      "He studied law, criminology and forensic sciences at Maastricht University in the Netherlands. That training in reading regulation closely and reasoning from evidence carries directly into the work: complex supply chains, stringent international standards, and project risk that has to be seen before it arrives.",
-      "Under his leadership the group works to reliable engineering, operational excellence and corporate governance that holds up to scrutiny.",
-    ],
-  },
-  {
     id: "mamunur-rashid",
     name: "Engr. Mamunur Rashid",
-    role: "Chief Executive Officer",
+    role: "Managing Director",
     credential: "DUET · Vertical transportation specialist",
     photo: "/about/ceo-800.webp",
     bio: [
-      "Engr. Mamunur Rashid is the Chief Executive Officer of Sahara Link Group and a specialist in vertical transportation systems, with a focus on elevator quality control, safety, technical evaluation and project execution.",
+      "Engr. Mamunur Rashid is the Managing Director of Sahara Link Group and a specialist in vertical transportation systems, with a focus on elevator quality control, safety, technical evaluation and project execution.",
       "His expertise spans the complete elevator project lifecycle. He provides the technical leadership and consultancy that keeps installed systems inside their required standards for quality, safety, performance and reliability, and works alongside clients, contractors and project stakeholders as they make technical and procurement decisions.",
     ],
     specialisms: [
